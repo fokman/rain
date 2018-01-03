@@ -15,6 +15,7 @@
         <module>rain-common</module>
         <module>rain-service</module>
         <module>rain-ice</module>
+        <module>rain-ice-hello</module>
     </modules>
 
     <properties>
@@ -23,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
-        <ice.version>3.6.2</ice.version>
+        <ice.version>3.6.4</ice.version>
         <ant.ice.version>4.0.0</ant.ice.version>
         <slf4j.version>1.7.21</slf4j.version>
         <log4j.version>2.4.1</log4j.version>
@@ -115,6 +116,12 @@
                 <artifactId>icebox</artifactId>
                 <version>${ice.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.zeroc</groupId>
+                <artifactId>icegrid</artifactId>
+                <version>${ice.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

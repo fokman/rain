@@ -9,11 +9,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rain.ice.hello</groupId>
-    <artifactId>rain-ice-hello</artifactId>
+    <groupId>com.rain.ice</groupId>
+    <artifactId>rain-ice</artifactId>
     <packaging>jar</packaging>
 
-    <name>rain-ice</name>
+    <name>rain-ice-hello</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -29,9 +29,9 @@
         </dependency>
         <dependency>
             <groupId>com.zeroc</groupId>
-            <artifactId>ice</artifactId>
-            <version>3.6.2</version>
+            <artifactId>icegrid</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
