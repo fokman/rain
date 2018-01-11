@@ -20,15 +20,15 @@
 
 package com.rain.ice.message;
 
-public final class ContextHolder extends Ice.Holder<Context>
+public final class MsgRequestHolder extends Ice.Holder<MsgRequest>
 {
     public
-    ContextHolder()
+    MsgRequestHolder()
     {
     }
 
     public
-    ContextHolder(Context value)
+    MsgRequestHolder(MsgRequest value)
     {
         super(value);
     }

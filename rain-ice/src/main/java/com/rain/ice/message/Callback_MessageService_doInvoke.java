@@ -21,7 +21,7 @@
 package com.rain.ice.message;
 
 public abstract class Callback_MessageService_doInvoke
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<com.rain.ice.message.Context>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<String>
 {
     public final void __completed(Ice.AsyncResult __result)
     {

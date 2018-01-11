@@ -22,41 +22,41 @@ package com.rain.ice.message;
 
 public interface MessageServicePrx extends Ice.ObjectPrx
 {
-    public Context doInvoke(Context context);
+    public String doInvoke(MsgRequest msgRequest);
 
-    public Context doInvoke(Context context, java.util.Map<String, String> __ctx);
+    public String doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_doInvoke(Context context);
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, Ice.Callback __cb);
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, Callback_MessageService_doInvoke __cb);
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, Callback_MessageService_doInvoke __cb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, java.util.Map<String, String> __ctx, Callback_MessageService_doInvoke __cb);
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx, Callback_MessageService_doInvoke __cb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public Context end_doInvoke(Ice.AsyncResult __result);
+    public String end_doInvoke(Ice.AsyncResult __result);
 }

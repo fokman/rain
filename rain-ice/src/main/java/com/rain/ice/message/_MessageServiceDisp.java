@@ -70,21 +70,21 @@ public abstract class _MessageServiceDisp extends Ice.ObjectImpl implements Mess
         return __ids[1];
     }
 
-    public final Context doInvoke(Context context)
+    public final String doInvoke(MsgRequest msgRequest)
     {
-        return doInvoke(context, null);
+        return doInvoke(msgRequest, null);
     }
 
     public static Ice.DispatchStatus ___doInvoke(MessageService __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
-        Context context = null;
-        context = Context.__read(__is, context);
+        MsgRequest msgRequest = null;
+        msgRequest = MsgRequest.__read(__is, msgRequest);
         __inS.endReadParams();
-        Context __ret = __obj.doInvoke(context, __current);
+        String __ret = __obj.doInvoke(msgRequest, __current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        Context.__write(__os, __ret);
+        __os.writeString(__ret);
         __inS.__endWriteParams(true);
         return Ice.DispatchStatus.DispatchOK;
     }

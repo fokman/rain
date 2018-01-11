@@ -15,7 +15,7 @@
         <module>rain-common</module>
         <module>rain-service</module>
         <module>rain-ice</module>
-        <module>rain-ice-hello</module>
+        <!--<module>rain-ice-hello</module>-->
     </modules>
 
     <properties>

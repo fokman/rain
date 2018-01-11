@@ -22,5 +22,5 @@ package com.rain.ice.message;
 
 public interface _MessageServiceOperations
 {
-    Context doInvoke(Context context, Ice.Current __current);
+    String doInvoke(MsgRequest msgRequest, Ice.Current __current);
 }

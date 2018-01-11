@@ -24,94 +24,94 @@ public final class MessageServicePrxHelper extends Ice.ObjectPrxHelperBase imple
 {
     private static final String __doInvoke_name = "doInvoke";
 
-    public Context doInvoke(Context context)
+    public String doInvoke(MsgRequest msgRequest)
     {
-        return doInvoke(context, null, false);
+        return doInvoke(msgRequest, null, false);
     }
 
-    public Context doInvoke(Context context, java.util.Map<String, String> __ctx)
+    public String doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx)
     {
-        return doInvoke(context, __ctx, true);
+        return doInvoke(msgRequest, __ctx, true);
     }
 
-    private Context doInvoke(Context context, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private String doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         __checkTwowayOnly(__doInvoke_name);
-        return end_doInvoke(begin_doInvoke(context, __ctx, __explicitCtx, true, null));
+        return end_doInvoke(begin_doInvoke(msgRequest, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context)
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest)
     {
-        return begin_doInvoke(context, null, false, false, null);
+        return begin_doInvoke(msgRequest, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx)
     {
-        return begin_doInvoke(context, __ctx, true, false, null);
+        return begin_doInvoke(msgRequest, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, Ice.Callback __cb)
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, Ice.Callback __cb)
     {
-        return begin_doInvoke(context, null, false, false, __cb);
+        return begin_doInvoke(msgRequest, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_doInvoke(context, __ctx, true, false, __cb);
+        return begin_doInvoke(msgRequest, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, Callback_MessageService_doInvoke __cb)
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, Callback_MessageService_doInvoke __cb)
     {
-        return begin_doInvoke(context, null, false, false, __cb);
+        return begin_doInvoke(msgRequest, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, java.util.Map<String, String> __ctx, Callback_MessageService_doInvoke __cb)
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, java.util.Map<String, String> __ctx, Callback_MessageService_doInvoke __cb)
     {
-        return begin_doInvoke(context, __ctx, true, false, __cb);
+        return begin_doInvoke(msgRequest, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_doInvoke(context, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_doInvoke(msgRequest, null, false, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_doInvoke(context, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_doInvoke(msgRequest, null, false, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_doInvoke(context, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_doInvoke(msgRequest, __ctx, true, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_doInvoke(Context context, 
+    public Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_doInvoke(context, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_doInvoke(msgRequest, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_doInvoke(Context context, 
+    private Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
                                            java.util.Map<String, String> __ctx, 
                                            boolean __explicitCtx, 
                                            boolean __synchronous, 
-                                           IceInternal.Functional_GenericCallback1<Context> __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_doInvoke(context, __ctx, __explicitCtx, __synchronous, 
-                              new IceInternal.Functional_TwowayCallbackArg1<com.rain.ice.message.Context>(__responseCb, __exceptionCb, __sentCb)
+        return begin_doInvoke(msgRequest, __ctx, __explicitCtx, __synchronous, 
+                              new IceInternal.Functional_TwowayCallbackArg1<String>(__responseCb, __exceptionCb, __sentCb)
                                   {
                                       public final void __completed(Ice.AsyncResult __result)
                                       {
@@ -120,7 +120,7 @@ public final class MessageServicePrxHelper extends Ice.ObjectPrxHelperBase imple
                                   });
     }
 
-    private Ice.AsyncResult begin_doInvoke(Context context, 
+    private Ice.AsyncResult begin_doInvoke(MsgRequest msgRequest, 
                                            java.util.Map<String, String> __ctx, 
                                            boolean __explicitCtx, 
                                            boolean __synchronous, 
@@ -132,7 +132,7 @@ public final class MessageServicePrxHelper extends Ice.ObjectPrxHelperBase imple
         {
             __result.prepare(__doInvoke_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
-            Context.__write(__os, context);
+            MsgRequest.__write(__os, msgRequest);
             __result.endWriteParams();
             __result.invoke();
         }
@@ -143,7 +143,7 @@ public final class MessageServicePrxHelper extends Ice.ObjectPrxHelperBase imple
         return __result;
     }
 
-    public Context end_doInvoke(Ice.AsyncResult __iresult)
+    public String end_doInvoke(Ice.AsyncResult __iresult)
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __doInvoke_name);
         try
@@ -160,8 +160,8 @@ public final class MessageServicePrxHelper extends Ice.ObjectPrxHelperBase imple
                 }
             }
             IceInternal.BasicStream __is = __result.startReadParams();
-            Context __ret = null;
-            __ret = Context.__read(__is, __ret);
+            String __ret;
+            __ret = __is.readString();
             __result.endReadParams();
             return __ret;
         }
@@ -174,10 +174,10 @@ public final class MessageServicePrxHelper extends Ice.ObjectPrxHelperBase imple
         }
     }
 
-    static public void __doInvoke_completed(Ice.TwowayCallbackArg1<Context> __cb, Ice.AsyncResult __result)
+    static public void __doInvoke_completed(Ice.TwowayCallbackArg1<String> __cb, Ice.AsyncResult __result)
     {
         com.rain.ice.message.MessageServicePrx __proxy = (com.rain.ice.message.MessageServicePrx)__result.getProxy();
-        Context __ret = null;
+        String __ret = null;
         try
         {
             __ret = __proxy.end_doInvoke(__result);

@@ -1,7 +1,7 @@
 [["java:package:com.rain.ice"]]
 module message{
 	dictionary<string, string> tmap;
- 	struct Context { 
+ 	struct MsgRequest {
  		 string service;
  		 string method;
  		 int  code;
@@ -13,6 +13,6 @@ module message{
 	};
 
 	interface MessageService {  
-		  Context doInvoke(Context context);
+		  string doInvoke(MsgRequest msgRequest);
 	};
 };

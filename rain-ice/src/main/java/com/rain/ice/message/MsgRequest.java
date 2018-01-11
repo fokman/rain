@@ -20,7 +20,7 @@
 
 package com.rain.ice.message;
 
-public class Context implements java.lang.Cloneable, java.io.Serializable
+public class MsgRequest implements java.lang.Cloneable, java.io.Serializable
 {
     public String service;
 
@@ -38,14 +38,14 @@ public class Context implements java.lang.Cloneable, java.io.Serializable
 
     public java.util.Map<java.lang.String, java.lang.String> attr;
 
-    public Context()
+    public MsgRequest()
     {
         service = "";
         method = "";
         msg = "";
     }
 
-    public Context(String service, String method, int code, String msg, java.util.Map<java.lang.String, java.lang.String> extraData, int total, java.util.Map<java.lang.String, java.lang.String> data, java.util.Map<java.lang.String, java.lang.String> attr)
+    public MsgRequest(String service, String method, int code, String msg, java.util.Map<java.lang.String, java.lang.String> extraData, int total, java.util.Map<java.lang.String, java.lang.String> data, java.util.Map<java.lang.String, java.lang.String> attr)
     {
         this.service = service;
         this.method = method;
@@ -64,10 +64,10 @@ public class Context implements java.lang.Cloneable, java.io.Serializable
         {
             return true;
         }
-        Context _r = null;
-        if(rhs instanceof Context)
+        MsgRequest _r = null;
+        if(rhs instanceof MsgRequest)
         {
-            _r = (Context)rhs;
+            _r = (MsgRequest)rhs;
         }
 
         if(_r != null)
@@ -133,7 +133,7 @@ public class Context implements java.lang.Cloneable, java.io.Serializable
     hashCode()
     {
         int __h = 5381;
-        __h = IceInternal.HashUtil.hashAdd(__h, "::message::Context");
+        __h = IceInternal.HashUtil.hashAdd(__h, "::message::MsgRequest");
         __h = IceInternal.HashUtil.hashAdd(__h, service);
         __h = IceInternal.HashUtil.hashAdd(__h, method);
         __h = IceInternal.HashUtil.hashAdd(__h, code);
@@ -145,13 +145,13 @@ public class Context implements java.lang.Cloneable, java.io.Serializable
         return __h;
     }
 
-    public Context
+    public MsgRequest
     clone()
     {
-        Context c = null;
+        MsgRequest c = null;
         try
         {
-            c = (Context)super.clone();
+            c = (MsgRequest)super.clone();
         }
         catch(CloneNotSupportedException ex)
         {
@@ -187,7 +187,7 @@ public class Context implements java.lang.Cloneable, java.io.Serializable
     }
 
     static public void
-    __write(IceInternal.BasicStream __os, Context __v)
+    __write(IceInternal.BasicStream __os, MsgRequest __v)
     {
         if(__v == null)
         {
@@ -199,18 +199,18 @@ public class Context implements java.lang.Cloneable, java.io.Serializable
         }
     }
 
-    static public Context
-    __read(IceInternal.BasicStream __is, Context __v)
+    static public MsgRequest
+    __read(IceInternal.BasicStream __is, MsgRequest __v)
     {
         if(__v == null)
         {
-             __v = new Context();
+             __v = new MsgRequest();
         }
         __v.__read(__is);
         return __v;
     }
     
-    private static final Context __nullMarshalValue = new Context();
+    private static final MsgRequest __nullMarshalValue = new MsgRequest();
 
-    public static final long serialVersionUID = 612319202L;
+    public static final long serialVersionUID = 1199748117L;
 }
