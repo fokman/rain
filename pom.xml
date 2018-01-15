@@ -12,10 +12,7 @@
 
     <modules>
         <module>rain-web</module>
-        <module>rain-common</module>
         <module>rain-service</module>
-        <module>rain-ice</module>
-        <!--<module>rain-ice-hello</module>-->
     </modules>
 
     <properties>
@@ -30,6 +27,7 @@
         <log4j.version>2.4.1</log4j.version>
         <fastjson.version>1.2.14</fastjson.version>
         <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
     <dependencies>
@@ -121,7 +119,6 @@
                 <artifactId>icegrid</artifactId>
                 <version>${ice.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

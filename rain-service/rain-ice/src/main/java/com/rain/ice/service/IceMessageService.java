@@ -1,4 +1,4 @@
-package com.reain.ice.service;
+package com.rain.ice.service;
 
 import Ice.Current;
 import com.rain.common.utils.JsonUtils;
@@ -30,7 +30,17 @@ public class IceMessageService extends _MessageServiceDisp {
         String method = msgRequest.method;
         Object iceClazz = null;
         if (!StringUtils.isEmpty(service)) {
-            iceClazz = IceServiceRegister.getInstance().getService(service);
+
+//            iceClazz = IceServiceRegister.getInstance().getService(service);
+            try {
+                iceClazz = Class.forName(service).newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         } else {
             throw new RuntimeException("无效的服务名:" + service);
         }

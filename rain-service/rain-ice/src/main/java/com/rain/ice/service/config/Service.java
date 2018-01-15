@@ -1,4 +1,4 @@
-package com.reain.ice.service.config;
+package com.rain.ice.service.config;
 
 import java.lang.annotation.*;
 

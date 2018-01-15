@@ -1,4 +1,4 @@
-package com.reain.ice.service;
+package com.rain.ice.service;
 
 import java.util.concurrent.ConcurrentHashMap;
 

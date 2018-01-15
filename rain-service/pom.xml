@@ -4,12 +4,40 @@
         <artifactId>rain</artifactId>
         <groupId>com.rain</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.rain.service</groupId>
     <artifactId>rain-service</artifactId>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>rain-common</module>
+        <module>rain-ice</module>
+        <module>order-service</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>ice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>icebox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>icegrid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -57,6 +57,14 @@ public class MsgRequest implements java.lang.Cloneable, java.io.Serializable
         this.attr = attr;
     }
 
+    public MsgRequest(String service, String method, java.util.Map<java.lang.String, java.lang.String> extraData, java.util.Map<java.lang.String, java.lang.String> attr)
+    {
+        this.service = service;
+        this.method = method;
+        this.extraData = extraData;
+        this.attr = attr;
+    }
+
     public boolean
     equals(java.lang.Object rhs)
     {

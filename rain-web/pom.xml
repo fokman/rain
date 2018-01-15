@@ -16,6 +16,10 @@
 
 	<name>rain-web</name>
 
+	<dependencies>
+
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

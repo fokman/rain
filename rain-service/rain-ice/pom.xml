@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>rain</artifactId>
-        <groupId>com.rain</groupId>
+        <artifactId>rain-service</artifactId>
+        <groupId>com.rain.service</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -20,24 +20,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>ice</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>icebox</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>ice</artifactId>
-            <version>3.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.rain.common</groupId>
-            <artifactId>rain-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>com.rain.common</groupId>
             <artifactId>rain-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -46,7 +28,7 @@
 
     <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
@@ -74,7 +56,7 @@
                         <version>${ant.ice.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
