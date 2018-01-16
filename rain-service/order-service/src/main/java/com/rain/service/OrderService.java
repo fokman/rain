@@ -1,7 +1,7 @@
 package com.rain.service;
 
-import com.rain.ice.mode.IceRequest;
-import com.rain.ice.mode.IceResponse;
+import com.rain.ice.model.IceRequest;
+import com.rain.ice.model.IceResponse;
 import com.rain.ice.service.config.Service;
 
 /**

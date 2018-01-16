@@ -1,4 +1,4 @@
-package com.rain.ice.mode;
+package com.rain.ice.model;
 
 import java.util.List;
 import java.util.Map;

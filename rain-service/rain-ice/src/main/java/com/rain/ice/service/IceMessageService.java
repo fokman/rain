@@ -4,8 +4,8 @@ import Ice.Current;
 import com.rain.common.utils.JsonUtils;
 import com.rain.ice.message.MsgRequest;
 import com.rain.ice.message._MessageServiceDisp;
-import com.rain.ice.mode.IceRequest;
-import com.rain.ice.mode.IceResponse;
+import com.rain.ice.model.IceRequest;
+import com.rain.ice.model.IceResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -21,8 +21,8 @@ import java.lang.reflect.Method;
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
 public class IceMessageService extends _MessageServiceDisp {
-    private Logger logger = LoggerFactory.getLogger(IceMessageService.class);
 
+    private Logger logger = LoggerFactory.getLogger(IceMessageService.class);
 
     @Override
     public String doInvoke(MsgRequest msgRequest, Current __current) {
@@ -30,17 +30,8 @@ public class IceMessageService extends _MessageServiceDisp {
         String method = msgRequest.method;
         Object iceClazz = null;
         if (!StringUtils.isEmpty(service)) {
-
             iceClazz = IceServiceRegister.getInstance().getService(service);
-            try {
-                iceClazz = Class.forName(service).newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+//                iceClazz = Class.forName(service).newInstance();
         } else {
             throw new RuntimeException("无效的服务名:" + service);
         }
@@ -66,7 +57,7 @@ public class IceMessageService extends _MessageServiceDisp {
 
         IceResponse iceResponse = new IceResponse();
         try {
-            iceResponse = (IceResponse) m.invoke(iceClazz,iceRequest);
+            iceResponse = (IceResponse) m.invoke(iceClazz, iceRequest);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

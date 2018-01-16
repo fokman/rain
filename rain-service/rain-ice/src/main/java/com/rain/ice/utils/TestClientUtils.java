@@ -4,8 +4,8 @@ import com.rain.common.utils.JsonUtils;
 import com.rain.ice.message.MessageServicePrx;
 import com.rain.ice.message.MessageServicePrxHelper;
 import com.rain.ice.message.MsgRequest;
-import com.rain.ice.mode.IceRequest;
-import com.rain.ice.mode.IceResponse;
+import com.rain.ice.model.IceRequest;
+import com.rain.ice.model.IceResponse;
 
 public class TestClientUtils {
 
@@ -23,17 +23,10 @@ public class TestClientUtils {
             if (messageServicePrx == null) {
                 throw new Error("Invalid proxy");
             }
-            // 调用服务方法
-            long start = System.currentTimeMillis();
-            int count = 100;
             MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
                     iceRequest.getAttr());
-
             String str = messageServicePrx.doInvoke(in);
             IceResponse rs = JsonUtils.toObject(str, IceResponse.class);
-
-            long used = System.currentTimeMillis() - start;
-            System.out.println("tps " + count * 1000.0 / used);
             return rs;
         } catch (Exception e) {
             e.printStackTrace();
