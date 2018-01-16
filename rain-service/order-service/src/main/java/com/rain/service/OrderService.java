@@ -1,5 +1,7 @@
 package com.rain.service;
 
+import com.rain.ice.mode.IceRequest;
+import com.rain.ice.mode.IceResponse;
 import com.rain.ice.service.config.Service;
 
 /**
@@ -12,4 +14,9 @@ import com.rain.ice.service.config.Service;
 @Service(name = "OrderService")
 public class OrderService {
 
+    public IceResponse add(IceRequest iceRequest) {
+        IceResponse iceResponse = new IceResponse();
+        iceResponse.setCode(200);
+        return iceResponse;
+    }
 }

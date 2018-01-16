@@ -31,7 +31,7 @@ public class IceMessageService extends _MessageServiceDisp {
         Object iceClazz = null;
         if (!StringUtils.isEmpty(service)) {
 
-//            iceClazz = IceServiceRegister.getInstance().getService(service);
+            iceClazz = IceServiceRegister.getInstance().getService(service);
             try {
                 iceClazz = Class.forName(service).newInstance();
             } catch (InstantiationException e) {

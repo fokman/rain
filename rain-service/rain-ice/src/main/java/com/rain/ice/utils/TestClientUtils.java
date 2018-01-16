@@ -28,6 +28,7 @@ public class TestClientUtils {
             int count = 100;
             MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
                     iceRequest.getAttr());
+
             String str = messageServicePrx.doInvoke(in);
             IceResponse rs = JsonUtils.toObject(str, IceResponse.class);
 
