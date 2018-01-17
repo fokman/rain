@@ -12,10 +12,10 @@ import java.util.Properties;
 import java.util.Set;
 
 @Startup
-public class RegisterStartUp implements StartupService{
+public class RegisterStartUp{
 
 	private static final Logger logger = LoggerFactory.getLogger(RegisterStartUp.class);
-	@Override
+
 	public void startup(Properties ctontext) {
 		try {
 			List<String> pkgList = new ArrayList<>();

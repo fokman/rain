@@ -1,11 +1,12 @@
 package com.rain.ice.utils;
 
-import com.rain.common.utils.JsonUtils;
 import com.rain.ice.message.MessageServicePrx;
 import com.rain.ice.message.MessageServicePrxHelper;
 import com.rain.ice.message.MsgRequest;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
+
+import static java.lang.System.exit;
 
 public class TestClientUtils {
 
@@ -29,9 +30,9 @@ public class TestClientUtils {
             IceResponse rs = JsonUtils.toObject(str, IceResponse.class);
             return rs;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             status = 1;
-            System.exit(status);
+            exit(status);
 
         } finally {
             if (ic != null) {
@@ -39,6 +40,5 @@ public class TestClientUtils {
             }
         }
         return null;
-
     }
 }
