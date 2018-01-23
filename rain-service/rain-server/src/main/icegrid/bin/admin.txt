@@ -1,0 +1,2 @@
+application remove demo
+application add ../config/demo_application.xml

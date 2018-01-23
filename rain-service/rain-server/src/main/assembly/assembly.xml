@@ -1,0 +1,36 @@
+<assembly>
+    <id>demo</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>true</useProjectArtifact>
+            <outputDirectory>demo/patch/demo/libs</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <outputDirectory>./</outputDirectory>
+            <includes>
+                <include>../README.md</include>
+            </includes>
+        </fileSet>
+        <!-- <fileSet>
+            <directory>../../pss-9air-lib/</directory>
+            <outputDirectory>icegrid/patch/ipss/libs</outputDirectory>
+        </fileSet> -->
+        <fileSet>
+            <directory>../icedemo-common/target/config</directory>
+            <outputDirectory>demo/patch/demo/config</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/icegrid</directory>
+            <outputDirectory>demo</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources/</directory>
+            <outputDirectory>demo/patch/demo/config</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

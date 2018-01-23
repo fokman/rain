@@ -1,0 +1,1 @@
+icegridnode --Ice.Config=../config/node_node1.conf 
