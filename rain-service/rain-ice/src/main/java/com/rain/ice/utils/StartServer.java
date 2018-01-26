@@ -3,12 +3,14 @@ package com.rain.ice.utils;
 import com.rain.ice.service.IceMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-public class ServerStart {
 
-    private static final Logger logger = LoggerFactory.getLogger(ServerStart.class);
+@Service
+public class StartServer {
+    private static final Logger logger = LoggerFactory.getLogger(StartServer.class);
 
-    public static void startServer(String[] args) {
+    public static void startServer(String... args) {
         int status = 0;
         Ice.Communicator ic = null;
         try {

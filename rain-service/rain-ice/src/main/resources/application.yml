@@ -20,7 +20,13 @@ spring:
     testOnReturn: false
     filters: stat,wall,log4j
     logSlowSql: true
-
+    cnnectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+mybatis:
+#  type:
+#    aliases:
+  mapper:
+      package:  com.rain.role.mapper
+  locations:  classpath*:com/rain/**/mapper/*Mapper.xml
 
 
 #    initialize: false
@@ -34,7 +40,8 @@ endpoints:
     enabled: true
     unique-names: true
 logging:
-  pattern:
-    console: %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
-  level: debug
+  config: log4j2.xml
+#  pattern:
+#    console: %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+  level: info
 

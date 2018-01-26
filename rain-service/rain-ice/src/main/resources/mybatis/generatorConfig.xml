@@ -32,10 +32,10 @@
 		</javaModelGenerator>
 
 		<!-- sql mapper 隐射配置文件 -->
-		<sqlMapGenerator targetPackage="com.cmdt.yudo.gov.mapping"
+		<sqlMapGenerator targetPackage="com.rain.mapping"
 			targetProject="src/main/java">
 		</sqlMapGenerator>
-        <javaClientGenerator targetPackage="com.cmdt.yudo.gov.mapper"
+        <javaClientGenerator targetPackage="com.rain.mapper"
             targetProject="src/main/java" type="XMLMAPPER" />
 
 		<!--<table tableName="gov_realtime" domainObjectName="GovRealtime"
@@ -54,7 +54,7 @@
                selectByExampleQueryId="false">
         </table>-->
 
-		<table tableName="tu_login" domainObjectName="TuLogin"
+		<table tableName="rain_role" domainObjectName="java.util.Map"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">

@@ -3,6 +3,7 @@ package com.rain.role.service;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
 import com.rain.ice.service.config.Service;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Project Name: Rain
@@ -12,6 +13,7 @@ import com.rain.ice.service.config.Service;
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
 @Service(name = "OrderService")
+@SpringBootApplication
 public class OrderService {
 
     public IceResponse add(IceRequest iceRequest) {

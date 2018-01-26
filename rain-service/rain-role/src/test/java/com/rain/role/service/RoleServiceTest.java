@@ -21,6 +21,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 public class RoleServiceTest {
 
+
     @Test
     public void testAdd() {
         IceRequest iceRequest = new IceRequest();

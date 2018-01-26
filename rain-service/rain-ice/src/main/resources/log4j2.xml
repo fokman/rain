@@ -3,7 +3,7 @@
 
     <properties>
         <property name="log.path">/var/log/rain</property>
-        <property name="log.level">debug</property>
+        <property name="log.level">info</property>
         <property name="log.pattern">gov.log.pattern=%d{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5p %c{1}:%L - %msg%n</property>
         <property name="log.root.level">ERROR</property>
     </properties>

@@ -5,6 +5,7 @@ import com.rain.ice.model.IceResponse;
 import com.rain.ice.utils.TestClientUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -15,7 +16,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
 @RunWith(SpringRunner.class)
+@SpringBootTest(classes = OrderServiceTest.class)
 public class OrderServiceTest {
+
 
     @Test
     public void add(){
