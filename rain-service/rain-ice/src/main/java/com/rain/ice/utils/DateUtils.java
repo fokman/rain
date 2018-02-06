@@ -9,8 +9,7 @@ public class DateUtils {
     public static final String YYYYMMDD = "yyyyMMdd";
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
-    public static final String YYYY_MM_DD_12HH_MM_SS = "yyyy-MM-dd hh:mm:ss";
-    public static final String YYYY_MM_DD_12HH_MM_SS_SSS = "yyyy-MM-dd hh:mm:ss";
+
     public static Date getDate() {
         return new Date(System.currentTimeMillis());
     }
@@ -136,7 +135,6 @@ public class DateUtils {
         return date % 100;
     }
 
-    // ---------------------------------------------------------------------------------------
     public static String getStrYear(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date.getTime());
@@ -175,7 +173,6 @@ public class DateUtils {
         return String.valueOf(date % 100);
     }
 
-    // ---------------------------------------------------------------------------------------
     public static int getIntYearMouth(Date date) {
         return Integer.valueOf(getStrYearMouth(date));
     }
@@ -299,7 +296,6 @@ public class DateUtils {
         return dd + mm + ss + mss;
     }
 
-    // ------------------------ ------------------------------------------
     public static String formatDate(Object date) {
         if (date != null) {
             return formatDateTime(date, YYYY_MM_DD);
@@ -353,7 +349,6 @@ public class DateUtils {
         return null;
     }
 
-    // ------------------------------------------------------------------------------------------
     public static Date parseDateTime(String dateTime, String pattern) {
         DateFormat dateFormat = new SimpleDateFormat(pattern);
         try {
@@ -363,7 +358,6 @@ public class DateUtils {
         }
     }
 
-    // ------------------------------------------------------------------------------------------
     public static boolean isMonthEnd() {
         return isMonthEnd(getDate());
     }
@@ -502,7 +496,7 @@ public class DateUtils {
         }
         diffYears = diffMonths / 12;
         diffMonths = diffMonths % 12;
-        return new int[] { diffYears, diffMonths, diffDays };
+        return new int[]{diffYears, diffMonths, diffDays};
     }
 
     public static Date dateAddMonth(int date, int month) {
@@ -564,38 +558,39 @@ public class DateUtils {
         int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
         String str = "";
         switch (dayOfWeek) {
-        case 1:
-            str = "日";
-            break;
-        case 2:
-            str = "一";
-            break;
-        case 3:
-            str = "二";
-            break;
-        case 4:
-            str = "三";
-            break;
-        case 5:
-            str = "四";
-            break;
-        case 6:
-            str = "五";
-            break;
-        case 7:
-            str = "六";
-            break;
+            case 1:
+                str = "日";
+                break;
+            case 2:
+                str = "一";
+                break;
+            case 3:
+                str = "二";
+                break;
+            case 4:
+                str = "三";
+                break;
+            case 5:
+                str = "四";
+                break;
+            case 6:
+                str = "五";
+                break;
+            case 7:
+                str = "六";
+                break;
         }
         return str;
     }
 
     /**
-    * 方法描述
-    * 验证时间格式是否正确
-    * @param str
-    * @return
-    * @创建日期 2016年8月17日
-    */
+     * 方法描述
+     * 验证时间格式是否正确
+     *
+     * @param str
+     * @return
+     * @创建日期 2016年8月17日
+     */
     public static boolean isValidDate(String str) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         try {

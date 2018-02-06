@@ -2,11 +2,12 @@ package com.rain.role.service;
 
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
-import com.rain.ice.utils.DateUtils;
 import com.rain.ice.utils.GenerateId;
 import com.rain.ice.utils.TestClientUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
@@ -21,6 +22,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 public class RoleServiceTest {
 
+    private Logger logger = LoggerFactory.getLogger(RoleServiceTest.class);
 
     @Test
     public void testAdd() {
@@ -29,9 +31,9 @@ public class RoleServiceTest {
         iceRequest.setService("RoleService");
         iceRequest.setAttr("roleId", String.valueOf(GenerateId.getInstance().getId()));
         iceRequest.setAttr("roleName", "系统管理员");
-        iceRequest.setAttr("createTime", DateUtils.formatDateTime(new Date()));
-
+        iceRequest.addAttr("createTime", new Date());
+        iceRequest.addAttr("updateTime",new Date());
         IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
-        System.out.println("message:" + iceResponse.getData());
+//        System.out.println("message:" + iceResponse.getData());
     }
 }

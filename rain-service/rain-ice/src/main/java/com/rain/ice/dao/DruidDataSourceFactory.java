@@ -1,7 +1,6 @@
 package com.rain.ice.dao;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.rain.ice.utils.AppUtils;
 import com.rain.ice.utils.ClassUtils;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSourceFactory;
@@ -15,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Set;
 
@@ -32,8 +30,8 @@ public class DruidDataSourceFactory extends UnpooledDataSourceFactory {
 
     static {
         try {
-            //reader = Resources.getResourceAsReader("mybatis-config.xml");
-            reader = new InputStreamReader(AppUtils.getEnvResource("mybatis-config.xml"));
+            reader = Resources.getResourceAsReader("mybatis-config.xml");
+//            reader = new InputStreamReader();
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
             Configuration configuration = sqlSessionFactory.getConfiguration();
             Set<String> files = ClassUtils.getFiles("com.rain", ".xml");

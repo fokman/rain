@@ -3,10 +3,8 @@ package com.rain.ice.utils;
 import com.rain.ice.service.IceMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 
-@Service
 public class StartServer {
     private static final Logger logger = LoggerFactory.getLogger(StartServer.class);
 
