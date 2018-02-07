@@ -3,6 +3,7 @@ package com.rain.role.service;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
 import com.rain.ice.utils.GenerateId;
+import com.rain.ice.utils.JsonUtils;
 import com.rain.ice.utils.TestClientUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,6 @@ public class RoleServiceTest {
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime",new Date());
         IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
-//        System.out.println("message:" + iceResponse.getData());
+        logger.info("message {}", JsonUtils.toJson(iceResponse));
     }
 }

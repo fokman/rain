@@ -5,10 +5,14 @@ import com.rain.ice.message.MessageServicePrxHelper;
 import com.rain.ice.message.MsgRequest;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.System.exit;
 
 public class TestClientUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(TestClientUtils.class);
 
     public static IceResponse doService(IceRequest iceRequest) {
         return doService(iceRequest, null);
@@ -30,7 +34,6 @@ public class TestClientUtils {
             IceResponse rs = JsonUtils.toObject(str, IceResponse.class);
             return rs;
         } catch (Exception e) {
-//            e.printStackTrace();
             status = 1;
             exit(status);
 
