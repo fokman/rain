@@ -37,4 +37,5 @@ public class RoleServiceTest {
         IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         logger.info("message {}", JsonUtils.toJson(iceResponse));
     }
+
 }
