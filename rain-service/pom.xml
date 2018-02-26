@@ -16,7 +16,8 @@
     <modules>
         <module>rain-ice</module>
         <module>order-service</module>
-        <module>rain-role</module>
+        <module>rain-role-service</module>
+        <module>redis-service</module>
     </modules>
 
     <dependencies>
@@ -62,6 +63,7 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.6</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

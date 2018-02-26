@@ -13,6 +13,7 @@
     <modules>
         <module>rain-web</module>
         <module>rain-service</module>
+        <module>rain-gateway</module>
     </modules>
 
     <properties>
@@ -118,6 +119,11 @@
                 <groupId>com.zeroc</groupId>
                 <artifactId>icegrid</artifactId>
                 <version>${ice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-redis</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
