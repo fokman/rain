@@ -28,4 +28,5 @@ public class RedisServiceTest {
         IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[] {});
         System.out.println("message:"+iceResponse.getData());
     }
+
 }
