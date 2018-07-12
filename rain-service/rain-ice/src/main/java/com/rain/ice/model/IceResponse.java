@@ -33,7 +33,7 @@ public class IceResponse {
     /**
      * 设置状态码。0-成功。非0-不成功.<br>
      * 当设置为0是，success会被设置为true。 当设置为false是，success会被设置为false。
-     * 
+     *
      * @param code
      */
     public void setCode(Integer code) {
@@ -85,13 +85,15 @@ public class IceResponse {
     }
 
     /**
-     * 此方法仅设置data信息，不改变 tot的信息
-    * 方法描述
-    * @param data
-    * @创建日期 2016年8月9日
-    */
+     * 此方法仅设置data信息，不改变 total的信息
+     * 方法描述
+     *
+     * @param data
+     * @创建日期 2016年8月9日
+     */
     public void setDataOnly(Object data) {
         this.data = data;
     }
+
 
 }

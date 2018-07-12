@@ -1,11 +1,11 @@
 package com.rain.ice.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TxUtils {
-    public static final Logger logger = LogManager.getLogger(TxUtils.class);
+    public static final Logger logger = LoggerFactory.getLogger(TxUtils.class);
 
     private static final ThreadLocal<SqlSession> THREAD_LOCAL = new ThreadLocal<SqlSession>();
 

@@ -32,7 +32,7 @@
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
         <mybatis.paginator.version>1.2.15</mybatis.paginator.version>
-        <mysql.version>5.1.32</mysql.version>
+        <postgresql.version>42.2.2</postgresql.version>
         <jackson.version>2.4.2</jackson.version>
         <fastjson.version>1.2.14</fastjson.version>
         <druid.version>1.0.9</druid.version>
@@ -53,10 +53,26 @@
         <zkclient.version>0.1</zkclient.version>
         <freemarker.version>2.3.23</freemarker.version>
         <quartz.version>2.2.2</quartz.version>
+        <cglib.nodep.version>2.2</cglib.nodep.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.zeroc</groupId>
+                <artifactId>ice</artifactId>
+                <version>${ice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zeroc</groupId>
+                <artifactId>icebox</artifactId>
+                <version>${ice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zeroc</groupId>
+                <artifactId>icegrid</artifactId>
+                <version>${ice.version}</version>
+            </dependency>
             <!-- 时间操作组件 -->
             <dependency>
                 <groupId>joda-time</groupId>
@@ -84,6 +100,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <!-- httpclient -->
             <dependency>
@@ -133,9 +154,9 @@
             </dependency>
             <!-- MySql -->
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
             </dependency>
             <!-- 连接池 -->
             <dependency>
@@ -177,6 +198,11 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <!-- JSP相关 -->
@@ -252,6 +278,11 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring.boot.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.cglib</groupId>
+                <artifactId>cglib-nodep-javadoc</artifactId>
+                <version>${cglib.nodep.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

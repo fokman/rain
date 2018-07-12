@@ -8,7 +8,7 @@ public class IceRequest {
 
     private String method;
 
-    private Map<String, String> extraData = new LinkedHashMap<String, String>();
+    private Map<String, String> extraData = new LinkedHashMap();
 
     private Map<String, String> attr = new HashMap<>();
     /**

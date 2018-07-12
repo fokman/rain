@@ -78,12 +78,4 @@ public class IdWorker {
         return System.currentTimeMillis();
     }
 
-    public static void main(String[] args) throws Exception {
-        IdWorker iw1 = new IdWorker(1);
-//        for (int i = 0; i < 10; i++) {
-            System.out.println(iw1.nextId());
-//        }
-
-
-    }
 }

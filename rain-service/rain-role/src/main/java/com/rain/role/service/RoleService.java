@@ -38,4 +38,10 @@ public class RoleService extends BaseService {
         return response;
     }
 
+    public IceResponse update(IceRequest iceRequest){
+        IceResponse iceResponse = new IceResponse();
+        iceResponse.setCode(200,"upate role success!");
+        return iceResponse;
+    }
+
 }

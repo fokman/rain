@@ -1,10 +1,10 @@
 package com.rain.ice.service.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 @Component
 @MapperScan("com.rain")
 public class MyBatisConfig {
-    private Logger log = LogManager.getLogger(MyBatisConfig.class);
+    private Logger log = LoggerFactory.getLogger(MyBatisConfig.class);
 
     @Value("${mybatis.mapper.locations}")
     private String mapperSource;
