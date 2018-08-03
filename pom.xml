@@ -14,6 +14,7 @@
         <module>rain-web</module>
         <module>rain-service</module>
         <module>rain-gateway</module>
+        <module>rain-storm</module>
     </modules>
 
     <properties>
@@ -54,6 +55,7 @@
         <freemarker.version>2.3.23</freemarker.version>
         <quartz.version>2.2.2</quartz.version>
         <cglib.nodep.version>2.2</cglib.nodep.version>
+        <storm.version>1.2.2</storm.version>
     </properties>
 
     <dependencyManagement>
@@ -283,6 +285,16 @@
                 <groupId>net.sf.cglib</groupId>
                 <artifactId>cglib-nodep-javadoc</artifactId>
                 <version>${cglib.nodep.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.storm</groupId>
+                <artifactId>storm-core</artifactId>
+                <version>${storm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
