@@ -18,12 +18,15 @@ public class TestClientUtils {
         return doService(iceRequest, null);
     }
 
+    private static final String MSG_SERVICE = "MessageService:default -p 20000";
+
     public static IceResponse doService(IceRequest iceRequest, String[] args) {
         int status = 0;
+        logger.info("service starting ------>");
         Ice.Communicator ic = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("MessageService:default -p 20000");
+            Ice.ObjectPrx base = ic.stringToProxy(MSG_SERVICE);
             MessageServicePrx messageServicePrx = MessageServicePrxHelper.checkedCast(base);
             if (messageServicePrx == null) {
                 throw new Error("Invalid proxy");

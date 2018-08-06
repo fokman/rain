@@ -1,4 +1,4 @@
-package com.rain.cache.redis;
+package com.rain.service.role;
 
 import com.rain.exception.ServiceException;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;

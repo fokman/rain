@@ -4,8 +4,8 @@
     <properties>
         <property name="log.path">/var/log/rain</property>
         <property name="log.level">info</property>
-        <property name="log.pattern">gov.log.pattern=%d{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5p %c{1}:%L - %msg%n</property>
-        <property name="log.root.level">ERROR</property>
+        <property name="log.pattern">%d{yyyy-MM-dd HH:mm:ss:SSS} [%t] %-5p %c{1}:%L - %msg%n</property>
+        <property name="log.root.level">INFO</property>
     </properties>
 
     <Appenders>
@@ -17,9 +17,7 @@
                      filepattern="${log.path}/info-rain-ice-%d{yyyy-MM-dd}-%i.log">
             <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${log.pattern}"/>
-            <!--<Policies>-->
-            <SizeBasedTriggeringPolicy size="10MB"/>
-            <!--</Policies>-->
+            <SizeBasedTriggeringPolicy size="200MB"/>
             <DefaultRolloverStrategy max="30"/>
         </RollingFile>
 
@@ -33,7 +31,7 @@
             <Policies>
                 <SizeBasedTriggeringPolicy size="200MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="2"/>
+            <DefaultRolloverStrategy max="30"/>
         </RollingFile>
         <!-- error -->
 
@@ -44,7 +42,7 @@
             <Policies>
                 <SizeBasedTriggeringPolicy size="200 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="2"/>
+            <DefaultRolloverStrategy max="30"/>
         </RollingFile>
 
     </Appenders>

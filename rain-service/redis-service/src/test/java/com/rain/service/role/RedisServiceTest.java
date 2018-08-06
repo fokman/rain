@@ -1,4 +1,4 @@
-package com.rain.cache.redis;
+package com.rain.service.role;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

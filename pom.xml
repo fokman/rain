@@ -24,13 +24,14 @@
         <java.version>1.8</java.version>
         <ice.version>3.6.4</ice.version>
         <ant.ice.version>4.0.0</ant.ice.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <log4j.version>2.4.1</log4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j-impl.version>2.11.0</slf4j-impl.version>
+        <log4j.version>2.11.1</log4j.version>
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
         <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
         <spring.version>4.2.4.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
-        <mybatis.version>3.2.8</mybatis.version>
+        <mybatis.version>3.4.5</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
         <mybatis.paginator.version>1.2.15</mybatis.paginator.version>
         <postgresql.version>42.2.2</postgresql.version>
@@ -127,12 +128,6 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- 日志处理 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
             <!-- Mybatis -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -154,7 +149,6 @@
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.version}</version>
             </dependency>
-            <!-- MySql -->
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
@@ -166,6 +160,7 @@
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
+
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -296,6 +291,34 @@
                 <artifactId>spring-boot-starter-tomcat</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
+            <!-- 日志处理 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+<!--            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${slf4j-impl.version}</version>
+            </dependency>-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

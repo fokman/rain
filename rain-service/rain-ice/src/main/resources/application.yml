@@ -53,8 +53,6 @@ endpoints:
     enabled: true
     unique-names: true
 logging:
-  config: log4j2.xml
-#  pattern:
-#    console: %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
   level: info
+  config: classpath*: log4j2.xml
 

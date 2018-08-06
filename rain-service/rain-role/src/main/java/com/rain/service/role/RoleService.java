@@ -1,4 +1,4 @@
-package com.rain.cache.redis;
+package com.rain.service.role;
 
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;

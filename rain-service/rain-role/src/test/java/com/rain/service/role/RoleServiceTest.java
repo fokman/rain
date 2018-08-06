@@ -1,4 +1,4 @@
-package com.rain.cache.redis;
+package com.rain.service.role;
 
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
@@ -31,7 +31,7 @@ public class RoleServiceTest {
         iceRequest.setAttr("roleName", "系统管理员");
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime",new Date());
-        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest);
         logger.info("message {}", JsonUtils.toJson(iceResponse));
     }
 
