@@ -1,4 +1,4 @@
-package com.rain.role.service;
+package com.rain.cache.redis;
 
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
@@ -6,10 +6,8 @@ import com.rain.ice.utils.GenerateId;
 import com.rain.ice.utils.JsonUtils;
 import com.rain.ice.utils.TestClientUtils;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
@@ -20,7 +18,6 @@ import java.util.Date;
  * <p>
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
-@RunWith(SpringRunner.class)
 public class RoleServiceTest {
 
     private Logger logger = LoggerFactory.getLogger(RoleServiceTest.class);

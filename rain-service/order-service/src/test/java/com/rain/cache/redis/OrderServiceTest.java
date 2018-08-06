@@ -1,4 +1,4 @@
-package com.rain.role.service;
+package com.rain.cache.redis;
 
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
@@ -21,11 +21,11 @@ public class OrderServiceTest {
 
 
     @Test
-    public void add(){
+    public void add() {
         IceRequest iceRequest = new IceRequest();
         iceRequest.setService("OrderService");
         iceRequest.setMethod("add");
-        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[] {});
-        System.out.println("message:"+iceResponse.getData());
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        System.out.println("message:" + iceResponse.getData());
     }
 }

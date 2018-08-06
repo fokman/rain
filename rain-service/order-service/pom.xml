@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com.rain.ice</groupId>
             <artifactId>rain-ice</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>

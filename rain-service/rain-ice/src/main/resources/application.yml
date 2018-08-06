@@ -34,6 +34,19 @@ mybatis:
 #    timeBetweenEvictionRunsMillis: 5000
 #    minEvictableIdleTimeMillis: 5000
 #    minIdle: 0
+jedis-config:
+  pool:
+     max-wait: -1
+     max-total: -1
+     min-idle: 8
+     max-idle: 0
+     max-active: 8
+   cluster:
+     connection-timeout: 3
+     so-timeout: 1
+     max-redirections: 5
+     nodes: ${redis.nodes}
+
 
 endpoints:
   jmx:
