@@ -16,7 +16,7 @@
     <modules>
         <module>rain-ice</module>
         <module>order-service</module>
-        <module>rain-role</module>
+        <module>rain-role-service</module>
         <module>redis-service</module>
         <module>rain-exception</module>
     </modules>

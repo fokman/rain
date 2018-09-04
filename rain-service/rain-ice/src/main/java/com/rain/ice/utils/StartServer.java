@@ -19,7 +19,7 @@ public class StartServer {
             IceMessageService object = new IceMessageService();
             adapter.add(object, Ice.Util.stringToIdentity("MessageService"));
             adapter.activate();
-            logger.info("Ice server started.");
+            System.out.println("Ice server started.");
             ic.waitForShutdown();
         } catch (Exception e) {
             e.printStackTrace();
