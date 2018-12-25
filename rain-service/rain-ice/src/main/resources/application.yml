@@ -5,9 +5,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/nev_master?currentSchema=rain_biz
-    username: postgres
-    password: postgres
+    url: jdbc:mysql://localhost:3307/rain-user?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
     initialSize: 5
     minIdle: 5
     maxActive: 20
@@ -28,31 +28,6 @@ mybatis:
       package:  com.rain.role.mapper
   locations:  classpath*:com/rain/**/mapper/*Mapper.xml
 
-
-#    initialize: false
-#    initialSize: 0
-#    timeBetweenEvictionRunsMillis: 5000
-#    minEvictableIdleTimeMillis: 5000
-#    minIdle: 0
-jedis-config:
-  pool:
-     max-wait: -1
-     max-total: -1
-     min-idle: 8
-     max-idle: 0
-     max-active: 8
-   cluster:
-     connection-timeout: 3
-     so-timeout: 1
-     max-redirections: 5
-     nodes: ${redis.nodes}
-
-
-endpoints:
-  jmx:
-    enabled: true
-    unique-names: true
 logging:
   level: info
-  config: classpath*: log4j2.xml
-
+  com.rain: info

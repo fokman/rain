@@ -1,12 +1,17 @@
-package com.rain.ice.utils;
+package com.rain.ice;
+
 
 import com.rain.ice.service.IceMessageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.rain.ice.utils.InitRegisterService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@Slf4j
+public class MainServer {
 
-public class StartServer {
-    private static final Logger logger = LoggerFactory.getLogger(StartServer.class);
+    public static void main(String[] args) {
+        startServer(args);
+    }
 
     public static void startServer(String... args) {
         int status = 0;
@@ -19,7 +24,7 @@ public class StartServer {
             IceMessageService object = new IceMessageService();
             adapter.add(object, Ice.Util.stringToIdentity("MessageService"));
             adapter.activate();
-            System.out.println("Ice server started.");
+            log.info("Ice Server started.");
             ic.waitForShutdown();
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,4 +37,5 @@ public class StartServer {
         }
         System.exit(status);
     }
+
 }

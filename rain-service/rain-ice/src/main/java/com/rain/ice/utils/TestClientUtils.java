@@ -5,24 +5,25 @@ import com.rain.ice.message.MessageServicePrxHelper;
 import com.rain.ice.message.MsgRequest;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static java.lang.System.exit;
 
+@Slf4j
 public class TestClientUtils {
 
-    private static Logger logger = LoggerFactory.getLogger(TestClientUtils.class);
+    private static final String MSG_SERVICE = "MessageService:default -p 20000";
 
     public static IceResponse doService(IceRequest iceRequest) {
         return doService(iceRequest, null);
     }
 
-    private static final String MSG_SERVICE = "MessageService:default -p 20000";
 
     public static IceResponse doService(IceRequest iceRequest, String[] args) {
         int status = 0;
-        logger.info("service starting ------>");
+        log.info("service starting ------>");
         Ice.Communicator ic = null;
         try {
             ic = Ice.Util.initialize(args);

@@ -4,13 +4,11 @@ import com.rain.ice.dao.Dao;
 import com.rain.ice.dao.DaoMybatisImpl;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-
+@Slf4j
 public class BaseService {
-    public static final Logger logger = LoggerFactory.getLogger(BaseService.class);
 
     private static final String QUERY = "query";
     private static final String COUNT = "count";
@@ -45,7 +43,7 @@ public class BaseService {
             iceResponse.setMsg("查询到" + iceResponse.getTotal() + "条记录!");
             iceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             iceResponse.setCode(9);
         }
         return iceResponse;
@@ -68,7 +66,7 @@ public class BaseService {
             IceResponse.setMsg("查询到" + IceResponse.getTotal() + "条记录!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(1);
         }
         return IceResponse;
@@ -84,7 +82,7 @@ public class BaseService {
             IceResponse.setMsg("查询到" + IceResponse.getTotal() + "条记录!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(9);
         }
         return IceResponse;
@@ -100,7 +98,7 @@ public class BaseService {
             IceResponse.setMsg("查询到" + IceResponse.getTotal() + "条记录!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(9);
         }
         return IceResponse;
@@ -125,7 +123,7 @@ public class BaseService {
             IceResponse.setMsg("查询到" + IceResponse.getTotal() + "条记录!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(9);
         }
         return IceResponse;
@@ -150,7 +148,7 @@ public class BaseService {
             }
             IceResponse = queryByPage(context, namespace, queryStatement, countStatement);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(1);
         }
         return IceResponse;
@@ -163,7 +161,7 @@ public class BaseService {
             IceResponse.setMsg("新增成功!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(9);
         }
         return IceResponse;
@@ -176,7 +174,7 @@ public class BaseService {
             IceResponse.setMsg("成功修改" + count + "条记录!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(9);
         }
         return IceResponse;
@@ -189,7 +187,7 @@ public class BaseService {
             IceResponse.setMsg("成功删除");// + context.getRows().size() + "条记录!");
             IceResponse.setCode(0);
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
             IceResponse.setCode(9);
         }
         return IceResponse;

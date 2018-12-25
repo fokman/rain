@@ -1,12 +1,12 @@
 package com.rain.service.role;
 
 
-import com.rain.ice.utils.StartServer;
+import com.rain.ice.MainServer;
 
 public class Server {
 
     public static void main(String[] args) {
-        StartServer.startServer(args);
+        MainServer.startServer(args);
     }
 
 }
