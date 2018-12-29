@@ -217,7 +217,7 @@ public class MsgRequest implements java.lang.Cloneable, java.io.Serializable
         __v.__read(__is);
         return __v;
     }
-    
+
     private static final MsgRequest __nullMarshalValue = new MsgRequest();
 
     public static final long serialVersionUID = 1199748117L;

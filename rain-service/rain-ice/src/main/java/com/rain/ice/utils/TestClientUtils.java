@@ -34,13 +34,13 @@ public class TestClientUtils {
             if (messageServicePrx == null) {
                 throw new Error("Invalid proxy");
             }
-            MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
+            MsgRequest msgRequest = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
                     iceRequest.getAttr());
-            String str = messageServicePrx.doInvoke(in);
+            String str = messageServicePrx.doInvoke(msgRequest);
             IceResponse rs = JsonUtils.toObject(str, IceResponse.class);
             return rs;
         } catch (Exception e) {
-            log.info("{}",e);
+            log.info("{}", e);
             status = 1;
             exit(status);
 
