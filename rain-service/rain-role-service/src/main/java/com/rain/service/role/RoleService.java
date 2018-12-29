@@ -31,16 +31,18 @@ public class RoleService extends BaseService {
         iceRequest.setMethod("add");
         iceRequest.setService("RoleService");
         iceRequest.setAttr("roleId", String.valueOf(GenerateId.getInstance().getId()));
+        iceRequest.setAttr("roleName", iceRequest.getAttr("roleName"));
         iceRequest.addAttr("createTime", new Date());
+        iceRequest.addAttr("updateTime", new Date());
         getDao().insert(ROLE_MAPPER, INSERT, iceRequest.getAttrMap());
         IceResponse response = new IceResponse();
         response.setCode(200, "insert role success!");
         return response;
     }
 
-    public IceResponse update(IceRequest iceRequest){
+    public IceResponse update(IceRequest iceRequest) {
         IceResponse iceResponse = new IceResponse();
-        iceResponse.setCode(200,"upate role success!");
+        iceResponse.setCode(200, "upate role success!");
         return iceResponse;
     }
 

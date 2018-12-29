@@ -19,9 +19,9 @@
             <transactionManager type="JDBC"/>
 
             <dataSource type="com.rain.ice.dao.DruidDataSourceFactory">
-                <property name="url" value="jdbc:postgresql://localhost:5432/RAIN_BIZ"/>
-                <property name="username" value="postgres"/>
-                <property name="password" value="postgres"/>
+                <property name="url" value="jdbc:mysql://localhost:3307/rain-user?useUnicode=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
                 <property name="initialSize" value="1"/>
                 <property name="minIdle" value="1"/>
                 <property name="maxActive" value="20"/>

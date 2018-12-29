@@ -4,7 +4,6 @@ package com.rain.ice;
 import com.rain.ice.service.IceMessageService;
 import com.rain.ice.utils.InitRegisterService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 public class MainServer {

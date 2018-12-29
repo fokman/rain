@@ -7,6 +7,9 @@ import com.rain.ice.utils.JsonUtils;
 import com.rain.ice.utils.TestClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
@@ -29,7 +32,7 @@ public class RoleServiceTest {
         iceRequest.setAttr("roleName", "系统管理员");
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
-        IceResponse iceResponse = TestClientUtils.doService(iceRequest);
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info(JsonUtils.toJson(iceResponse));
         System.out.println(JsonUtils.toJson(iceResponse));
 //        logger.info("message {}", JsonUtils.toJson(iceResponse));
