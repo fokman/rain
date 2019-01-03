@@ -1,5 +1,6 @@
 <icegrid>
-    <application name="demo">
+    <application name="rain">
+
         <properties id="MultiThreaded">
             <property name="Ice.PrintStackTraces" value="1"/>
             <!-- <property name="Ice.Default.PreferSecure" value="1"/> -->
@@ -15,9 +16,10 @@
             <property name="Ice.Default.LocatorCacheTimeout" value="300"/>
             <property name="Ice.BackgroundLocatorCacheUpdates" value="1"/>
             <!-- ICE日志 -->
-            <property name="Ice.StdErr" value="../logs/stderr_grid.log" />
-			<property name="Ice.StdOut" value="../logs/stdout_grid.log"/>
+            <property name="Ice.StdErr" value="../logs/stderr_grid.log"/>
+            <property name="Ice.StdOut" value="../logs/stdout_grid.log"/>
         </properties>
+
         <server-template id="IcePatch2">
             <parameter name="instance-name" default="${application}.IcePatch2"/>
             <parameter name="endpoints" default="default"/>
@@ -34,7 +36,7 @@
         </server-template>
 
 
-        <server-template id="Demo_ServerTemplate">
+        <server-template id="Rain_ServerTemplate">
             <parameter name="id"/>
             <icebox id="Demo_Server${id}" exe="java" activation="on-demand">
                 <properties>
@@ -47,7 +49,9 @@
                 <option>com.zjhz.common.ice.v1.server.Sl4jIceBoxServer</option>
                 <!-- 普通ICE启动类 -->
                 <!-- <option>IceBox.Server</option> -->
-                <env>CLASSPATH=${server.distrib}\demo\*;${server.distrib}\demo\libs\*;${server.distrib}\demo\config\*;%CLASSPATH%;.</env>
+                <env>
+                    CLASSPATH=${server.distrib}\demo\*;${server.distrib}\demo\libs\*;${server.distrib}\demo\config\*;%CLASSPATH%;.
+                </env>
                 <distrib>
                     <directory>demo</directory>
                 </distrib>
@@ -61,11 +65,11 @@
                              replica-group="MessageServiceRep">
                     </adapter>
                 </service>
-                
+
             </icebox>
         </server-template>
-		
-		<!-- replica服务配置 -->
+
+        <!-- replica服务配置 -->
         <replica-group id="MessageServiceRep">
             <load-balancing type="round-robin" n-replicas="0"/>
             <object identity="MessageService" type="::Demo::MessageService"/>

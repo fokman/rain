@@ -16,15 +16,16 @@
     <modules>
         <module>rain-ice</module>
         <module>rain-role-service</module>
+        <module>rain-server</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!--<dependency>
                 <groupId>com.rain.service</groupId>
                 <artifactId>rain-exception</artifactId>
                 <version>${project.version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>com.rain.ice</groupId>
                 <artifactId>rain-ice</artifactId>

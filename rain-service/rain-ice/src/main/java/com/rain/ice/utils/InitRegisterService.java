@@ -3,28 +3,25 @@ package com.rain.ice.utils;
 import com.rain.ice.service.IceServiceRegister;
 import com.rain.ice.service.config.Service;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Component
 @Slf4j
 public class InitRegisterService {
 
     private static final String PKGS = "com.rain";
+
     public static void init() {
         try {
             List<String> pkgList = new ArrayList<>();
-            String packages = "com.rain";
-            if (packages != null) {
-                packages = packages.trim();
-                String[] strs = packages.split(";");
-                for (String string : strs) {
-                    if (string != null && string.trim().length() > 0) {
-                        pkgList.add(string.trim());
-                    }
+            String[] strs = PKGS.split(";");
+            for (String string : strs) {
+                if (StringUtils.isNotEmpty(string)) {
+                    pkgList.add(string.trim());
                 }
             }
 
@@ -42,7 +39,7 @@ public class InitRegisterService {
             }
             log.info("startup-init-end");
         } catch (Exception e) {
-            log.error("start-init-error", e);
+            log.error("start-init-error：{}", e);
         }
     }
 
