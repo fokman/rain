@@ -70,7 +70,9 @@
         </server-template>
 
         <!-- replica服务配置 -->
+        <!-- 对特定类型的icebox服务提供负载均衡策略  -->
         <replica-group id="MessageServiceRep">
+            <!--  有random、adaptive、round-robin、ordered 这4中负载均衡策略  -->
             <load-balancing type="round-robin" n-replicas="0"/>
             <object identity="MessageService" type="::Demo::MessageService"/>
         </replica-group>
