@@ -2,6 +2,7 @@ package com.rain.ice.dao;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.rain.ice.utils.ClassUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSourceFactory;
 import org.apache.ibatis.executor.ErrorContext;
@@ -9,16 +10,15 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.Set;
 
+
+@Slf4j
 public class DruidDataSourceFactory extends UnpooledDataSourceFactory {
-    public static final Logger log = LoggerFactory.getLogger(DruidDataSourceFactory.class);
 
     public DruidDataSourceFactory() {
         this.dataSource = new DruidDataSource();
@@ -44,6 +44,7 @@ public class DruidDataSourceFactory extends UnpooledDataSourceFactory {
                     mapperParser.parse();
                 }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -51,7 +52,7 @@ public class DruidDataSourceFactory extends UnpooledDataSourceFactory {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    log.error("Error thrown while closing the reader: {}", e);
+//                    log.error("Error thrown while closing the reader: {}", e);
                 }
             }
         }

@@ -5,8 +5,10 @@ import com.rain.ice.model.IceResponse;
 import com.rain.ice.utils.GenerateId;
 import com.rain.ice.utils.JsonUtils;
 import com.rain.ice.utils.TestClientUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,10 +22,9 @@ import java.util.Date;
  * <p>
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
-@RunWith(SpringRunner.class)
+@RunWith(JUnit4.class)
+@Slf4j
 public class RoleServiceTest {
-
-    private Logger logger = LoggerFactory.getLogger(RoleServiceTest.class);
 
     @Test
     public void testAdd() {
@@ -33,9 +34,9 @@ public class RoleServiceTest {
         iceRequest.setAttr("roleId", String.valueOf(GenerateId.getInstance().getId()));
         iceRequest.setAttr("roleName", "系统管理员");
         iceRequest.addAttr("createTime", new Date());
-        iceRequest.addAttr("updateTime",new Date());
+        iceRequest.addAttr("updateTime", new Date());
         IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
-        logger.info("message {}", JsonUtils.toJson(iceResponse));
+        log.info("message {}", JsonUtils.toJson(iceResponse));
     }
 
 }

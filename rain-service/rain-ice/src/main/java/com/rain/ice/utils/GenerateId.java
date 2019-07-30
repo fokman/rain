@@ -1,7 +1,7 @@
 package com.rain.ice.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.zeroc.Ice.Value;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Project Name: Rain
@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
  * <p>
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
+@Slf4j
 public class GenerateId {
-    private Logger logger = LoggerFactory.getLogger(GenerateId.class);
 
     private static final GenerateId instance = new GenerateId();
 
@@ -28,7 +28,7 @@ public class GenerateId {
         try {
             return idWorker.nextId();
         } catch (Exception e) {
-            logger.error("{}", e);
+            log.error("{}", e);
         }
         return 0L;
     }

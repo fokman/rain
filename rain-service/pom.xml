@@ -13,6 +13,10 @@
     <artifactId>rain-service</artifactId>
     <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <ice.version>3.7.2</ice.version>
+    </properties>
     <modules>
         <module>rain-ice</module>
         <module>order-service</module>
@@ -24,19 +28,27 @@
         <dependency>
             <groupId>com.zeroc</groupId>
             <artifactId>ice</artifactId>
+            <version>${ice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zeroc</groupId>
             <artifactId>icebox</artifactId>
+            <version>${ice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zeroc</groupId>
             <artifactId>icegrid</artifactId>
+            <version>${ice.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
@@ -66,10 +78,6 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>

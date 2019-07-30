@@ -1,11 +1,12 @@
 package com.rain.ice.service;
 
-import Ice.Current;
+import com.rain.ice.message.MessageService;
 import com.rain.ice.message.MsgRequest;
-import com.rain.ice.message._MessageServiceDisp;
 import com.rain.ice.model.IceRequest;
 import com.rain.ice.model.IceResponse;
 import com.rain.ice.utils.JsonUtils;
+import com.zeroc.Ice.Current;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -20,13 +21,13 @@ import java.lang.reflect.Method;
  * <p>
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
-public class IceMessageService extends _MessageServiceDisp {
+@Slf4j
+public class IceMessageService implements MessageService {
 
-    private Logger logger = LoggerFactory.getLogger(IceMessageService.class);
 
     @Override
-    public String doInvoke(MsgRequest msgRequest, Current __current) {
-        logger.info("invoke msgRequest:{}",msgRequest);
+    public String doInvoke(MsgRequest msgRequest, Current current) {
+        log.info("invoke msgRequest:{}", msgRequest);
         String service = msgRequest.service;
         String method = msgRequest.method;
         Object iceClazz;
@@ -41,7 +42,7 @@ public class IceMessageService extends _MessageServiceDisp {
             try {
                 m = iceClazz.getClass().getMethod(method, IceRequest.class);
             } catch (NoSuchMethodException e) {
-                logger.error("{}",e);
+                log.error("{}", e);
             }
         }
         IceRequest iceRequest = new IceRequest();
@@ -56,11 +57,11 @@ public class IceMessageService extends _MessageServiceDisp {
 
         IceResponse iceResponse = new IceResponse();
         try {
-            if (m!=null) {
+            if (m != null) {
                 iceResponse = (IceResponse) m.invoke(iceClazz, iceRequest);
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
-            logger.error("{}",e);
+            log.error("{}", e);
         }
         return JsonUtils.toJson(iceResponse);
     }

@@ -1,14 +1,15 @@
 package com.rain.ice.utils;
 
 
-import org.springframework.boot.SpringApplication;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
+@Slf4j
 public class Server {
 
     public static void main(String[] args) {
+        log.info("start server....");
         StartServer.startServer(args);
     }
 

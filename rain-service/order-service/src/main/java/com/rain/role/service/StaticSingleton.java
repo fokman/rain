@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class StaticSingleton implements Serializable {
 
-    private StaticSingleton(){
+    private StaticSingleton() {
 
     }
 
@@ -15,12 +15,12 @@ public class StaticSingleton implements Serializable {
         private static StaticSingleton instance = new StaticSingleton();
     }
 
-    public static StaticSingleton getInstance(){
+    public static StaticSingleton getInstance() {
         return SingletonHolder.instance;
     }
 
-    private Object readResolve(){
-        return ins
+    private StaticSingleton readResolve() {
+        return SingletonHolder.instance;
     }
 
 }

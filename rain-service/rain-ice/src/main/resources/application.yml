@@ -3,29 +3,32 @@ spring:
   main:
     banner-mode: off
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/nev_master?currentSchema=rain_biz
-    username: postgres
-    password: postgres
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdel: true
-    testOnBorrow: false
-    testOnReturn: false
-    filters: stat,wall,log4j
-    logSlowSql: true
-    cnnectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driver: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/rain_biz
+      username: postgres
+      password: postgres
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      testWhileIdel: true
+      testOnBorrow: false
+      testOnReturn: false
+      filters: stat,wall,log4j
+      logSlowSql: true
+      cnnectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
 mybatis:
-#  type:
-#    aliases:
+  #  type:
+  #    aliases:
   mapper:
-      package:  com.rain.role.mapper
+    package:  com.rain.*.mapper
   locations:  classpath*:com/rain/**/mapper/*Mapper.xml
 
 
@@ -40,8 +43,8 @@ endpoints:
     enabled: true
     unique-names: true
 logging:
-  config: log4j2.xml
-#  pattern:
-#    console: %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+  config: logback.xml
+  #  pattern:
+  #    console: %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
   level: info
 
