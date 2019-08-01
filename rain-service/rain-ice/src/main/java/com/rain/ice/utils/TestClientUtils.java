@@ -16,6 +16,7 @@ public class TestClientUtils {
         return doService(iceRequest, null);
     }
 
+
     public static IceResponse doService(IceRequest iceRequest, String[] args) {
         int status = 0;
         com.zeroc.Ice.Communicator ic = null;

@@ -1,17 +1,17 @@
 package com.rain.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootApplication
+@Slf4j
 public class RainWebApplication {
-	private static Logger logger = LoggerFactory.getLogger(RainWebApplication.class);
 
-	public static void main(String[] args) {
-		logger.info("start Rain web application.");
-		SpringApplication.run(RainWebApplication.class, args);
+    public static void main(String[] args) {
+        log.info("start Rain web application.");
+        SpringApplication.run(RainWebApplication.class, args);
 
-	}
+    }
 }

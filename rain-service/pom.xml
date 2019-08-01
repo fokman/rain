@@ -23,61 +23,7 @@
         <module>rain-role-service</module>
         <module>redis-service</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>ice</artifactId>
-            <version>${ice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>icebox</artifactId>
-            <version>${ice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>icegrid</artifactId>
-            <version>${ice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-    </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>42.2.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>1.1.6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>3.4.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.6</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
+    
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
