@@ -1,0 +1,550 @@
+{
+	service: "BaseTeacherService",
+	validation: 
+	[	
+		{
+			"method": "add",
+			"fields": 
+			[
+				{
+					"fieldCode": "schoolId",
+					"fieldName": "学校",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "certifiedNo",
+					"fieldName": "教师资格证号",
+					"notNull": "2",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "idCard",
+					"fieldName": "身份证号",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "name",
+					"fieldName": "姓名",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "eduLevel",
+					"fieldName": "文化程度",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "graduateSchool",
+					"fieldName": "毕业学校",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "60",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "major",
+					"fieldName": "所学专业",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "60",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "graduationTime",
+					"fieldName": "毕业时间",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "photoUrl",
+					"fieldName": "照片",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "marriageStatus",
+					"fieldName": "婚姻状况",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "birthday",
+					"fieldName": "出生日期",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "folkCode",
+					"fieldName": "名族",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "nativePlaceCode",
+					"fieldName": "国籍",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "orginType",
+					"fieldName": "人员来源",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residenceAddress",
+					"fieldName": "户籍所在地",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "joinTime",
+					"fieldName": "参加工作时间",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "politicsCode",
+					"fieldName": "政治面貌",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "phone",
+					"fieldName": "联系电话",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "20",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "sex",
+					"fieldName": "性别",
+					"notNull": "1",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "deptId",
+					"fieldName": "所属部门",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "mainSubject",
+					"fieldName": "主教学科",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "positionalTitle",
+					"fieldName": "职称",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "jobTitle",
+					"fieldName": "编制",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "summary",
+					"fieldName": "备注",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "500",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				}
+			]
+		},
+		{
+			"method": "modify",
+			"fields": 
+			[
+				{
+					"fieldCode": "schoolId",
+					"fieldName": "学校",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "certifiedNo",
+					"fieldName": "教师资格证号",
+					"notNull": "2",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "idCard",
+					"fieldName": "身份证号",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "name",
+					"fieldName": "姓名",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "eduLevel",
+					"fieldName": "文化程度",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "graduateSchool",
+					"fieldName": "毕业学校",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "60",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "major",
+					"fieldName": "所学专业",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "60",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "graduationTime",
+					"fieldName": "毕业时间",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "photoUrl",
+					"fieldName": "照片",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "marriageStatus",
+					"fieldName": "婚姻状况",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "birthday",
+					"fieldName": "出生日期",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "folkCode",
+					"fieldName": "名族",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "nativePlaceCode",
+					"fieldName": "国籍",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "orginType",
+					"fieldName": "人员来源",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residenceAddress",
+					"fieldName": "户籍所在地",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "joinTime",
+					"fieldName": "参加工作时间",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "politicsCode",
+					"fieldName": "政治面貌",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "phone",
+					"fieldName": "联系电话",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "20",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "sex",
+					"fieldName": "性别",
+					"notNull": "1",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "deptId",
+					"fieldName": "所属部门",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "mainSubject",
+					"fieldName": "主教学科",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "positionalTitle",
+					"fieldName": "职称",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "jobTitle",
+					"fieldName": "编制",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "summary",
+					"fieldName": "备注",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "500",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				}
+			]
+			
+		}
+	]
+}
+ 
