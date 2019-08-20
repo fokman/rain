@@ -1,12 +1,15 @@
+package com.rain.common.uitls;
+
 import com.rain.common.ice.impl.IceMessageService;
 import com.rain.common.servcie.StartupUtils;
 import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Exception;
 import com.zeroc.Ice.Util;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.zeroc.Ice.Util.initialize;
 
-
+@Slf4j
 public class TestServerUtils {
 
     public static void startServer(String[] args) {
@@ -26,7 +29,7 @@ public class TestServerUtils {
             // 激活适配器
             adapter.activate();
             // 让服务在退出之前，一直持续对请求的监听
-            System.out.print("server started ");
+            log.info("server started ");
             ic.waitForShutdown();
 
         } catch (Exception e) {

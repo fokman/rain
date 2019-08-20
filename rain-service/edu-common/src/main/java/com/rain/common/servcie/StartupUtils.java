@@ -61,7 +61,7 @@ public class StartupUtils {
         log.info("start-init-load-config-begin");
         Properties prop = new Properties();
         InputStream in = null;
-        String config = "/app.properties";
+        String config = "/config/app.properties";
         try {
             in = AppUtils.getEnvResource(config);
             prop.load(in);

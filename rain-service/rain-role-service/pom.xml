@@ -20,8 +20,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.rain.ice</groupId>
-            <artifactId>rain-ice</artifactId>
+            <groupId>com.rain.service</groupId>
+            <artifactId>edu-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
