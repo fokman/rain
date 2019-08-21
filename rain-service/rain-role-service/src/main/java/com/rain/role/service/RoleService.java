@@ -5,6 +5,7 @@ import com.rain.common.ice.model.IceRespose;
 import com.rain.common.servcie.BaseService;
 import com.rain.common.servcie.config.Service;
 import com.rain.common.uitls.IdWorker;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,16 +19,15 @@ import java.util.Date;
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
 @Service(name = "RoleService")
+@Slf4j
 public class RoleService extends BaseService {
-
-    private Logger logger = LoggerFactory.getLogger(RoleService.class);
 
     private String ROLE_MAPPER = "RoleMapper";
 
     private String INSERT = "insert";
 
     public IceRespose add(IceRequest iceRequest) {
-        logger.info("start role service add method.");
+        log.info("start role service add method.");
         iceRequest.setMethod("add");
         iceRequest.setService("RoleService");
         iceRequest.setAttr("roleId", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));

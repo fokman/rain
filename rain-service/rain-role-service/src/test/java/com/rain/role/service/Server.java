@@ -1,12 +1,12 @@
 package com.rain.role.service;
 
 
-import com.rain.common.uitls.TestServerUtils;
+import com.rain.common.uitls.ServerStart;
 
 public class Server {
 
     public static void main(String[] args) {
-        TestServerUtils.startServer(args);
+        ServerStart.startServer(args);
     }
 
 }

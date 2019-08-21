@@ -19,9 +19,10 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.rain.service</groupId>
-            <artifactId>edu-common</artifactId>
+            <artifactId>rain-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

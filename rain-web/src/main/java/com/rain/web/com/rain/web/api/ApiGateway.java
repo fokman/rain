@@ -1,21 +1,16 @@
 package com.rain.web.com.rain.web.api;
 
-import com.rain.ice.model.IceRequest;
-import com.rain.ice.model.IceResponse;
-import com.rain.ice.utils.IceClientUtils;
-import com.rain.ice.utils.JsonUtils;
-import com.rain.ice.utils.TestClientUtils;
+import com.rain.common.ice.model.IceRequest;
+import com.rain.common.ice.model.IceRespose;
+import com.rain.common.ice.utils.IceClientUtils;
+import com.rain.common.uitls.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -25,7 +20,7 @@ import java.util.Set;
 public class ApiGateway {
 
     @PostMapping("/api")
-    public IceResponse apiExe(IceRequest iceRequest) throws IOException {
+    public IceRespose apiExe(IceRequest iceRequest) throws IOException {
         long begin = System.currentTimeMillis();
 /*        // 权限校验
         if (!checkPrivilege(iceRequest.getService(), iceRequest.getMethod())) {
@@ -37,7 +32,7 @@ public class ApiGateway {
       /*  boolean rs = checkIsIgnore(iceRequest.getService(), iceRequest.getMethod());
         if (rs) {
             // 为true表示需要验证token
-            IceResponse iceRespose1 = checkToken(iceRequest);
+            iceRespose iceRespose1 = checkToken(iceRequest);
             if (iceRespose1 != null) {
                 return iceRespose1;
             }
@@ -62,36 +57,36 @@ public class ApiGateway {
         }*/
 
         // 请求服务：RPC请求或者http请求。
-        IceResponse iceRespose = invoke(iceRequest);
+        IceRespose iceRespose = invoke(iceRequest);
         log.info("Api Server - App call:[{}.{}] to spend:{}ms", iceRequest.getService(), iceRequest.getMethod(),
                 (System.currentTimeMillis() - begin));
 
         return iceRespose;
     }
 
-    private IceResponse invoke(IceRequest iceRequest) {
+    private IceRespose invoke(IceRequest iceRequest) {
         String service = iceRequest.getService();
         String method = iceRequest.getMethod();
 
-        IceResponse iceResponse = new IceResponse();
+        IceRespose iceRespose = new IceRespose();
         if (service == null || service.length() == 0) {
-            iceResponse.setCode(2, "服务名为空,请求失败!");
-            return iceResponse;
+            iceRespose.setCode(2, "服务名为空,请求失败!");
+            return iceRespose;
         }
         if (method == null || method.length() == 0) {
-            iceResponse.setCode(2, "方法名为空,请求失败!");
-            return iceResponse;
+            iceRespose.setCode(2, "方法名为空,请求失败!");
+            return iceRespose;
         }
         try {
             String json = IceClientUtils.doService(iceRequest);
-            return JsonUtils.toObject(json, IceResponse.class);
+            return JsonUtils.toObject(json, IceRespose.class);
         } catch (Exception e) {
             log.error("API调用:[{}.{}]RPC服务时异常：" + e.toString(), service, method);
-            iceResponse.setMsg("RPC 异常");
+            iceRespose.setMsg("RPC 异常");
             e.printStackTrace();
 
         }
-        return iceResponse;
+        return iceRespose;
     }
 
     protected String[] parseServiceAndMethod(String apiName) {
