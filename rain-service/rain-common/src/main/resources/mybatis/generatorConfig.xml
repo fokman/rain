@@ -26,14 +26,14 @@
 		</javaTypeResolver>
 
 		<!-- 数据表对应的model 层 -->
-		<javaModelGenerator targetPackage="com.zjhz.common.model"
+		<javaModelGenerator targetPackage="com.rain.common.model"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- sql mapper 隐射配置文件 -->
-		<sqlMapGenerator targetPackage="com.zjhz.common.mybatis"
+		<sqlMapGenerator targetPackage="com.rain.common.mybatis"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>

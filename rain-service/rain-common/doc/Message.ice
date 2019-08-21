@@ -1,4 +1,4 @@
-[["java:package:com.zjhz.common.ice"]]
+[["java:package:com.rain.common.ice"]]
 #include <Context.ice>
 module message{
 	dictionary<string, string> tmap;

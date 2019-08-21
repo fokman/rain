@@ -1,12 +1,12 @@
 <assembly>
-    <id>demo</id>
+    <id>rain</id>
     <formats>
         <format>zip</format>
     </formats>
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>true</useProjectArtifact>
-            <outputDirectory>demo/patch/demo/libs</outputDirectory>
+            <outputDirectory>rain/patch/rain/libs</outputDirectory>
         </dependencySet>
     </dependencySets>
     <fileSets>
@@ -21,16 +21,16 @@
             <outputDirectory>icegrid/patch/ipss/libs</outputDirectory>
         </fileSet> -->
         <fileSet>
-            <directory>../icedemo-common/target/config</directory>
-            <outputDirectory>demo/patch/demo/config</outputDirectory>
+            <directory>../rain-common/target/config</directory>
+            <outputDirectory>rain/patch/rain/config</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>src/main/icegrid</directory>
-            <outputDirectory>demo</outputDirectory>
+            <outputDirectory>rain</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>src/main/resources/</directory>
-            <outputDirectory>demo/patch/demo/config</outputDirectory>
+            <outputDirectory>rain/patch/rain/config</outputDirectory>
         </fileSet>
     </fileSets>
 </assembly>

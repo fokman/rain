@@ -243,7 +243,4 @@ public class ClassUtils {
 		}
 	}
 
-	public static void main(String[] args) {
-		getFiles("com.zjhz", ".xml");
-	}
 }

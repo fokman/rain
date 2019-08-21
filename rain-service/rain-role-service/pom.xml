@@ -8,18 +8,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>rain-role-service</name>
     <artifactId>rain-role-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>rain-role-service</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
-
         <dependency>
             <groupId>com.rain.service</groupId>
             <artifactId>rain-common</artifactId>

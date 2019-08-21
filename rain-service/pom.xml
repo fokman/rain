@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>rain</artifactId>
         <groupId>com.rain</groupId>
+        <artifactId>rain</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -15,15 +15,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ice.version>3.7.2</ice.version>
     </properties>
+
     <modules>
-        <module>rain-ice</module>
-        <module>order-service</module>
+        <module>rain-common</module>
         <module>rain-role-service</module>
-        <module>redis-service</module>
+        <module>rain-server</module>
     </modules>
-    
+
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -43,8 +42,5 @@
                 </includes>
             </resource>
         </resources>
-        <plugins>
-
-        </plugins>
     </build>
 </project>

@@ -1,5 +1,5 @@
 <icegrid>
-    <application name="demo">
+    <application name="rain">
         <properties id="MultiThreaded">
             <property name="Ice.PrintStackTraces" value="1"/>
             <!-- <property name="Ice.Default.PreferSecure" value="1"/> -->
@@ -34,29 +34,26 @@
         </server-template>
 
 
-        <server-template id="Demo_ServerTemplate">
+        <server-template id="Rain_ServerTemplate">
             <parameter name="id"/>
-            <icebox id="Demo_Server${id}" exe="java" activation="on-demand">
+            <icebox id="Rain_Server${id}" exe="java" activation="on-demand">
                 <properties>
                     <properties refid="MultiThreaded"/>
                 </properties>
                 <option>-Xmx512M</option>
                 <option>-Duser.timezone=Asia/Shanghai</option>
-                <option>-DAppId=Demo_Server${id}</option>
-                <!-- 封装了启动日志的类 -->
-                <option>com.zjhz.common.ice.v1.server.Sl4jIceBoxServer</option>
-                <!-- 普通ICE启动类 -->
+                <option>-DAppId=Rain_Server${id}</option>
                 <!-- <option>IceBox.Server</option> -->
-                <env>CLASSPATH=${server.distrib}\demo\*;${server.distrib}\demo\libs\*;${server.distrib}\demo\config\*;%CLASSPATH%;.</env>
+                <env>CLASSPATH=${server.distrib}\rain\*;${server.distrib}\rain\libs\*;${server.distrib}\rain\config\*;%CLASSPATH%;.</env>
                 <distrib>
-                    <directory>demo</directory>
+                    <directory>rain</directory>
                 </distrib>
                 <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
                 <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
                 <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
                 <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
                 <!-- 网格服务配置 -->
-                <service name="MessageService" entry="com.zjhz.common.ice.v1.impl.IceMessageBoxService">
+                <service name="MessageService" entry="com.rain.common.ice.impl.IceMessageBoxService">
                     <adapter name="MessageService" id="MessageService${id}" endpoints="default"
                              replica-group="MessageServiceRep">
                     </adapter>
@@ -68,12 +65,12 @@
 		<!-- replica服务配置 -->
         <replica-group id="MessageServiceRep">
             <load-balancing type="round-robin" n-replicas="0"/>
-            <object identity="MessageService" type="::Demo::MessageService"/>
+            <object identity="MessageService" type="::Rain::MessageService"/>
         </replica-group>
 
         <node name="node1">
-            <server-instance template="Demo_ServerTemplate" id="1"/>
-            <server-instance template="Demo_ServerTemplate" id="2"/>
+            <server-instance template="Rain_ServerTemplate" id="1"/>
+            <server-instance template="Rain_ServerTemplate" id="2"/>
             <server-instance template="IcePatch2" directory="../patch"/>
         </node>
     </application>
