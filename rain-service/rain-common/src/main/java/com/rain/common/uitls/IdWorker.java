@@ -83,12 +83,6 @@ public class IdWorker {
     private static long timeGen() {
         return System.currentTimeMillis();
     }
-
-    public static void main(String[] args) throws Exception {
-        System.out.println(timeGen());
-        IdWorker idWorker = IdWorker.getFlowIdWorkerInstance();
-        System.out.println(idWorker.nextId());
-        System.out.println(idWorker.nextId());
-    }
+    
 
 }

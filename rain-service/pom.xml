@@ -19,7 +19,7 @@
 
     <modules>
         <module>rain-common</module>
-        <module>rain-role-service</module>
+        <module>rain-user-center</module>
         <module>rain-server</module>
     </modules>
 

@@ -37,7 +37,7 @@ public class TestClientUtils {
             IceRespose rs = JsonUtils.toObject(str, IceRespose.class);
 
             long used = System.currentTimeMillis() - start;
-            System.out.println("tps " + count * 1000.0 / used);
+            System.out.println("tps :" + count * 1000.0 / used);
             return rs;
         } catch (Exception e) {
             e.printStackTrace();
