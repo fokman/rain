@@ -1,41 +1,19 @@
 package com.rain.common.ice.model;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.*;
 
 public class IceRequest {
 
-    /**
-     * 服务名称
-     */
     private String service;
 
-    /**
-     * 方法名称
-     */
     private String method;
 
-    /**
-     * 扩展参数. 例如：客户端IP. 客户端User-Agent
-     */
-    private Map<String, String> extraData = new LinkedHashMap<String, String>();
+    //扩展属性
+    private Map<String, String> extraData = new LinkedHashMap<>();
+    //入参
+    private Map<String, String> attr = new HashMap<>();
 
-    /**
-     * 业务参数
-     */
-    private Map<String, String> attr = new HashMap<String, String>();
-    /**
-     * 业务参数,支持object，为了解决在mybatis中使用in
-     * 如果把in中条件用字符串传进去，mybatis会在参数中加\转义，导致查询不出来
-     * 例子: iceRequest.addAttr("paramTypes", "'org_user_status','org_dept_status'");
-     * where param_type in ('\'org_user_status\',\'org_dept_status\'')
-     */
-    private Map<String, Object> attr2 = new HashMap<String, Object>();
+    private Map<String, Object> data = new HashMap<>();
 
     public IceRequest() {
 
@@ -64,7 +42,7 @@ public class IceRequest {
     // 放入新的参数，需要把attr中的相同参数删除，否则查询数据库的时候会覆盖
     public void addAttr(String key, Object value) {
         this.attr.remove(key);
-        this.attr2.put(key, value);
+        this.data.put(key, value);
     }
 
     public void addAttr(Map<String, String> attr) {
@@ -84,7 +62,7 @@ public class IceRequest {
 
     /**
      * 获取输入参数
-     * 
+     *
      * @return
      */
     public Map<String, String> getAttr() {
@@ -100,25 +78,25 @@ public class IceRequest {
         // Map<String, Object> params = new HashMap<String, Object>();
         if (attr != null && !attr.isEmpty()) {
             Set set = attr.keySet();
-            for (Iterator iter = set.iterator(); iter.hasNext();) {
+            for (Iterator iter = set.iterator(); iter.hasNext(); ) {
                 String key = (String) iter.next();
                 String v = attr.get(key);
                 if (null != v && v != STRING_01) {
                     String value = attr.get(key);
-                        if(STRING_02.equals(value)){
-                            value = STRING_01;
-                        }
-                        attr2.put(key, value);
+                    if (STRING_02.equals(value)) {
+                        value = STRING_01;
+                    }
+                    data.put(key, value);
                 }
             }
         }
         // params.putAll(paramData);
-        return attr2;
+        return data;
     }
 
     /**
      * 根据key获取输入参数
-     * 
+     *
      * @param key
      * @return
      */
@@ -139,7 +117,7 @@ public class IceRequest {
 
     /**
      * 获取输入参数，并转化为整形。如果变量不存在，则返回-1
-     * 
+     *
      * @param key
      * @return
      */
@@ -158,7 +136,7 @@ public class IceRequest {
 
     /**
      * 获取输入参数，并转化为整形。如果变量不存在，则返回-1L
-     * 
+     *
      * @param key
      * @return
      */
@@ -173,7 +151,7 @@ public class IceRequest {
 
     /**
      * 获取业务参数 不存在到返回, 不存在返回0.0
-     * 
+     *
      * @param key
      * @return
      */
@@ -188,7 +166,7 @@ public class IceRequest {
 
     /**
      * 获取业务参数，并转为字符串。如果不存在或为空，则返回""
-     * 
+     *
      * @param key
      * @return
      */
@@ -203,7 +181,7 @@ public class IceRequest {
 
     /**
      * 扩展参数。 如ip,User-Agent
-     * 
+     *
      * @return
      */
     public Map<String, String> getExtraData() {
@@ -212,7 +190,7 @@ public class IceRequest {
 
     /**
      * 获取扩展参数.
-     * 
+     *
      * @param key
      * @return
      */
@@ -226,7 +204,7 @@ public class IceRequest {
 
     /**
      * 获取扩展参数并且转化为Integer对象
-     * 
+     *
      * @param key
      * @return
      */
@@ -241,7 +219,7 @@ public class IceRequest {
 
     /**
      * 获取扩展参数. 不存在返回null
-     * 
+     *
      * @param key
      * @return
      */
@@ -256,7 +234,7 @@ public class IceRequest {
 
     /**
      * 获取扩展参数，并且转为字符串. 参数不存在，返回 "";
-     * 
+     *
      * @param key
      * @return
      */
@@ -267,7 +245,7 @@ public class IceRequest {
 
     /**
      * 获取查询字符串
-     * 
+     *
      * @return
      */
     public String getQueryString() {
@@ -276,7 +254,7 @@ public class IceRequest {
 
     /**
      * 设置查询字符串
-     * 
+     *
      * @param queryString
      */
 
@@ -336,12 +314,12 @@ public class IceRequest {
         return (String) getExtra("userAgent");
     }
 
-    public Map<String, Object> getAttr2() {
-        return attr2;
+    public Map<String, Object> getData() {
+        return data;
     }
 
-    public final  static String STRING_01 = "";
+    public final static String STRING_01 = "";
 
-    public final  static String STRING_02 = " ";
+    public final static String STRING_02 = " ";
 
 }

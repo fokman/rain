@@ -28,13 +28,9 @@ public class RoleService extends BaseService {
 
     public IceRespose add(IceRequest iceRequest) {
         log.info("start role service add method.");
-        iceRequest.setMethod("add");
-        iceRequest.setService("RoleService");
         iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
-        iceRequest.setAttr("code", "Admin");
-        iceRequest.setAttr("name", "管理员");
         iceRequest.addAttr("createTime", new Date());
-        iceRequest.addAttr("createTime", new Date());
+        iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
         getDao().insert(ROLE_MAPPER, INSERT, iceRequest.getAttrMap());
         IceRespose response = new IceRespose();

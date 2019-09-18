@@ -2,11 +2,14 @@ package com.rain.web.com.rain.web.api;
 
 import com.rain.common.ice.model.IceRequest;
 import com.rain.common.ice.model.IceRespose;
-import com.rain.common.ice.utils.IceClientUtils;
 import com.rain.common.uitls.JsonUtils;
+import com.rain.common.uitls.TestClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,31 +18,40 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-@Slf4j
+
+@Configuration
 @RestController
+@Slf4j
 public class ApiGateway {
 
-    @PostMapping("/api")
-    public IceRespose apiExe(IceRequest iceRequest) throws IOException {
+    @RequestMapping("/api")
+    public IceRespose apiExecute(@RequestBody IceRequest iceRequest) throws IOException {
         long begin = System.currentTimeMillis();
-/*        // 权限校验
-        if (!checkPrivilege(iceRequest.getService(), iceRequest.getMethod())) {
+
+//        assembleContextParams(request, iceRequest);
+        // logger.info("Api Server - App call:[{}] to start service",
+        // context.getAttrAsStr("method"));
+
+        // 权限校验
+/*        if (!checkPrivilege(iceRequest.getService(), iceRequest.getMethod())) {
             IceRespose iceRespose = new IceRespose();
             iceRespose.setCode(2, "操作不正确，对服务的操作权限不足!");
             return iceRespose;
         }*/
 
-      /*  boolean rs = checkIsIgnore(iceRequest.getService(), iceRequest.getMethod());
+/*
+        boolean rs = checkIsIgnore(iceRequest.getService(), iceRequest.getMethod());
         if (rs) {
             // 为true表示需要验证token
-            iceRespose iceRespose1 = checkToken(iceRequest);
+            IceRespose iceRespose1 = checkToken(iceRequest);
             if (iceRespose1 != null) {
                 return iceRespose1;
             }
-        }*/
+        }
+*/
 
-/*        if (httpServletRequest instanceof MultipartHttpServletRequest) {
-            MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) httpServletRequest;
+/*        if (request instanceof MultipartHttpServletRequest) {
+            MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
             Map<String, MultipartFile> fileMap = mRequest.getFileMap();
             for (Map.Entry<String, MultipartFile> stringMultipartFileEntry : fileMap.entrySet()) {
                 String key = stringMultipartFileEntry.getKey();
@@ -47,12 +59,16 @@ public class ApiGateway {
                 String oriName = value.getOriginalFilename();
                 InputStream inputStream = value.getInputStream();
 
-                *//*StorePath path = storageClient.uploadFile(inputStream, value.getSize(), Files.getFileExtension(oriName),
+                StorePath path = storageClient.uploadFile(inputStream, value.getSize(), Files.getFileExtension(oriName),
                         null);
                 String finalPath = fileStorePre + path.getFullPath() + "?attname="
                         + URLEncoder.encode(oriName, "UTF-8");
-                iceRequest.addAttr(key, finalPath);*//*
+                iceRequest.addAttr(key, finalPath);
 
+                // Object down= storageClient.downloadFile(path.getGroup(),
+                // path.getPath(), new
+                // DownloadFileWriter("d:\\888\\fasdfs12.jpg"));
+                // System.out.println();
             }
         }*/
 
@@ -64,38 +80,12 @@ public class ApiGateway {
         return iceRespose;
     }
 
-    private IceRespose invoke(IceRequest iceRequest) {
-        String service = iceRequest.getService();
-        String method = iceRequest.getMethod();
-
-        IceRespose iceRespose = new IceRespose();
-        if (service == null || service.length() == 0) {
-            iceRespose.setCode(2, "服务名为空,请求失败!");
-            return iceRespose;
-        }
-        if (method == null || method.length() == 0) {
-            iceRespose.setCode(2, "方法名为空,请求失败!");
-            return iceRespose;
-        }
-        try {
-            String json = IceClientUtils.doService(iceRequest);
-            return JsonUtils.toObject(json, IceRespose.class);
-        } catch (Exception e) {
-            log.error("API调用:[{}.{}]RPC服务时异常：" + e.toString(), service, method);
-            iceRespose.setMsg("RPC 异常");
-            e.printStackTrace();
-
-        }
-        return iceRespose;
-    }
-
-    protected String[] parseServiceAndMethod(String apiName) {
-        if (StringUtils.isEmpty(apiName))
-            return null;
-        int lastInx = StringUtils.lastIndexOf(apiName, ".");
-        return new String[]{StringUtils.substring(apiName, 0, lastInx), StringUtils.substring(apiName, lastInx + 1)};
-    }
-
+    /**
+     * 装配 context 的参数
+     *
+     * @param request
+     * @param context
+     */
     private void assembleContextParams(HttpServletRequest request, IceRequest context) {
         // 设置扩展参数
         context.setExtra("queryString", request.getQueryString());
@@ -121,7 +111,6 @@ public class ApiGateway {
         if (requestParams != null) {
             String paramJson = requestParams.get("params");
             if (paramJson != null && paramJson.length() > 0) {
-                @SuppressWarnings("unchecked")
                 Map<String, Object> paramMap = (Map<String, Object>) JsonUtils.toMap(paramJson);
                 Set<String> paramKeySet = paramMap.keySet();
                 for (String key : paramKeySet) {
@@ -155,4 +144,47 @@ public class ApiGateway {
         }
         return result;
     }
+
+    /**
+     * 解析服务名
+     *
+     * @param apiName
+     * @return
+     */
+    protected String[] parseServiceAndMethod(String apiName) {
+        if (StringUtils.isEmpty(apiName))
+            return null;
+        int lastInx = StringUtils.lastIndexOf(apiName, ".");
+        return new String[]{StringUtils.substring(apiName, 0, lastInx), StringUtils.substring(apiName, lastInx + 1)};
+    }
+
+    /**
+     * 启动调用RPC服务
+     *
+     * @param iceRequest
+     * @return
+     */
+    private IceRespose invoke(IceRequest iceRequest) {
+        String service = iceRequest.getService();
+        String method = iceRequest.getMethod();
+
+        IceRespose iceRespose = new IceRespose();
+        if (service == null || service.length() == 0) {
+            iceRespose.setCode(2, "服务名为空,请求失败!");
+            return iceRespose;
+        }
+        if (method == null || method.length() == 0) {
+            iceRespose.setCode(2, "方法名为空,请求失败!");
+            return iceRespose;
+        }
+        try {
+            IceRespose json = TestClientUtils.doService(iceRequest);
+            return json;
+        } catch (Exception e) {
+            log.error("API调用:[{}.{}]RPC服务时异常：" + e.toString(), service, method);
+            e.printStackTrace();
+        }
+        return iceRespose;
+    }
+
 }

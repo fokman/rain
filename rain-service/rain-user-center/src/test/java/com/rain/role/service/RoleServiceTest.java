@@ -34,6 +34,7 @@ public class RoleServiceTest {
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
+        log.info("request params:{}", JsonUtils.toJson(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JsonUtils.toJson(iceResponse));
     }

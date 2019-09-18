@@ -1,8 +1,8 @@
 package com.rain.web.com.rain.web.api;
 
-import com.rain.ice.model.IceRequest;
-import com.rain.ice.utils.GenerateId;
-import com.rain.ice.utils.JsonUtils;
+import com.rain.common.ice.model.IceRequest;
+import com.rain.common.uitls.IdWorker;
+import com.rain.common.uitls.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,10 +44,11 @@ public class ApiGatewayTest {
             IceRequest iceRequest = new IceRequest();
             iceRequest.setMethod("add");
             iceRequest.setService("RoleService");
-            iceRequest.setAttr("roleId", String.valueOf(GenerateId.getInstance().getId()));
+            iceRequest.setAttr("roleId", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
             iceRequest.setAttr("roleName", "系统管理员");
             iceRequest.addAttr("createTime", new Date());
             iceRequest.addAttr("updateTime", new Date());
+            log.info("request params:{}", JsonUtils.toJson(iceRequest));
             result = mockMvc.perform(post("/services/api").content(JsonUtils.toJson(iceRequest))
                     .header("Content-type", "application/json"))
                     .andExpect(status().isOk())
