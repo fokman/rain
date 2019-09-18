@@ -1,19 +1,28 @@
 package com.rain.web.com.rain.web.api;
 
+import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import com.google.common.io.Files;
 import com.rain.common.ice.model.IceRequest;
 import com.rain.common.ice.model.IceRespose;
+import com.rain.common.ice.utils.IceClientUtils;
 import com.rain.common.uitls.JsonUtils;
 import com.rain.common.uitls.TestClientUtils;
+import jdk.internal.util.xml.impl.Input;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -79,6 +88,37 @@ public class ApiGateway {
 
         return iceRespose;
     }
+
+
+    @Autowired
+    protected FastFileStorageClient fastFileStorageClient;
+
+    @PostMapping(value = "/upload")
+    public IceRespose upload(@RequestParam(name = "files") MultipartFile[] multipartFiles, IceRequest iceRequest) {
+        IceRespose iceRespose = new IceRespose();
+        try {
+            if (multipartFiles.length > 0) {
+                Map multis = new HashMap();
+                for (MultipartFile multipartFile : multipartFiles) {
+                    try {
+                        String originalFilename = multipartFile.getOriginalFilename();
+                        InputStream inputStream = multipartFile.getInputStream();
+                        StorePath storePath = fastFileStorageClient.uploadFile(inputStream, multipartFile.getSize(), Files.getFileExtension(originalFilename), null);
+                        String finalPath = storePath.getFullPath() + "?attname=" + URLEncoder.encode(originalFilename, "UTF-8");
+                        multis.put(originalFilename, finalPath);
+                        iceRespose.setData(multis);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            iceRespose.setCode(9001);
+            iceRespose.setMsg(e.getMessage());
+        }
+        return iceRespose;
+    }
+
 
     /**
      * 装配 context 的参数
@@ -146,19 +186,6 @@ public class ApiGateway {
     }
 
     /**
-     * 解析服务名
-     *
-     * @param apiName
-     * @return
-     */
-    protected String[] parseServiceAndMethod(String apiName) {
-        if (StringUtils.isEmpty(apiName))
-            return null;
-        int lastInx = StringUtils.lastIndexOf(apiName, ".");
-        return new String[]{StringUtils.substring(apiName, 0, lastInx), StringUtils.substring(apiName, lastInx + 1)};
-    }
-
-    /**
      * 启动调用RPC服务
      *
      * @param iceRequest
@@ -178,11 +205,10 @@ public class ApiGateway {
             return iceRespose;
         }
         try {
-            IceRespose json = TestClientUtils.doService(iceRequest);
+            IceRespose json = IceClientUtils.doService(iceRequest);
             return json;
         } catch (Exception e) {
-            log.error("API调用:[{}.{}]RPC服务时异常：" + e.toString(), service, method);
-            e.printStackTrace();
+            log.error("API调用:[{}.{}]RPC服务时异常：{}", e.toString(), service, method);
         }
         return iceRespose;
     }
