@@ -6,6 +6,24 @@
     <groupId>com.rain</groupId>
     <artifactId>rain</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>ice</artifactId>
+            <version>3.7.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>icebox</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>icebox</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+    </dependencies>
     <packaging>pom</packaging>
 
     <name>Rain</name>
@@ -13,6 +31,8 @@
     <modules>
         <module>rain-web</module>
         <module>rain-service</module>
+        <module>learn-ice1</module>
+        <module>learn-ice1-client</module>
     </modules>
 
     <properties>

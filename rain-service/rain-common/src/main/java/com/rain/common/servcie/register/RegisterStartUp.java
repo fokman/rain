@@ -17,10 +17,10 @@ import java.util.Set;
 public class RegisterStartUp implements StartupService {
 
     @Override
-    public void startup(Properties ctontext) {
+    public void startup(Properties properties) {
         try {
             List<String> pkgList = new ArrayList<>();
-            String pkgs = (String) ctontext.get("scan");
+            String pkgs = (String) properties.get("scan");
             if (pkgs != null) {
                 pkgs = pkgs.trim();
                 String[] strs = pkgs.split(";");

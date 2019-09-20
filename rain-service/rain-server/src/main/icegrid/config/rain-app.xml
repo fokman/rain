@@ -74,7 +74,7 @@
         <!-- replica服务配置 -->
         <replica-group id="MessageServiceRep">
             <load-balancing type="round-robin" n-replicas="0"/>
-            <object identity="MessageService" type="::message::MessageService"/>
+            <object identity="MessageService" type="::Rain::MessageService"/>
         </replica-group>
 
 
