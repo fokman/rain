@@ -3,11 +3,9 @@ package com.rain.role.service;
 import com.rain.common.ice.model.IceRequest;
 import com.rain.common.ice.model.IceRespose;
 import com.rain.common.servcie.BaseService;
-import com.rain.common.servcie.config.Service;
+import com.rain.common.servcie.config.IceService;
 import com.rain.common.uitls.IdWorker;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -18,7 +16,7 @@ import java.util.Date;
  * <p>
  * Copyright(c) 2018 Virtue Intelligent Network Ltd, co. All Rights Reserved.
  */
-@Service(name = "RoleService")
+@IceService(name = "RoleService")
 @Slf4j
 public class RoleService extends BaseService {
 

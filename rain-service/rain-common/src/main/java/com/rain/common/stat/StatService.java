@@ -1,12 +1,11 @@
 package com.rain.common.stat;
 
 import com.alibaba.druid.stat.DruidStatManagerFacade;
-
 import com.rain.common.ice.model.IceRequest;
 import com.rain.common.ice.model.IceRespose;
-import com.rain.common.servcie.config.Service;
+import com.rain.common.servcie.config.IceService;
 
-@Service(name = "StatService")
+@IceService(name = "StatService")
 public class StatService {
     private static DruidStatManagerFacade statManagerFacade = DruidStatManagerFacade.getInstance();
 

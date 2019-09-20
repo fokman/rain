@@ -22,7 +22,7 @@ public class ServerStart {
             communicator = initialize(args);
             // 创建名为adapter的适配器，并要求适配器使用缺省的协议（TCP/IP 端口为20000的请求）
             ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("MessageServiceAdapter",
-                    "default -p 20000");
+                    "tcp -p 20000");
             // 实例化一个message Object服务对象
             IceMessageService messageService = new IceMessageService();
             // 将服务单元增加到适配器中，并给服务对象指定ID为MessageService，该名称用于唯一确定一个服务单元
@@ -42,5 +42,6 @@ public class ServerStart {
         }
         System.exit(status);
     }
+    
 
 }

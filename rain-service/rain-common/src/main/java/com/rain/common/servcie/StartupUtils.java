@@ -3,6 +3,7 @@ package com.rain.common.servcie;
 import com.rain.common.servcie.config.Startup;
 import com.rain.common.uitls.EnvUtils;
 import com.rain.common.uitls.ClassUtils;
+import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

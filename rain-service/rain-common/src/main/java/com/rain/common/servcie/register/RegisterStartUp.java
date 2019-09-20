@@ -1,24 +1,20 @@
 package com.rain.common.servcie.register;
 
+import com.rain.common.ice.impl.IceServiceRegister;
+import com.rain.common.servcie.StartupService;
+import com.rain.common.servcie.config.IceService;
+import com.rain.common.servcie.config.Startup;
+import com.rain.common.uitls.ClassUtils;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import com.rain.common.ice.impl.IceServiceRegister;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.rain.common.servcie.StartupService;
-import com.rain.common.servcie.config.Service;
-import com.rain.common.servcie.config.Startup;
-import com.rain.common.uitls.ClassUtils;
-
 @Startup
 @Slf4j
 public class RegisterStartUp implements StartupService {
-
 
     @Override
     public void startup(Properties ctontext) {
@@ -38,8 +34,8 @@ public class RegisterStartUp implements StartupService {
             for (String string : pkgList) {
                 Set<Class<?>> classList = ClassUtils.getClasses(string);
                 for (Class<?> classService : classList) {
-                    Service[] services = classService.getDeclaredAnnotationsByType(Service.class);
-                    for (Service service : services) {
+                    IceService[] services = classService.getDeclaredAnnotationsByType(IceService.class);
+                    for (IceService service : services) {
                         String key = service.name();
                         log.info("register-service:name-{} class-{}", key, classService.getName());
                         IceServiceRegister.getInstance().putIceService(key, classService.newInstance());

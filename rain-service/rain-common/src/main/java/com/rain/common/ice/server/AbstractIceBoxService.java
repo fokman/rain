@@ -12,10 +12,8 @@ import java.util.Arrays;
 public abstract class AbstractIceBoxService implements Service {
     protected ObjectAdapter _adapter;
     protected Identity id;
-    protected static Logger iceLogger = new Sl4jLogerI("communicator");
 
     public void start(String name, Communicator communicator, String[] args) {
-        com.zeroc.Ice.Util.setProcessLogger(iceLogger);
         // 创建objectAdapter，这里和service同名
         _adapter = communicator.createObjectAdapter(name);
         com.zeroc.Ice.Object object = this.createMyIceServiceObj(args);

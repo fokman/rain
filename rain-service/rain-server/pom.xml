@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>com.rain.service</groupId>
-            <artifactId>rain-role-service</artifactId>
+            <artifactId>rain-user-center</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

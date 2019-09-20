@@ -15,9 +15,16 @@
             <property name="Ice.Default.LocatorCacheTimeout" value="300"/>
             <property name="Ice.BackgroundLocatorCacheUpdates" value="1"/>
             <!-- ICE日志 -->
-            <property name="Ice.StdErr" value="../logs/stderr_grid.log" />
-			<property name="Ice.StdOut" value="../logs/stdout_grid.log"/>
+            <property name="Ice.StdErr" value="../logs/stderr_grid.log"/>
+            <property name="Ice.StdOut" value="../logs/stdout_grid.log"/>
         </properties>
+
+        <node name="node1">
+            <server-instance template="Rain_ServerTemplate" id="1"/>
+            <!--<server-instance template="Rain_ServerTemplate" id="2"/>-->
+            <server-instance template="IcePatch2" directory="../patch"/>
+        </node>
+
         <server-template id="IcePatch2">
             <parameter name="instance-name" default="${application}.IcePatch2"/>
             <parameter name="endpoints" default="default"/>
@@ -43,8 +50,10 @@
                 <option>-Xmx512M</option>
                 <option>-Duser.timezone=Asia/Shanghai</option>
                 <option>-DAppId=Rain_Server${id}</option>
-                <!-- <option>IceBox.Server</option> -->
-                <env>CLASSPATH=${server.distrib}\rain\*;${server.distrib}\rain\libs\*;${server.distrib}\rain\config\*;%CLASSPATH%;.</env>
+                <option>IceBox.Server</option>
+                <env>
+                    CLASSPATH=${server.distrib}\rain\*;${server.distrib}\rain\libs\*;${server.distrib}\rain\config\*;%CLASSPATH%;.
+                </env>
                 <distrib>
                     <directory>rain</directory>
                 </distrib>
@@ -58,20 +67,16 @@
                              replica-group="MessageServiceRep">
                     </adapter>
                 </service>
-                
+
             </icebox>
         </server-template>
-		
-		<!-- replica服务配置 -->
+
+        <!-- replica服务配置 -->
         <replica-group id="MessageServiceRep">
             <load-balancing type="round-robin" n-replicas="0"/>
             <object identity="MessageService" type="::Rain::MessageService"/>
         </replica-group>
 
-        <node name="node1">
-            <server-instance template="Rain_ServerTemplate" id="1"/>
-            <server-instance template="Rain_ServerTemplate" id="2"/>
-            <server-instance template="IcePatch2" directory="../patch"/>
-        </node>
+
     </application>
 </icegrid>
