@@ -63,7 +63,7 @@
                 <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
                 <!-- 网格服务配置 -->
                 <service name="MessageService" entry="com.rain.common.ice.impl.IceMessageBoxService">
-                    <adapter name="MessageService" id="MessageService${id}" endpoints="default"
+                    <adapter name="MessageService" id="MessageService${id}" endpoints="tcp"
                              replica-group="MessageServiceRep">
                     </adapter>
                 </service>
@@ -74,7 +74,7 @@
         <!-- replica服务配置 -->
         <replica-group id="MessageServiceRep">
             <load-balancing type="round-robin" n-replicas="0"/>
-            <object identity="MessageService" type="::Rain::MessageService"/>
+            <object identity="MessageService" type="::message::MessageService"/>
         </replica-group>
 
 
