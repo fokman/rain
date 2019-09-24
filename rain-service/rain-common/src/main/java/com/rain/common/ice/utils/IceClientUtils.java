@@ -21,8 +21,9 @@ public class IceClientUtils {
         Communicator ic = null;
         try {
             // 初始化通信器
+            String[] initParams = new String[]{"--Ice.Default.Locator=RainIceGrid/Locator:tcp -h 127.0.0.1 -p 20000"};
             ic = Util.initialize(args);
-            ObjectPrx base = ic.stringToProxy("MessageService:default -p 20000");
+            ObjectPrx base = ic.stringToProxy("MessageService");
             MessageServicePrx messageServicePrx = MessageServicePrx.checkedCast(base);
             if (messageServicePrx == null) {
                 throw new Error("Invalid proxy");
@@ -36,7 +37,7 @@ public class IceClientUtils {
             IceRespose rs = JsonUtils.toObject(str, IceRespose.class);
 
             long used = System.currentTimeMillis() - start;
-            System.out.println("tps " + count * 1000.0 / used+"");
+            System.out.println("tps " + count * 1000.0 / used + "");
             return rs;
         } catch (Exception e) {
             e.printStackTrace();

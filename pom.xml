@@ -18,11 +18,6 @@
             <artifactId>icebox</artifactId>
             <version>3.7.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.zeroc</groupId>
-            <artifactId>icebox</artifactId>
-            <version>3.7.2</version>
-        </dependency>
     </dependencies>
     <packaging>pom</packaging>
 
@@ -31,8 +26,7 @@
     <modules>
         <module>rain-web</module>
         <module>rain-service</module>
-        <module>learn-ice1</module>
-        <module>learn-ice1-client</module>
+        <module>onlinebook</module>
     </modules>
 
     <properties>

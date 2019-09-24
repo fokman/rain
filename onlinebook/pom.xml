@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>learn-ice1-client</artifactId>
+    <artifactId>onlinebook</artifactId>
 
-    <name>learn-ice1-client</name>
+    <name>onlinebook</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -29,16 +29,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.rain</groupId>
-            <artifactId>learn-ice1</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.zeroc</groupId>
-            <artifactId>ice</artifactId>
+            <artifactId>icebox</artifactId>
             <version>3.7.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>compile</scope>
+        </dependency>
+       
     </dependencies>
 
     <build>
@@ -78,10 +89,6 @@
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.7.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.0.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
