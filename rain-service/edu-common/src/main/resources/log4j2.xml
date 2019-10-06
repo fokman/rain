@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%t] (%l) - %m%n" />
+		</Console>
+
+		<RollingFile name="RollingFile" fileName="../logs/edu.log"
+			filePattern="../logs/${date:yyyy-MM}/mycat-%d{MM-dd}-%i.log.gz">
+			<PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss} [%thread] %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<!--<AsyncLogger name="io.mycat" level="info" includeLocation="true" additivity="false"> -->
+		<!--<AppenderRef ref="Console"/> -->
+		<!--<AppenderRef ref="RollingFile"/> -->
+		<!--</AsyncLogger> -->
+		<logger name="java.sql.Connection" />
+		<AsyncLogger name="java.sql.PreparedStatement">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="Console" />
+		</AsyncLogger>
+		<AsyncLogger name="java.sql.ResultSet">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="Console" />
+		</AsyncLogger>
+		<Root level="debug">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+
+		</Root>
+	</Loggers>
+</Configuration>

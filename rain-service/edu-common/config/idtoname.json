@@ -1,0 +1,123 @@
+{
+	"data": [
+		{
+			"service": "OaCategoryService",
+			"method": "listAll",
+			"table": "oa_category",
+			"id": "categoryId",
+			"name": "categoryName"
+		},
+		{
+			"service": "BaseGradeService",
+			"method": "listAll",
+			"table": "base_grade",
+			"id": "gradeId",
+			"name": "name"
+		},
+		{
+			"service": "BaseParentService",
+			"method": "listAll",
+			"table": "base_parent",
+			"id": "parentId",
+			"name": "parentName"
+		},
+		{
+			"service": "BaseStudentService",
+			"method": "listAll",
+			"table": "base_student",
+			"id": "studentId",
+			"name": "name"
+		},
+		{
+			"service": "BaseSubjectService",
+			"method": "listAll",
+			"table": "base_subject",
+			"id": "subjectId",
+			"name": "name"
+		},
+		{
+			"service": "BaseTeacherService",
+			"method": "listAll",
+			"table": "base_teacher",
+			"id": "teacherId",
+			"name": "name"
+		},
+		{
+			"service": "BaseClassService",
+			"method": "listNoPage",
+			"table": "base_class",
+			"id": "classId",
+			"name": "name"
+		},
+		{
+			"service": "OrgDeptService",
+			"method": "queryForDept",
+			"table": "org_dept",
+			"id": "deptId",
+			"name": "deptName"
+		},
+		{
+			"service": "SysDictService",
+			"method": "listAll",
+			"table": "sys_dict",
+			"id": "paramKey",
+			"name": "paramValue"
+		},
+		{
+			"service": "OrgUserService",
+			"method": "listAll",
+			"table": "org_user",
+			"id": "userId",
+			"name": "nickName"
+		},
+		{
+			"service": "OrgUserService",
+			"method": "listAll",
+			"table": "org_user_2",
+			"id": "userId",
+			"name": "photoUrl"
+		}
+		
+	],
+	"status": [
+		{
+			"service": "BaseGradeStatus",
+			"status": [
+				{
+					"status": "1",
+					"value": "启用"
+				},
+				{
+					"status": "2",
+					"value": "禁用"
+				}
+			]
+		},
+		{
+			"service": "TeachHomeworkStatus",
+			"status": [
+				{
+					"status": "1",
+					"value": "草稿"
+				},
+				{
+					"status": "2",
+					"value": "已发布"
+				}
+			]
+		},
+		{
+			"service": "OrgUserStatus",
+			"status": [
+				{
+					"status": "1",
+					"value": "启用"
+				},
+				{
+					"status": "2",
+					"value": "禁用"
+				}
+			]
+		}
+	]
+}

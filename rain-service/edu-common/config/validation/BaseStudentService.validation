@@ -1,0 +1,440 @@
+{
+	service: "BaseStudentService",
+	validation: 
+	[	
+		{
+			"method": "add",
+			"fields": 
+			[
+				{
+					"fieldCode": "schoolId",
+					"fieldName": "学校",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "gradeId",
+					"fieldName": "年级",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "idCard",
+					"fieldName": "身份证号",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "certificateId",
+					"fieldName": "学籍编号",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "name",
+					"fieldName": "姓名",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "rfidCard",
+					"fieldName": "学生卡号",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "photoUrl",
+					"fieldName": "头像地址",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "sex",
+					"fieldName": "性别",
+					"notNull": "1",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "birthday",
+					"fieldName": "出生日期",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "folkCode",
+					"fieldName": "名族",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "nativePlaceCode",
+					"fieldName": "国籍",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "sourceType",
+					"fieldName": "生源类别",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residenceAddress",
+					"fieldName": "户籍所在地",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residenceType",
+					"fieldName": "户口类型",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residencePrope",
+					"fieldName": "户口性质",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "admissTime",
+					"fieldName": "入学时间",
+					"notNull": "1",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "graduationTime",
+					"fieldName": "毕业时间",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "politicsCode",
+					"fieldName": "政治面貌",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "summary",
+					"fieldName": "备注",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "500",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				}
+			]
+		},
+		{
+			"method": "modify",
+			"fields": 
+			[
+				{
+					"fieldCode": "schoolId",
+					"fieldName": "学校",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "gradeId",
+					"fieldName": "年级",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "idCard",
+					"fieldName": "身份证号",
+					"notNull": "1",
+					"fieldType" : "long", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "certificateId",
+					"fieldName": "学籍编号",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "name",
+					"fieldName": "姓名",
+					"notNull": "1",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "rfidCard",
+					"fieldName": "学生卡号",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "32",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "photoUrl",
+					"fieldName": "头像地址",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "sex",
+					"fieldName": "性别",
+					"notNull": "1",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "birthday",
+					"fieldName": "出生日期",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "folkCode",
+					"fieldName": "名族",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "nativePlaceCode",
+					"fieldName": "国籍",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "sourceType",
+					"fieldName": "生源类别",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residenceAddress",
+					"fieldName": "户籍所在地",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "200",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residenceType",
+					"fieldName": "户口类型",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "residencePrope",
+					"fieldName": "户口性质",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "admissTime",
+					"fieldName": "入学时间",
+					"notNull": "1",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "graduationTime",
+					"fieldName": "毕业时间",
+					"notNull": "2",
+					"fieldType" : "datetime", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "politicsCode",
+					"fieldName": "政治面貌",
+					"notNull": "2",
+					"fieldType" : "int", 
+					"fieldLenght" : "",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				},{
+					"fieldCode": "summary",
+					"fieldName": "备注",
+					"notNull": "2",
+					"fieldType" : "string", 
+					"fieldLenght" : "500",
+					"fieldRange" : "",
+					"validType" : "",
+					"validClass" : "",
+					"convertType" : "",
+					"convertClass" : ""
+				}
+			]
+			
+		}
+	]
+}
+ 
