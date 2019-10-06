@@ -1,16 +1,14 @@
 package com.rain.common.uitls;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 
 /**
  * Created by jinggg on 16/5/4.
  */
+@Slf4j
 public class SerializeUtils {
-
-    private static Logger LOGGER = LoggerFactory.getLogger(SerializeUtils.class);
 
 
     public static byte[] serialize(Object object) {
@@ -23,9 +21,9 @@ public class SerializeUtils {
             oos.writeObject(object);
             return baos.toByteArray();
         } catch (Exception e) {
-            LOGGER.error("Exception occurs when serializing", e);
+            log.error("Exception occurs when serializing {}", e);
         } finally {
-            if(oos != null) {
+            if (oos != null) {
                 try {
                     oos.close();
                 } catch (IOException e) {
@@ -46,9 +44,9 @@ public class SerializeUtils {
             ois = new ObjectInputStream(bais);
             return ois.readObject();
         } catch (Exception e) {
-            LOGGER.error("Exception occurs when serializing", e);
+            log.error("Exception occurs when serializing ,{}", e);
         } finally {
-            if(ois != null) {
+            if (ois != null) {
                 try {
                     ois.close();
                 } catch (IOException e) {

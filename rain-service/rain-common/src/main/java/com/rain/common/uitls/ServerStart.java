@@ -11,9 +11,17 @@ import lombok.extern.slf4j.Slf4j;
 import static com.zeroc.Ice.Util.initialize;
 
 @Slf4j
-public class ServerStart {
+public class ServerStart extends com.zeroc.Ice.Application {
 
-    public static void startServer(String[] args) {
+    public static void main(String[] args) {
+        ServerStart serverStart = new ServerStart();
+        int status = serverStart.main("ServerStart", args);
+        System.exit(status);
+    }
+
+
+    @Override
+    public int run(String[] args) {
         int status = 0;
         Communicator communicator = null;
         try {
@@ -31,7 +39,6 @@ public class ServerStart {
             adapter.activate();
             // 让服务在退出之前，一直持续对请求的监听
             communicator.waitForShutdown();
-
         } catch (Exception e) {
             log.error("start server error:{}", e);
             status = 1;
@@ -40,8 +47,6 @@ public class ServerStart {
                 communicator.destroy();
             }
         }
-        System.exit(status);
+        return status;
     }
-    
-
 }

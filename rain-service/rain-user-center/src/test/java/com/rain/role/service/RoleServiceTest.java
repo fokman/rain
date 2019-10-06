@@ -1,7 +1,7 @@
 package com.rain.role.service;
 
-import com.rain.common.ice.model.IceRequest;
-import com.rain.common.ice.model.IceRespose;
+import com.rain.common.ice.v1.model.IceRequest;
+import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.uitls.IdWorker;
 import com.rain.common.uitls.JsonUtils;
 import com.rain.common.uitls.TestClientUtils;

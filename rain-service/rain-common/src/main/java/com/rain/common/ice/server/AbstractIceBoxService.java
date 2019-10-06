@@ -4,9 +4,6 @@ package com.rain.common.ice.server;
 import com.zeroc.Ice.*;
 import com.zeroc.IceBox.Service;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
 
 @Slf4j
 public abstract class AbstractIceBoxService implements Service {
@@ -17,16 +14,15 @@ public abstract class AbstractIceBoxService implements Service {
         // 创建objectAdapter，这里和service同名
         _adapter = communicator.createObjectAdapter(name);
         com.zeroc.Ice.Object object = this.createMyIceServiceObj(args);
-        id = communicator.stringToIdentity(name);
-        // _adapter.add(object, communicator.stringToIdentity(name));
-        DispatchInterceptor interceptor = PerfDispatchInterceptor.addICEObject(id, object);
+        id = Util.stringToIdentity(name);
+        DispatchInterceptor interceptor = PerfDispatchInterceptor.getINSTANCE().addICEObject(id, object);
 
         _adapter.add(interceptor, id);
 
         addMyIceServiceObjFacets(_adapter, id);
 
         _adapter.activate();
-        log.info(name + "{} service started ,with param size {}  detail:{},Arrays.toString(args)", name, args.length);
+        log.info("{} service started ,with param size {}  detail:{},Arrays.toString(args)", name, args.length);
     }
 
     protected abstract void addMyIceServiceObjFacets(ObjectAdapter adapter, Identity id);

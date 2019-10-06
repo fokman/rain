@@ -22,7 +22,7 @@ public class PerfDispatchInterceptor extends DispatchInterceptor {
         return self;
     }
 
-    public static DispatchInterceptor addICEObject(Identity id,
+    public  DispatchInterceptor addICEObject(Identity id,
                                                    com.zeroc.Ice.Object iceObj) {
         id2ObjectMAP.put(id, iceObj);
         return self;

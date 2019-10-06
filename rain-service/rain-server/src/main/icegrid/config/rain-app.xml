@@ -49,7 +49,7 @@
                 <option>-Xmx512M</option>
                 <option>-Duser.timezone=Asia/Shanghai</option>
                 <option>-DAppId=Rain_Server${id}</option>
-                <option>IceBox.Server</option>
+                <option>com.rain.common.Sl4jIceBoxServer</option>
                 <env>
                     CLASSPATH=${server.distrib}\rain\*;${server.distrib}\rain\libs\*;${server.distrib}\rain\config\*;%CLASSPATH%;.
                 </env>

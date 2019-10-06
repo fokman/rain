@@ -203,7 +203,7 @@ public class RedisUtils {
     }
 
 
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
         RedisUtils.setex("session_id", 5, "zhangjing");
         Thread.sleep(3);
         RedisUtils.expire("session_id", 5);
@@ -215,6 +215,6 @@ public class RedisUtils {
             }
         }
         System.out.println(System.currentTimeMillis() - start);
-    }
+    }*/
 
 }
