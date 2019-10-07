@@ -4,6 +4,6 @@ import java.util.Properties;
 
 public interface StartupService {
 
-	public void startup(Properties properties);
+	void startup(Properties properties);
 	
 }

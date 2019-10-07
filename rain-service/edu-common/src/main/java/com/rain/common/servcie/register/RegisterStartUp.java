@@ -8,16 +8,15 @@ import java.util.Set;
 import com.rain.common.ice.v1.impl.IceServiceRegister;
 import com.rain.common.servcie.StartupService;
 import com.rain.common.uitls.ClassUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import com.rain.common.servcie.config.Service;
 import com.rain.common.servcie.config.Startup;
 
 @Startup
+@Slf4j
 public class RegisterStartUp implements StartupService {
 
-	private static final Logger logger = LoggerFactory.getLogger(RegisterStartUp.class);
 	@Override
 	public void startup(Properties ctontext) {
 		try {
@@ -32,21 +31,21 @@ public class RegisterStartUp implements StartupService {
 					}
 				}
 			}
-			logger.info("register-service-start");
+//			log.info("register-service-start");
 			for (String string : pkgList) {
 				Set<Class<?>> list = ClassUtils.getClasses(string);
-				for (Class<?> class1 : list) {
-					Service[] services = class1.getDeclaredAnnotationsByType(Service.class);
+				for (Class<?> clzz : list) {
+					Service[] services = clzz.getDeclaredAnnotationsByType(Service.class);
 					for (Service service : services) {
 						String key = service.name();
-						logger.info("register-service:name-{} class-{}", key, class1.getName());
-						IceServiceRegister.getInstance().putIceService(key, class1.newInstance());
+						log.info("register-service:name-{} class-{}", key, clzz.getName());
+						IceServiceRegister.getInstance().putIceService(key, clzz.newInstance());
 					}
 				}
 			}
-			logger.info("startup-service-end");
+//			log.info("startup-service-end");
 		} catch (Exception e) {
-			logger.error("start-init-error", e);
+			log.error("start-init-error", e);
 		}
 	}
 

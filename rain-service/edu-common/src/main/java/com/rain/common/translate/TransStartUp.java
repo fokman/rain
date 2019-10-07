@@ -1,7 +1,7 @@
 package com.rain.common.translate;
 
 import com.rain.common.core.SoaManager;
-import com.rain.common.ice.v1.message.Context;
+import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.servcie.StartupService;
 import com.rain.common.servcie.config.Startup;
@@ -25,7 +25,7 @@ public class TransStartUp implements StartupService {
     public void startup(Properties properties) {
         logger.info("TransStartUp-service-start");
         try {
-            init();
+//            init();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class TransStartUp implements StartupService {
     }
 
     public static void putRedis(String service, String method, String table, String id, String name) {
-        Context msgRequest = new Context(service, method, null, null);
+        MsgRequest msgRequest = new MsgRequest(service, method, null, null);
         try{
             IceRespose iceRespose = SoaManager.getInstance().doInvoke(msgRequest);
             if (iceRespose.getCode() == 0) {

@@ -4,20 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Properties;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-/**
- * Created by jinggg on 16/5/4.
- */
+@Slf4j
 public class RedisUtils {
 
-	public static final Logger log = LoggerFactory.getLogger(RedisUtils.class);
 
 	private static JedisPool jedisPool = null;
 
@@ -26,7 +22,6 @@ public class RedisUtils {
 	 */
 	static {
 		try {
-			//ResourceBundle bundle = ResourceBundle.getBundle("redis");
 			Properties bundle = new Properties();
 			bundle.load(AppUtils.getEnvResource("redis.properties"));
 			String address = bundle.getProperty("redis.pool.address");
@@ -80,20 +75,6 @@ public class RedisUtils {
 		if (jedis != null) {
 			jedis.close();
 		}
-	}
-
-	public static void main(String[] args) throws Exception {
-		RedisUtils.setex("session_id",5, "zhangjing");
-		Thread.sleep(3);
-		RedisUtils.expire("session_id",5);
-		long start = System.currentTimeMillis();
-		while(true){
-		   String key = RedisUtils.get("session_id");
-		   if(key ==null){
-			   break;
-		   }
-		}
-		System.out.println(System.currentTimeMillis()-start);
 	}
 
 	public static boolean set(String key, String obj) {
@@ -217,7 +198,20 @@ public class RedisUtils {
 			closeJedis(jedis);
 		}
 	}
-	
-	 
+
+
+	public static void main(String[] args) throws Exception {
+		RedisUtils.setex("session_id",5, "zhangjing");
+		Thread.sleep(3);
+		RedisUtils.expire("session_id",5);
+		long start = System.currentTimeMillis();
+		while(true){
+			String key = RedisUtils.get("session_id");
+			if(key ==null){
+				break;
+			}
+		}
+		System.out.println(System.currentTimeMillis()-start);
+	}
 
 }

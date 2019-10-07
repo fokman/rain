@@ -3,27 +3,29 @@ package com.rain.common.servcie.ds;
 import java.util.Properties;
 
 import com.rain.common.servcie.StartupService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.rain.common.uitls.ContextUtils;
+import lombok.extern.slf4j.Slf4j;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.rain.common.servcie.config.Startup;
 
+import javax.sql.DataSource;
+
 
 @Startup
+@Slf4j
 public class DataSourceStartUp implements StartupService {
 
-	private static final Logger logger = LoggerFactory.getLogger(DataSourceStartUp.class);
 	
 	@Override
 	public void startup(Properties properties)   {
 		try {
-			logger.info("dataSource-service-start");
-			//DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);
-			//ContextUtils.setDataSource(dataSource);
-			logger.info("dataSource-service-end");
+//			log.info("dataSource-service-start");
+			DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);
+			ContextUtils.setDataSource(dataSource);
+//			log.info("dataSource-service-end");
 		} catch (Exception e) {
-			logger.error("dataSource-service-error",e);
+			log.error("dataSource-service-error",e);
 			throw new RuntimeException(e);
 		}
 	}

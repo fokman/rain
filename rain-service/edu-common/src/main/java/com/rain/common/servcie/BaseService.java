@@ -5,13 +5,8 @@ import com.rain.common.dao.impl.DaoMybatisImpl;
 import com.rain.common.ice.v1.exception.SysException;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-//import javax.inject.Inject;
-//import javax.inject.Named;
-//import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.rain.common.uitls.SysCodeUtils;
 
 /**
@@ -26,19 +21,19 @@ import com.rain.common.uitls.SysCodeUtils;
  * All Rights Reserved.
  */
 
+@Slf4j
 public class BaseService {
-    public static final Logger logger = LogManager.getLogger(BaseService.class);
     private static final String QUERY = "query";
     private static final String COUNT = "count";
     private static final String UPDATE = "update";
     private static final String DELETE = "delete";
     private static final String INSERT = "insert";
-    public static final String IS_PAGE = "isPage";
+//    public static final String IS_PAGE = "isPage";
     public static final String PAGE = "page";
     public static final String PAGE_SIZE = "pageSize";
-    public static final String DTL = "dtl";
-    public static final String LIST = "list";
-    public static final String LIST_ALL = "listAll";
+//    public static final String DTL = "dtl";
+//    public static final String LIST = "list";
+//    public static final String LIST_ALL = "listAll";
 
     // @Inject
     // @Named("daoMybatis")
@@ -77,7 +72,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -101,7 +96,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(1);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -118,7 +113,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -135,7 +130,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -161,7 +156,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -187,7 +182,7 @@ public class BaseService {
             }
             iceRespose = queryByPage(context, namespace, queryStatement, countStatement);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(1);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -201,7 +196,7 @@ public class BaseService {
             iceRespose.setMsg("新增成功!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("新增失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -215,7 +210,7 @@ public class BaseService {
             iceRespose.setMsg("成功修改" + count + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("修改失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -231,7 +226,7 @@ public class BaseService {
             iceRespose.setMsg("成功删除");// + context.getRows().size() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            logger.error(e.getCause());
+            log.error("{}",e);
             iceRespose.setCode(9);
             throw new SysException("删除失败,系统异常!case:" + e.getMessage(), e.getCause());
         }

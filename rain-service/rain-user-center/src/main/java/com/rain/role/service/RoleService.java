@@ -4,6 +4,7 @@ import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.servcie.BaseService;
 import com.rain.common.servcie.config.Service;
+import com.rain.common.servcie.config.Transactional;
 import com.rain.common.uitls.IdWorker;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,9 +25,12 @@ public class RoleService extends BaseService {
 
     private String INSERT = "insert";
 
+    @Transactional
     public IceRespose add(IceRequest iceRequest) {
         log.info("start role service add method.");
         iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
+        iceRequest.setAttr("name","系统管理员");
+        iceRequest.setAttr("code","ADMIN");
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");

@@ -35,25 +35,18 @@ public class AppUtils {
 		}
 		return home;
 	}
-	public static String getEduHomeEnv() {
-		String home = getEduHome()+"/env/";
-		return home;
-	}	
+
 	public static InputStream getEnvResource(String config){
 		return getResource(getEduHome()+"/env/"+config);
 	}
+
 	public static InputStream getResource(String config) {
 		try {
 			return new BufferedInputStream(new FileInputStream(config));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return null;
 		}	
 	}
 	    
-	
-	public static void main(String[] args) {
-		System.out.println(getEduHome());
-	}
+
 }

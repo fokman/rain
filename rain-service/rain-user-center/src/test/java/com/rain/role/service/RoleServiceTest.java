@@ -29,7 +29,7 @@ public class RoleServiceTest {
         iceRequest.setMethod("add");
         iceRequest.setService("RoleService");
         iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
-        iceRequest.setAttr("code", "Admin");
+        iceRequest.setAttr("code", "User");
         iceRequest.setAttr("name", "管理员");
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());

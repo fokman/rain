@@ -3,7 +3,7 @@ package com.rain.common.core;
 import com.rain.common.cache.CacheInterceptor;
 import com.rain.common.dao.TxUtils;
 import com.rain.common.ice.v1.impl.IceServiceRegister;
-import com.rain.common.ice.v1.message.Context;
+import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.servcie.config.Transactional;
@@ -11,16 +11,15 @@ import com.rain.common.stat.StatAnalyzer;
 import com.rain.common.translate.TransInterceptor;
 import com.rain.common.uitls.JsonUtils;
 import com.rain.common.validation.ValidInterceptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
 
+@Slf4j
 public class SoaManager {
     private volatile static SoaManager soaManager;
 
     private static final IceServiceRegister register = IceServiceRegister.getInstance();
-    private static final Logger logger = LoggerFactory.getLogger(SoaManager.class);
     private HandlerExecution handlerExecution;
 
     private SoaManager() {
@@ -42,16 +41,16 @@ public class SoaManager {
         IceRespose iceRespose = new IceRespose();
         iceRespose.setCode(code);
         iceRespose.setMsg(msg);
-        logger.error(iceRespose.getMsg());
+        log.error(iceRespose.getMsg());
         return iceRespose;
     }
 
-    public IceRespose doInvoke(Context msgRequest) {
+    public IceRespose doInvoke(MsgRequest msgRequest) {
     	long begin = System.currentTimeMillis();
         String serviceId = msgRequest.service;
         String methodId = msgRequest.method;
         try {           
-            logger.info("service {} {} begin", serviceId, methodId);
+            log.info("service {} {} begin", serviceId, methodId);
             String key = serviceId;
             Object iceCls = null;
             if (serviceId != null && serviceId.length() != 0) {
@@ -82,14 +81,14 @@ public class SoaManager {
             }
             //默认添加
 //            iceRequest.addAttr("schoolId", EduUtils.getCurrentSchoolIdStr(iceRequest));
-            logger.debug("doInvoke -->iceRequest="+iceRequest.getAttrMap().toString());
+            log.debug("doInvoke -->iceRequest = {}", iceRequest.getAttrMap().toString());
             IceRespose iceRespose = new IceRespose();
             //启用拦截器
             if (!handlerExecution.applyPreHandle(iceCls, method, iceRequest, iceRespose)) {
                 return iceRespose;
             }
 
-            logger.info("invoke start {} {} ", serviceId, methodId);
+            log.info("invoke start {} {} ", serviceId, methodId);
             Transactional[] ts = method.getAnnotationsByType(Transactional.class);
             if (ts != null && ts.length > 0) {
                 try {
@@ -105,15 +104,15 @@ public class SoaManager {
             } else {
                 iceRespose = (IceRespose) method.invoke(iceCls, iceRequest);
             }
-            logger.info("invoke end {} {} ", serviceId, methodId);
+            log.info("invoke end {} {} ", serviceId, methodId);
             if (iceRespose.getCode() == 0) {//执行成功在启用拦截器
                 handlerExecution.applyAfterHandle(iceCls, method, iceRequest, iceRespose);
             }
 
             long spend = (System.currentTimeMillis() - begin);
             StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(),false);
-            logger.info("time:[{}.{}] to spend:{}ms", msgRequest.service, msgRequest.method, spend);
-            logger.info("josn: {}", JsonUtils.toJson(iceRespose));
+            log.info("time:[{}.{}] to spend:{}ms", msgRequest.service, msgRequest.method, spend);
+            log.info("josn: {}", JsonUtils.toJson(iceRespose));
             return iceRespose;//json;
         } catch (Throwable e) {
             e.printStackTrace();
@@ -124,12 +123,12 @@ public class SoaManager {
         }
     }
 
-    public String Invoke(Context msgRequest) {
+    public String Invoke(MsgRequest msgRequest) {
         return JsonUtils.toJson(doInvoke(msgRequest));
     }
 
     public IceRespose doInvoke(IceRequest iceRequest) {
-        return doInvoke(new Context(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
+        return doInvoke(new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
                 iceRequest.getAttr()));
     }
 

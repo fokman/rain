@@ -1,14 +1,13 @@
 package com.rain.common.dao;
 import com.rain.common.uitls.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import com.rain.common.uitls.DruidDataSourceFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+@Slf4j
 public class TxUtils {
-	public static final Logger logger = LogManager.getLogger(TxUtils.class);
 
-	private static final ThreadLocal<SqlSession> THREAD_LOCAL = new ThreadLocal<SqlSession>();
+	private static final ThreadLocal<SqlSession> THREAD_LOCAL = new ThreadLocal<>();
 
 	public static SqlSession getSqlSession() {
 		SqlSession sqlSession = THREAD_LOCAL.get();
@@ -21,9 +20,9 @@ public class TxUtils {
 	public static void close(SqlSession session){
 		SqlSession sqlSession = THREAD_LOCAL.get();
 		if (sqlSession != session) {
-			logger.info("TxUtils.close开始释放连接..."+session);
+			log.info("TxUtils.close开始释放连接...{}",session);
 			session.close();
-			logger.info("TxUtils.close释放连接成功!"+session);
+			log.info("TxUtils.close释放连接成功! {}",session);
 		}
 	}
 	

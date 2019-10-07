@@ -12,12 +12,11 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ClassUtils {
 
-	private static final Logger logger = LoggerFactory.getLogger(ClassUtils.class);
 
 	public static Set<Class<?>> getClasses(String pack) {
 		// 第一个class类的集合
@@ -80,7 +79,7 @@ public class ClassUtils {
 											// 添加到classes
 											classes.add(Class.forName(packageName + '.' + className));
 										} catch (ClassNotFoundException e) {
-											logger.error("添加用户自定义视图类错误找不到此类的.class文件", e);
+											log.error("添加用户自定义视图类错误找不到此类的.class文件", e);
 											e.printStackTrace();
 
 										}
@@ -89,12 +88,12 @@ public class ClassUtils {
 							}
 						}
 					} catch (IOException e) {
-						logger.error("在扫描用户定义视图时从jar包获取文件出错", e);
+						log.error("在扫描用户定义视图时从jar包获取文件出错", e);
 					}
 				}
 			}
 		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);
 		}
 
 		return classes;
@@ -133,7 +132,7 @@ public class ClassUtils {
 					classes.add(
 							Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));
 				} catch (ClassNotFoundException e) {
-					logger.error("添加用户自定义视图类错误 找不到此类的.class文件", e);
+					log.error("添加用户自定义视图类错误 找不到此类的.class文件", e);
 				}
 			}
 		}
@@ -141,7 +140,7 @@ public class ClassUtils {
 
 	public static Set<String> getFiles(String pack, String ext) {
 		// 第一个class类的集合
-		Set<String> classes = new LinkedHashSet<String>();
+		Set<String> classes = new LinkedHashSet<>();
 		// 是否循环迭代
 		boolean recursive = true;
 		// 获取包的名字 并进行替换
@@ -202,12 +201,12 @@ public class ClassUtils {
 						}
 					} catch (IOException e) {
 						// log.error("在扫描用户定义视图时从jar包获取文件出错");
-						logger.error("扫描失败：", e);
+						log.error("扫描失败：", e);
 					}
 				}
 			}
 		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);
 		}
 
 		return classes;
@@ -238,6 +237,7 @@ public class ClassUtils {
 			} else {
 				// 如果是java类文件 去掉后面的.class 只留下类名
 				String path = packageName.replaceAll("\\.", "/") + "/" + file.getName();
+				log.info("package path--------------> :{}",path);
 				classes.add(path);
 			}
 		}

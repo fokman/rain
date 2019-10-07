@@ -3,22 +3,21 @@ package com.rain.common.validation.support;
 import com.rain.common.exception.ValidationException;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class ValidationSupport {
-	private static final Logger logger = LoggerFactory.getLogger(ValidationSupport.class);
 	private static boolean b = false;
-	private static final Map<String, List<Map<String, String>>> validataionMap = new HashMap<String, List<Map<String, String>>>();
+	private static final Map<String, List<Map<String, String>>> validataionMap = new HashMap<>();
 
 	public static final void init() throws Exception {
-		logger.info("ValidationSupport ini time: {}", DateUtils.getStrCurrtTime());
+		log.info("ValidationSupport ini time: {}", DateUtils.getStrCurrtTime());
 		if (!b) {
 			String eduHome = AppUtils.getEduHome();
 			String fileDir = UrlUtils.joinUrl(eduHome, "config/validation");
@@ -27,7 +26,7 @@ public class ValidationSupport {
 				initFile(file);
 			}
 			else {
-			  logger.info("ValidationSupport config error path: {}",fileDir);	
+			  log.info("ValidationSupport config error path: {}",fileDir);	
 			}
 			b = true;
 		}
@@ -41,7 +40,7 @@ public class ValidationSupport {
 				initFile(file);
 			} else {
 				String json = FileUtils.readFileToString(file,"UTF-8");
-				logger.info("ValidationSupport load file: {}",file.getName());
+				log.info("ValidationSupport load file: {}",file.getName());
 				Map<String, Object> map = (Map<String, Object>) JsonUtils.toMap(json);
 				String service = (String) map.get("service");
 				List<?> list = (List<?>) map.get("validation");
@@ -54,7 +53,7 @@ public class ValidationSupport {
 					validataionMap.put(key, fields);
 					//System.out.println(key);
 					//System.out.println(fields);
-					logger.info("ValidationSupport load: {} {}",service,method);
+					log.info("ValidationSupport load: {} {}",service,method);
 				}
 				
 			}

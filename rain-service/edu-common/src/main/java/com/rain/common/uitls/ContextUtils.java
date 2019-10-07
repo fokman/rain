@@ -8,7 +8,6 @@ public class ContextUtils {
     private static DataSource dataSource;
     private static boolean bIdWorker = true;
     private static IdWorker idWorker;
-/*
     public static void setDataSource(DataSource dataSource) {
         if (bdataSource) {
             ContextUtils.dataSource = dataSource;
@@ -20,7 +19,6 @@ public class ContextUtils {
         return dataSource;
     }
 
-*/
     public static void setIdWorker(IdWorker idWorker) {
         if (bIdWorker) {
             ContextUtils.idWorker = idWorker;

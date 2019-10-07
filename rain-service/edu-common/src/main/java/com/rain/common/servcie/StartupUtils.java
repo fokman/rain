@@ -14,7 +14,7 @@ public class StartupUtils {
 
 
     public static void init() {
-        log.info("start-init-begin");
+        log.info("start-init-begin --------------------------");
         // 加载配置
         Properties context = getProperties();
         // 启动业务
@@ -24,9 +24,9 @@ public class StartupUtils {
             if (pkgs != null) {
                 pkgs = pkgs.trim();
                 String[] strs = pkgs.split(";");
-                for (String string : strs) {
-                    if (string != null && string.trim().length() > 0) {
-                        pkgList.add(string.trim());
+                for (String pkg : strs) {
+                    if (pkg != null && pkg.trim().length() > 0) {
+                        pkgList.add(pkg.trim());
                     }
                 }
             }
@@ -35,12 +35,12 @@ public class StartupUtils {
             List<SetupClass> startups = new ArrayList<>();
             for (String string : pkgList) {
                 Set<Class<?>> list = ClassUtils.getClasses(string);
-                for (Class<?> class1 : list) {
-                    Startup[] startupAnns = class1.getDeclaredAnnotationsByType(Startup.class);
+                for (Class<?> clazz : list) {
+                    Startup[] startupAnns = clazz.getDeclaredAnnotationsByType(Startup.class);
                     if (startupAnns.length > 0) {
                         SetupClass setupClass = new SetupClass();
                         setupClass.setSort(startupAnns[0].sort());
-                        setupClass.setClas(class1);
+                        setupClass.setClas(clazz);
                         startups.add(setupClass);
                     }
                 }
@@ -64,21 +64,12 @@ public class StartupUtils {
         InputStream in = null;
         String config = "/app.properties";
         try {
-        	/*
-            in = StartupUtils.class.getResourceAsStream(config);
-            if (in == null) {
-                in = StartupUtils.class.getClassLoader().getResourceAsStream(config);
-            }
-            if (in == null) {
-                in = Thread.currentThread().getContextClassLoader().getResourceAsStream(config);
-            }
-            */
             in = AppUtils.getEnvResource(config);
             prop.load(in);
 
             log.info("start-init-load-config-end");
         } catch (IOException e) {
-            log.error("start-init-load-config-error", e);
+            log.error("start-init-load-config-error:{}", e);
             throw new RuntimeException(e);
         } finally {
             if (in != null) {

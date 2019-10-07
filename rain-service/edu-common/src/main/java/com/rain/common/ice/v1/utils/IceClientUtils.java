@@ -1,9 +1,9 @@
 package com.rain.common.ice.v1.utils;
 
 import Ice.ObjectPrx;
-import com.rain.common.ice.v1.message.Context;
 import com.rain.common.ice.v1.message.MessageServicePrx;
 import com.rain.common.ice.v1.message.MessageServicePrxHelper;
+import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.AppUtils;
 import org.apache.log4j.Logger;
@@ -197,7 +197,7 @@ public class IceClientUtils {
             MessageServicePrxHelper proxy = new MessageServicePrxHelper();
             Method m1 = proxy.getClass().getDeclaredMethod("checkedCast", ObjectPrx.class, String.class);
             MessageServicePrx messagePre = (MessageServicePrx) m1.invoke(proxy, base, null);
-            Context in = new Context(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(), iceRequest.getAttr());
+            MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(), iceRequest.getAttr());
             String out = messagePre.doInvoke(in);
             return out;
         } catch (Exception e) {
