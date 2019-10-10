@@ -21,7 +21,7 @@
             <outputDirectory>icegrid/patch/ipss/libs</outputDirectory>
         </fileSet> -->
         <fileSet>
-            <directory>../rain-common/target/config</directory>
+            <directory>../edu-common/target/config</directory>
             <outputDirectory>rain/patch/rain/config</outputDirectory>
         </fileSet>
         <fileSet>
@@ -33,4 +33,5 @@
             <outputDirectory>rain/patch/rain/config</outputDirectory>
         </fileSet>
     </fileSets>
+    
 </assembly>

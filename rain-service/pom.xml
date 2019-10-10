@@ -22,10 +22,11 @@
         <module>rain-user-center</module>
         <module>rain-server</module>
         <module>edu-common</module>
+        <module>rain-box</module>
     </modules>
 
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <!--<sourceDirectory>src/main/java</sourceDirectory>-->
         <resources>
             <resource>
                 <directory>src/main/java</directory>

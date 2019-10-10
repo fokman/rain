@@ -57,3 +57,7 @@
 2019-10-07 18:51:05 [main] message {"code":200,"msg":"insert role success!","total":0}
 2019-10-07 18:51:42 [main] request params:{"attr":{"code":"User","name":"管理员","tenantId":"1101","id":"698733329939173376"},"attr2":{"createTime":1570445502451,"updateTime":1570445502451},"attrMap":{"$ref":"$.attr2"},"extraData":{},"method":"add","queryString":"","service":"RoleService"}
 2019-10-07 18:51:43 [main] message {"code":200,"msg":"insert role success!","total":0}
+2019-10-08 09:48:04 [main] request params:{"attr":{"code":"User","name":"管理员","tenantId":"1101","id":"698958905111220224"},"attr2":{"createTime":1570499283763,"updateTime":1570499283763},"attrMap":{"$ref":"$.attr2"},"extraData":{},"method":"add","queryString":"","service":"RoleService"}
+2019-10-08 09:48:08 [main] message {"code":200,"msg":"insert role success!","total":0}
+2019-10-08 09:49:49 [main] request params:{"attr":{"code":"User","name":"管理员","tenantId":"1101","id":"698959346414915584"},"attr2":{"updateTime":1570499388981},"attrMap":{"$ref":"$.attr2"},"extraData":{},"method":"add","queryString":"","service":"RoleService"}
+2019-10-08 09:49:52 [main] message {"code":200,"msg":"insert role success!","total":0}

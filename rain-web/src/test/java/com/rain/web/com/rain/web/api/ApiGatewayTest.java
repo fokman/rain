@@ -1,6 +1,6 @@
 package com.rain.web.com.rain.web.api;
 
-import com.rain.common.ice.model.IceRequest;
+import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.IdWorker;
 import com.rain.common.uitls.JsonUtils;
 import lombok.extern.slf4j.Slf4j;

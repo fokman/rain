@@ -72,7 +72,7 @@ public class IceClientUtils {
                             iceLocator = icegrid.getProperty("iceLocator");
                         }
                         if (iceLocator == null)
-                            iceLocator = "MyIceGrid/Locator:tcp -h 127.0.0.1 -p 12000";
+                            iceLocator = "RainIceGrid/Locator:tcp -h 127.0.0.1 -p 12000";
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     System.out.println(sdf.format(new Date()) + "\tIce client's locator is " + iceLocator
@@ -201,7 +201,7 @@ public class IceClientUtils {
             String out = messagePre.doInvoke(in);
             return out;
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             logger.error(e);
             throw new RuntimeException(e);
         }

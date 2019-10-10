@@ -31,7 +31,7 @@ public class RoleServiceTest {
         iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
         iceRequest.setAttr("code", "User");
         iceRequest.setAttr("name", "管理员");
-        iceRequest.addAttr("createTime", new Date());
+//        iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
         log.info("request params:{}", JsonUtils.toJson(iceRequest));

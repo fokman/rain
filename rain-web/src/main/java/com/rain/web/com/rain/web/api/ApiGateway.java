@@ -4,9 +4,9 @@ import com.github.tobato.fastdfs.FdfsClientConfig;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.google.common.io.Files;
-import com.rain.common.ice.model.IceRequest;
-import com.rain.common.ice.model.IceRespose;
-import com.rain.common.ice.utils.IceClientUtils;
+import com.rain.common.ice.v1.model.IceRequest;
+import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.utils.IceClientUtils;
 import com.rain.common.uitls.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -163,8 +163,9 @@ public class ApiGateway {
             return iceRespose;
         }
         try {
-            IceRespose json = IceClientUtils.doService(iceRequest);
-            return json;
+            String json = IceClientUtils.doService(iceRequest);
+            iceRespose = JsonUtils.toObject(json, IceRespose.class);
+            return iceRespose;
         } catch (Exception e) {
             log.error("API调用:[{}.{}]RPC服务时异常：{}", e.toString(), service, method);
         }
