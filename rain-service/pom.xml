@@ -21,8 +21,7 @@
         <!--<module>rain-common</module>-->
         <module>rain-user-center</module>
         <module>rain-server</module>
-        <module>edu-common</module>
-        <module>rain-box</module>
+        <module>rain-common</module>
     </modules>
 
     <build>
