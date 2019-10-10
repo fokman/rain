@@ -50,9 +50,7 @@
                 <option>-Duser.timezone=Asia/Shanghai</option>
                 <option>-DAppId=Rain_Server${id}</option>
                 <option>com.rain.common.ice.v1.server.Sl4jIceBoxServer</option>
-                <env>
-                    CLASSPATH=D:\ZeroC\Ice-3.6.5\lib\*;${server.distrib}\rain\*;${server.distrib}\rain\libs\*;${server.distrib}\rain\config\*;%CLASSPATH%;.
-                </env>
+                <env>CLASSPATH=D:\ZeroC\Ice-3.6.5\lib\*;${server.distrib}\rain\*;${server.distrib}\rain\libs\*;${server.distrib}\rain\config\*;%CLASSPATH%;.</env>
                 <distrib>
                     <directory>rain</directory>
                 </distrib>
