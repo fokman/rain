@@ -3,17 +3,6 @@ package com.rain.common.uitls;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * 
-* 源文件名：SysCodeUtils.java
-* 文件版本：1.0.0
-* 创建作者：he.kui
-* 创建日期：2016年7月7日
-* 修改作者：he.kui
-* 修改日期：2016年7月7日
-* 文件描述：系统错误代码处理工具类
-* 版权所有：Copyright 2016 zjhz, Inc. All Rights Reserved.
- */
 public class SysCodeUtils {
     private Properties props;
     private String filePath = "";
@@ -31,16 +20,6 @@ public class SysCodeUtils {
         return instance;
     }
 
-    // protected SysCodeUtils(String filePath) {
-    // this.filePath = filePath;
-    // getProperties();
-    // }
-
-    /**
-     * This method loads the properties object and returns it.
-     * 
-     * @return Properties the loaded property object, else null
-     */
     private Properties getProperties() {
         if (props == null) {
             try {
@@ -53,14 +32,6 @@ public class SysCodeUtils {
         return props;
     }
 
-    /**
-     * 根据属性获取值,如果为空,可以设置默认值
-    * 方法描述
-    * @param property key
-    * @param def  为空时默认值
-    * @return
-    * @创建日期 2016年7月7日
-     */
     public String getProperty(String property, String def) {
         String retVal = null;
         getProperties();

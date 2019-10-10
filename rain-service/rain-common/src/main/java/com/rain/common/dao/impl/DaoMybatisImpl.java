@@ -1,20 +1,18 @@
 package com.rain.common.dao.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.rain.common.dao.Dao;
 import com.rain.common.dao.TxUtils;
+import com.rain.common.ice.v1.exception.SysException;
+import com.rain.common.uitls.CamelNameUtils;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
-import com.rain.common.ice.v1.exception.SysException;
-import com.rain.common.uitls.CamelNameUtils;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-//@Service("daoMybatis")
 public class DaoMybatisImpl implements Dao {
 
 
@@ -31,7 +29,7 @@ public class DaoMybatisImpl implements Dao {
         try {
         	sqlSession = getDao(ds);
         	List<Map<String, Object>> dataList = sqlSession
-                .<Map<String, Object>> selectList(changeStatement(namespace, statement));
+                .selectList(changeStatement(namespace, statement));
         	return CamelNameUtils.listToCamel(dataList);
         }finally{
         	TxUtils.close(sqlSession);
@@ -100,7 +98,7 @@ public class DaoMybatisImpl implements Dao {
     	SqlSession sqlSession = null;
         try {
         	sqlSession = getDao(ds);
-    		return sqlSession.<Integer> selectOne(changeStatement(namespace, statement));
+    		return sqlSession.selectOne(changeStatement(namespace, statement));
         
 	    }finally{
 	    	TxUtils.close(sqlSession);
@@ -115,7 +113,7 @@ public class DaoMybatisImpl implements Dao {
     	SqlSession sqlSession = null;
         try {
         	sqlSession = getDao(ds);
-        	return sqlSession.<Integer> selectOne(changeStatement(namespace, statement), paramData);
+        	return sqlSession.selectOne(changeStatement(namespace, statement), paramData);
         }finally{
 	    	TxUtils.close(sqlSession);
 	    }

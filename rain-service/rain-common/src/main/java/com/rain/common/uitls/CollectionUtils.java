@@ -50,7 +50,6 @@ public class CollectionUtils {
 		return rsMap;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public static List cloneList(List list) {
 		List rsList = new ArrayList();
 		for (Object object : list) {

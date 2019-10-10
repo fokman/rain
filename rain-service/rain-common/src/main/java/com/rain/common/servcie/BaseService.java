@@ -9,18 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import com.rain.common.uitls.SysCodeUtils;
 
-/**
- * 源文件名：BaseService.java 文件版本：1.0.0 创建作者：冰风影 创建日期：2016-05-6 修改作者：冰风影
- * 修改日期：2016-05-16 文件描述：BaseService 是Java的基础服务类，封装的mybaits的CRUD操作 package
- * com.zjhz.common.dao 是封装的mybaits包
- * 
- * 新增 insert(context, NAMESPACE); 查询 query(context, NAMESPACE); 更新
- * update(context, NAMESPACE); 删除 delete(context, NAMESPACE); 分页
- * queryByPage(context, NAMESPACE); 参考：edu-org-auth的服务端代码OrgUserDiyService.java
- * 客户端调用代码edu-org-auth的edu-org-auth的Client.java 版权所有：Copyright 2016 zjhz, Inc.
- * All Rights Reserved.
- */
-
 @Slf4j
 public class BaseService {
     private static final String QUERY = "query";
