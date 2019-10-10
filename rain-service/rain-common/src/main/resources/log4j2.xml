@@ -6,7 +6,7 @@
 		</Console>
 
 		<RollingFile name="RollingFile" fileName="../logs/edu.log"
-			filePattern="../logs/${date:yyyy-MM}/mycat-%d{MM-dd}-%i.log.gz">
+			filePattern="../logs/${date:yyyy-MM}/rain-%d{MM-dd}-%i.log.gz">
 			<PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss} [%thread] %m%n"/>
 			<Policies>
 				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
@@ -14,10 +14,6 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<!--<AsyncLogger name="io.mycat" level="info" includeLocation="true" additivity="false"> -->
-		<!--<AppenderRef ref="Console"/> -->
-		<!--<AppenderRef ref="RollingFile"/> -->
-		<!--</AsyncLogger> -->
 		<logger name="java.sql.Connection" />
 		<AsyncLogger name="java.sql.PreparedStatement">
 			<AppenderRef ref="RollingFile" />
