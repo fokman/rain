@@ -33,5 +33,5 @@
             <outputDirectory>rain/patch/rain/config</outputDirectory>
         </fileSet>
     </fileSets>
-    
+
 </assembly>

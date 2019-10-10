@@ -49,10 +49,7 @@ public class ValidationSupport {
 					String method = (String) rsMap.get("method");
 					List<Map<String, String>> fields = (List<Map<String, String>>) rsMap.get("fields");
 					String key = service + "#" + method;
-					
 					validataionMap.put(key, fields);
-					//System.out.println(key);
-					//System.out.println(fields);
 					log.info("ValidationSupport load: {} {}",service,method);
 				}
 				
@@ -84,17 +81,6 @@ public class ValidationSupport {
 			// 字段范围,字典类型数据的范围。
 			String fieldDictStr = map.get("fieldDict");
 			List<String> fieldDicts = CollectionUtils.valueOfList(fieldDictStr);
-			// 数据范围
-			// String fieldRangeStr = map.get("fieldRange");
-			// 校验类型
-			// String validType = map.get("validType");
-			// 校验Class
-			// String validClass = map.get("validClass");
-			// 转换类型
-			// String convertType = map.get("convertType");
-			// 转换Class
-			// String convertClass = map.get("convertClass");
-
 			// 空类型
 			String value = StringUtils.trimNull(request.getAttr(fieldCode));
 			if ("1".equals(notNull) && StringUtils.isEmpty(value)) {
@@ -113,9 +99,5 @@ public class ValidationSupport {
 		}
 	}
 	
-	public static void main(String[] args) throws Exception {
-		init();
-		System.out.println();
-	}
 
 }

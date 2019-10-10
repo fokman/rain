@@ -79,8 +79,6 @@ public class SoaManager {
             if (msgRequest.attr != null) {
                 iceRequest.getAttr().putAll(msgRequest.attr);
             }
-            //默认添加
-//            iceRequest.addAttr("schoolId", EduUtils.getCurrentSchoolIdStr(iceRequest));
             log.debug("doInvoke -->iceRequest = {}", iceRequest.getAttrMap().toString());
             IceRespose iceRespose = new IceRespose();
             //启用拦截器
@@ -105,7 +103,8 @@ public class SoaManager {
                 iceRespose = (IceRespose) method.invoke(iceCls, iceRequest);
             }
             log.info("invoke end {} {} ", serviceId, methodId);
-            if (iceRespose.getCode() == 0) {//执行成功在启用拦截器
+            if (iceRespose.getCode() == 0) {
+                //执行成功在启用拦截器
                 handlerExecution.applyAfterHandle(iceCls, method, iceRequest, iceRespose);
             }
 
