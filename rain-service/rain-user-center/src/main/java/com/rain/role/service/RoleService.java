@@ -23,14 +23,12 @@ public class RoleService extends BaseService {
 
     private String ROLE_MAPPER = "RoleMapper";
 
-    private String INSERT = "insert";
-
     @Transactional
     public IceRespose add(IceRequest iceRequest) {
         log.info("start role service add method.");
         iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
-        iceRequest.setAttr("name","系统管理员");
-        iceRequest.setAttr("code","ADMIN");
+        iceRequest.setAttr("name", iceRequest.getAttr("name"));
+        iceRequest.setAttr("code", iceRequest.getAttr("code"));
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
@@ -39,5 +37,28 @@ public class RoleService extends BaseService {
         response.setCode(200, "insert role success!");
         return response;
     }
+
+    public IceRespose delete(IceRequest iceRequest) {
+        log.info("start role service delete method.");
+        iceRequest.setAttr("id", iceRequest.getAttr("id"));
+        getDao().delete(ROLE_MAPPER, DELETE, iceRequest.getAttrMap());
+        IceRespose response = new IceRespose();
+        response.setCode(200, "delete role success!");
+        return response;
+    }
+
+    public IceRespose update(IceRequest iceRequest) {
+        log.info("start role service update method.");
+        iceRequest.setAttr("id", iceRequest.getAttr("id"));
+        iceRequest.setAttr("name", iceRequest.getAttr("name"));
+        iceRequest.setAttr("code", iceRequest.getAttr("code"));
+        iceRequest.addAttr("updateTime", new Date());
+        iceRequest.setAttr("tenantId", iceRequest.getAttr("tenantId"));
+        getDao().update(ROLE_MAPPER, UPDATE, iceRequest.getAttrMap());
+        IceRespose response = new IceRespose();
+        response.setCode(200, "insert role success!");
+        return response;
+    }
+
 
 }

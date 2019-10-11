@@ -31,9 +31,34 @@ public class RoleServiceTest {
         iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
         iceRequest.setAttr("code", "User");
         iceRequest.setAttr("name", "管理员");
-//        iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
+        log.info("request params:{}", JsonUtils.toJson(iceRequest));
+        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        log.info("message {}", JsonUtils.toJson(iceResponse));
+    }
+
+    @Test
+    public void testDelete() {
+        IceRequest iceRequest = new IceRequest();
+        iceRequest.setMethod("delete");
+        iceRequest.setService("RoleService");
+        iceRequest.setAttr("id", "699795998179856384");
+        log.info("request params:{}", JsonUtils.toJson(iceRequest));
+        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        log.info("message {}", JsonUtils.toJson(iceResponse));
+    }
+
+    @Test
+    public void update(){
+        IceRequest iceRequest = new IceRequest();
+        iceRequest.setMethod("update");
+        iceRequest.setService("RoleService");
+        iceRequest.setAttr("id", "700117304242868224");
+        iceRequest.setAttr("code", "Admin");
+        iceRequest.setAttr("name", "系统管理员");
+        iceRequest.addAttr("updateTime", new Date());
+        iceRequest.setAttr("tenantId", "1102");
         log.info("request params:{}", JsonUtils.toJson(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JsonUtils.toJson(iceResponse));

@@ -6,24 +6,23 @@ import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.servcie.StartupService;
 import com.rain.common.servcie.config.Startup;
 import com.rain.common.uitls.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Startup
+@Slf4j
 public class TransStartUp implements StartupService {
-    private static final Logger logger = LoggerFactory.getLogger(TransStartUp.class);
     private static final String PREFIX_LINKER = "$";
     private static final ConcurrentHashMap<String, String> statusMap = new ConcurrentHashMap<String, String>();
     private static final ConcurrentHashMap<String, String> TableMap = new ConcurrentHashMap<String, String>();
 
     @Override
     public void startup(Properties properties) {
-        logger.info("TransStartUp-service-start");
+        log.info("TransStartUp-service-start");
         try {
 //            init();
         } catch (Exception e) {
@@ -51,7 +50,7 @@ public class TransStartUp implements StartupService {
                     putRedis(service, method, table, id, name);
                 }
                 TableMap.put(table,service+ "," +method+ "," +id+ "," +name);
-                logger.info("TransStartUp load data: {} {} {}", table, id, name);
+                log.info("TransStartUp load data: {} {} {}", table, id, name);
             }
             List<Map<String, Object>> statusList = (List<Map<String, Object>>) map.get("status");
             if (statusList==null) return;
@@ -78,7 +77,7 @@ public class TransStartUp implements StartupService {
                     for (int i = 0; i < len; i++) {
                         putMapRedis(table, id, name, (Map) list.get(i));
                     }
-                    logger.info("table: {}  cache data szie: {}", table, len);
+                    log.info("table: {}  cache data szie: {}", table, len);
                 } else if (data instanceof Map) {
                     if (data != null && !((Map) data).isEmpty()) {
                         RedisUtils.set(table, "1");

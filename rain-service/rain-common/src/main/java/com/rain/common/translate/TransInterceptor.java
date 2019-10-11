@@ -1,29 +1,22 @@
 package com.rain.common.translate;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import com.rain.common.core.Interceptor;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.uitls.RedisUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.Map.Entry;
+
+@Slf4j
 public class TransInterceptor implements Interceptor {
-    private static final Logger logger = LoggerFactory.getLogger(TransInterceptor.class);
     private static final String PREFIX_LINKER = "$";
 
     @Override
     public boolean preHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -69,7 +62,7 @@ public class TransInterceptor implements Interceptor {
 
             }
         }catch (Exception e){
-            logger.error(e.getClass()+"\t"+e.getMessage()+"\t"+e.getStackTrace());
+            log.error(e.getClass()+"\t"+e.getMessage()+"\t"+e.getStackTrace());
         }
 
     }
@@ -123,7 +116,7 @@ public class TransInterceptor implements Interceptor {
                 List<String> idValues = RedisUtils.gets(ids.toString().split("\\,"));
                 int len = idValues.size();
                 if (len!=dlen){
-                	logger.warn("table: {}  Db data szie {} sizes unequal, Redis data szie: {}", table,dlen, len);
+                	log.warn("table: {}  Db data szie {} sizes unequal, Redis data szie: {}", table,dlen, len);
                 	return ;
                 }
                 for (int i = 0; i < len; i++) {
@@ -135,7 +128,7 @@ public class TransInterceptor implements Interceptor {
                 int realTotal = iceRespose.getTotal();
                 iceRespose.setData(rows);
                 iceRespose.setTotal(realTotal);
-                logger.info("table: {}  cache data szie: {}", table, len);
+                log.info("table: {}  cache data szie: {}", table, len);
             } else if (data instanceof Map) {
                 if (data != null && !((Map) data).isEmpty()) {
                     //RedisUtils.set(table, "1");

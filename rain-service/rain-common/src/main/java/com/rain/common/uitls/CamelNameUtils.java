@@ -66,7 +66,7 @@ public class CamelNameUtils {
     }
 	
 	public static Map<String, Object> mapToCamel(Map<String, Object>data){
-		Map<String, Object> rowMap = new HashMap<String, Object>();
+		Map<String, Object> rowMap = new HashMap<>();
 		if (data != null && !data.isEmpty()){
 		  Set set = data.keySet();	
 		  for(Iterator iter = set.iterator(); iter.hasNext();){
@@ -100,13 +100,5 @@ public class CamelNameUtils {
 		return rows;		
 	}
 	
-    public static void main(String[] args) {
-        System.out.println(CamelNameUtils.toUnderlineName("ISOCertifiedStaff"));
-        System.out.println(CamelNameUtils.toUnderlineName("CertifiedStaff"));
-        System.out.println(CamelNameUtils.toUnderlineName("UserId"));
-        System.out.println(CamelNameUtils.toCamelCase("iso_certified_staff"));
-        System.out.println(CamelNameUtils.toCamelCase("certified_staff"));
-        System.out.println(CamelNameUtils.toCamelCase("user_id"));
-    }	
 }
 

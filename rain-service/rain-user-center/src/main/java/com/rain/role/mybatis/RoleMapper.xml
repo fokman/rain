@@ -15,57 +15,27 @@
       #{updateTime},#{tenantId})
   </insert>
 
-    <!--  <insert id="insertSelective" parameterType="java.util.Map">
-          insert into rain_role
-          <trim prefix="(" suffix=")" suffixOverrides=",">
-              <if test="roleId != null">
-                  role_id,
-              </if>
-              <if test="roleName != null">
-                  role_name,
-              </if>
-              <if test="createTime != null">
-                  create_time,
-              </if>
-              <if test="updateTime != null">
-                  update_time,
-              </if>
-          </trim>
-          <trim prefix="values (" suffix=")" suffixOverrides=",">
-              <if test="roleId != null">
-                  #{roleId,jdbcType=INTEGER},
-              </if>
-              <if test="roleName != null">
-                  #{roleName,jdbcType=VARCHAR},
-              </if>
-              <if test="createTime != null">
-                  #{createTime,jdbcType=DATE},
-              </if>
-              <if test="updateTime != null">
-                  #{updateTime,jdbcType=DATE},
-              </if>
-          </trim>
-      </insert>
-      <update id="updateByPrimaryKeySelective" parameterType="java.util.Map">
-          update rain_role
-          <set>
-              <if test="roleName != null">
-                  role_name = #{roleName,jdbcType=VARCHAR},
-              </if>
-              <if test="createTime != null">
-                  create_time = #{createTime,jdbcType=DATE},
-              </if>
-              <if test="updateTime != null">
-                  update_time = #{updateTime,jdbcType=DATE},
-              </if>
-          </set>
-          where role_id = #{roleId,jdbcType=INTEGER}
-      </update>
-      <update id="updateByPrimaryKey" parameterType="java.util.Map">
-      update rain_role
-      set role_name = #{roleName,jdbcType=VARCHAR},
-        create_time = #{createTime,jdbcType=DATE},
-        update_time = #{updateTime,jdbcType=DATE}
-      where role_id = #{roleId,jdbcType=INTEGER}
-    </update>-->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from sys_role where id= #{id}
+    </delete>
+
+    <update id="update" parameterType="java.util.Map">
+        update sys_role
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="tenantId !=null">
+                tenant_id = #{tenantId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

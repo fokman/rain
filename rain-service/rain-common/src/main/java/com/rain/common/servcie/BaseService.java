@@ -11,11 +11,11 @@ import com.rain.common.uitls.SysCodeUtils;
 
 @Slf4j
 public class BaseService {
-    private static final String QUERY = "query";
-    private static final String COUNT = "count";
-    private static final String UPDATE = "update";
-    private static final String DELETE = "delete";
-    private static final String INSERT = "insert";
+    public static final String QUERY = "query";
+    public static final String COUNT = "count";
+    public static final String UPDATE = "update";
+    public static final String DELETE = "delete";
+    public static final String INSERT = "insert";
 //    public static final String IS_PAGE = "isPage";
     public static final String PAGE = "page";
     public static final String PAGE_SIZE = "pageSize";
