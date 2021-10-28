@@ -27,7 +27,7 @@ public class AppUtils {
 			if (sysName.contains("windows")) {
 				home = "C:/rain-server";
 			} else {
-				home = "/usr/local/edu-server";
+				home = "/Users/kunliu";
 			}
 		}
 		return home;

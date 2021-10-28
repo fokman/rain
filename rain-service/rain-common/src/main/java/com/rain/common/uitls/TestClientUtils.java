@@ -1,10 +1,12 @@
 package com.rain.common.uitls;
 
 import com.rain.common.ice.v1.message.MessageServicePrx;
-import com.rain.common.ice.v1.message.MessageServicePrxHelper;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
+import com.zeroc.Ice.Communicator;
+import com.zeroc.Ice.ObjectPrx;
+import com.zeroc.Ice.Util;
 
 public class TestClientUtils {
 
@@ -14,14 +16,14 @@ public class TestClientUtils {
 
     public static IceRespose doService(IceRequest iceRequest, String[] args) {
         int status = 0;
-        Ice.Communicator ic = null;
+        Communicator ic = null;
         try {
             // 初始化通信器
-            ic = Ice.Util.initialize(args);
+            ic = Util.initialize(args);
             // 传入远程服务单元的名称、网络协议、IP以及端口，获取OnlineBook的远程代理，这里使用stringToProxy方式
-            Ice.ObjectPrx base = ic.stringToProxy("MessageService:default -p 20000");
+            ObjectPrx base = ic.stringToProxy("MessageService:default -p 20000");
             // 通过checkedCast向下转型，获取OnlineBook接口的远程，并同时检测根据传入的名称获取服务单元是否OnlineBook的代理接口，如果不是则返回null对象
-            MessageServicePrx messageServicePrx = MessageServicePrxHelper.checkedCast(base);
+            MessageServicePrx messageServicePrx = MessageServicePrx.checkedCast(base);
             if (messageServicePrx == null) {
                 throw new Error("Invalid proxy");
             }

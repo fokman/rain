@@ -73,8 +73,8 @@ public class SoaManager {
             IceRequest iceRequest = new IceRequest();
             iceRequest.setService(serviceId);
             iceRequest.setMethod(methodId);
-            if (msgRequest.extraData != null) {
-                iceRequest.getExtraData().putAll(msgRequest.extraData);
+            if (msgRequest.extData!= null) {
+                iceRequest.getExtraData().putAll(msgRequest.extData);
             }
             if (msgRequest.attr != null) {
                 iceRequest.getAttr().putAll(msgRequest.attr);

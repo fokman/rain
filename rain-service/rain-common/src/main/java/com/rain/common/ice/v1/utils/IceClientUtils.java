@@ -1,13 +1,14 @@
 package com.rain.common.ice.v1.utils;
 
-import Ice.ObjectPrx;
+import com.rain.common.ice.v1.message._MessageServicePrxI;
+import com.zeroc.Ice.ObjectPrx;
 import com.rain.common.ice.v1.message.MessageServicePrx;
-import com.rain.common.ice.v1.message.MessageServicePrxHelper;
+import com.rain.common.ice.v1.message.MessageServicePrx;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.AppUtils;
 import lombok.extern.slf4j.Slf4j;
-
+import com.zeroc.Ice.Communicator;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -19,7 +20,7 @@ import java.util.Properties;
 
 @Slf4j
 public class IceClientUtils {
-    private static volatile Ice.Communicator ic = null;
+    private static volatile Communicator ic = null;
     @SuppressWarnings("rawtypes")
     private static Map<Class, ObjectPrx> cls2PrxMap = new HashMap<Class, ObjectPrx>();
     private static volatile long lastAccessTimestamp;
@@ -61,7 +62,7 @@ public class IceClientUtils {
         return prop;
     }
 
-    public static Ice.Communicator getICECommunictor() {
+    public static Communicator getICECommunictor() {
         if (ic == null) {
             synchronized (IceClientUtils.class) {
                 if (ic == null) {
@@ -81,7 +82,7 @@ public class IceClientUtils {
                     ;
                     String[] initParams = new String[]{locatorKey + "=" + iceLocator};
 
-                    ic = Ice.Util.initialize(initParams);
+                    ic = com.zeroc.Ice.Util.initialize(initParams);
                     createMonitorThread();
                 }
             }
@@ -133,12 +134,12 @@ public class IceClientUtils {
      * @return ObjectPrx
      */
     @SuppressWarnings("rawtypes")
-    public static ObjectPrx getSerivcePrx(Ice.Communicator communicator, Class serviceCls, String version) {
+    public static ObjectPrx getSerivcePrx(Communicator communicator, Class serviceCls, String version) {
         return createIceProxy(communicator, serviceCls, version);
     }
 
     @SuppressWarnings("rawtypes")
-    private static ObjectPrx createIceProxy(Ice.Communicator communicator, Class serviceCls, String Version) {
+    private static ObjectPrx createIceProxy(Communicator communicator, Class serviceCls, String Version) {
         ObjectPrx proxy = null;
         String clsName = serviceCls.getName();
         String serviceName = serviceCls.getSimpleName();
@@ -191,9 +192,9 @@ public class IceClientUtils {
 
     public static String doService(IceRequest iceRequest, String servcieName) {
         try {
-            Ice.Communicator ic = getICECommunictor();
+            Communicator ic = getICECommunictor();
             ObjectPrx base = ic.stringToProxy(servcieName);
-            MessageServicePrxHelper proxy = new MessageServicePrxHelper();
+            _MessageServicePrxI proxy = new _MessageServicePrxI();
             Method m1 = proxy.getClass().getDeclaredMethod("checkedCast", ObjectPrx.class, String.class);
             MessageServicePrx messagePre = (MessageServicePrx) m1.invoke(proxy, base, null);
             MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(), iceRequest.getAttr());
@@ -207,6 +208,7 @@ public class IceClientUtils {
     }
 
     static class MonitorThread extends Thread {
+        @Override
         public void run() {
             while (!Thread.currentThread().isInterrupted()) {
                 try {

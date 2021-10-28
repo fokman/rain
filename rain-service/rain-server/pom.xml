@@ -35,11 +35,11 @@
                     <descriptors>
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.rain.common.ice.v1.server.Sl4jIceBoxServer</mainClass>
-                        </manifest>
-                    </archive>
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <mainClass>com.rain.common.ice.v1.server.Sl4jIceBoxServer</mainClass>-->
+<!--                        </manifest>-->
+<!--                    </archive>-->
                     <descriptorRefs>
                         <descriptorRef>
                             jar-with-dependencies
