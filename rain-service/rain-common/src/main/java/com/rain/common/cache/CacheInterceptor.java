@@ -28,7 +28,8 @@ public class CacheInterceptor implements Interceptor {
                 String value = RedisUtils.get(cacheKey);
                 if (StringUtils.isNotEmpty(value)) {
                     copyIceRespose(iceRespose, JsonUtils.toObject(value, IceRespose.class));
-                    log.info("hit cache key:[{}] call:[{}.{}] to spend:{}ms", cacheKey, iceRequest.getService(), iceRequest.getMethod(), System.currentTimeMillis() - begin);
+                    log.info("hit cache key:[{}] call:[{}.{}] to spend:{}ms", cacheKey, iceRequest.getService(),
+                            iceRequest.getMethod(), System.currentTimeMillis() - begin);
                     return false;
                 }
             }

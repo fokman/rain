@@ -58,16 +58,12 @@ public class ApiGateway {
             if (multipartFiles.length > 0) {
                 Map multis = new HashMap();
                 for (MultipartFile multipartFile : multipartFiles) {
-                    try {
-                        String originalFilename = multipartFile.getOriginalFilename();
-                        InputStream inputStream = multipartFile.getInputStream();
-                        StorePath storePath = fastFileStorageClient.uploadFile(inputStream, multipartFile.getSize(), Files.getFileExtension(originalFilename), null);
-                        String finalPath = storePath.getFullPath() + "?attname=" + URLEncoder.encode(originalFilename, "UTF-8");
-                        multis.put(originalFilename, finalPath);
-                        iceRespose.setData(multis);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    String originalFilename = multipartFile.getOriginalFilename();
+                    InputStream inputStream = multipartFile.getInputStream();
+                    StorePath storePath = fastFileStorageClient.uploadFile(inputStream, multipartFile.getSize(), Files.getFileExtension(originalFilename), null);
+                    String finalPath = storePath.getFullPath() + "?attname=" + URLEncoder.encode(originalFilename, "UTF-8");
+                    multis.put(originalFilename, finalPath);
+                    iceRespose.setData(multis);
                 }
             }
         } catch (Exception e) {

@@ -4,7 +4,7 @@ module message{
  	struct MsgRequest {
  		 string service;
  		 string method;
- 		 tmap extraData;
+ 		 tmap extData;
  		 int  code;
  		 string msg; 
  		 int total;  
@@ -13,6 +13,5 @@ module message{
 	}; 
 	interface MessageService {  
 		  string doInvoke(MsgRequest context);
-	
 	};
 };

@@ -6,7 +6,7 @@ import com.rain.common.ice.v1.message.MessageServicePrxHelper;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.AppUtils;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+@Slf4j
 public class IceClientUtils {
     private static volatile Ice.Communicator ic = null;
     @SuppressWarnings("rawtypes")
@@ -26,7 +27,6 @@ public class IceClientUtils {
     private static long idleTimeOutSeconds = 60;//60 没执行成功，关闭ice
     private static String iceLocator = null;
     private static final String locatorKey = "--Ice.Default.Locator";
-    public static Logger logger = Logger.getLogger(IceClientUtils.class);
 
     public static Properties getProperties(String config) {
 
@@ -54,8 +54,7 @@ public class IceClientUtils {
                 try {
                     in.close();
                 } catch (IOException e) {
-                    logger.error(e);
-                    //e.printStackTrace();
+                    log.error("{}",e);
                 }
             }
         }
@@ -77,7 +76,7 @@ public class IceClientUtils {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     System.out.println(sdf.format(new Date()) + "\tIce client's locator is " + iceLocator
                             + " proxy cache time out seconds :" + idleTimeOutSeconds);
-                    logger.info(sdf.format(new Date()) + "\tIce client's locator is " + iceLocator
+                    log.info(sdf.format(new Date()) + "\tIce client's locator is " + iceLocator
                             + " proxy cache time out seconds :" + idleTimeOutSeconds);
                     ;
                     String[] initParams = new String[]{locatorKey + "=" + iceLocator};
@@ -118,7 +117,7 @@ public class IceClientUtils {
         try {
             ic.shutdown();
         } catch (Exception e) {
-            logger.error(e);
+            log.error("{}",e);
             //e.printStackTrace();
         } finally {
             ic.destroy();
@@ -156,7 +155,7 @@ public class IceClientUtils {
             return proxy;
         } catch (Exception e) {
             //e.printStackTrace();
-            logger.error(e);
+            log.error("{}",e);
             throw new RuntimeException(e);
         }
     }
@@ -201,8 +200,7 @@ public class IceClientUtils {
             String out = messagePre.doInvoke(in);
             return out;
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(e);
+            log.error("{}",e);
             throw new RuntimeException(e);
         }
 
@@ -217,7 +215,7 @@ public class IceClientUtils {
                         closeCommunicator(true);
                     }
                 } catch (Exception e) {
-                    logger.error(e);
+                    log.error("{}",e);
                     //e.printStackTrace();
                 }
 

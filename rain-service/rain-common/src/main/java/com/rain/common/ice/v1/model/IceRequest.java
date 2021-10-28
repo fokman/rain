@@ -17,19 +17,19 @@ public class IceRequest {
     /**
      * 扩展参数. 例如：客户端IP. 客户端User-Agent
      */
-    private Map<String, String> extraData = new LinkedHashMap<String, String>();
+    private Map<String, String> extraData = new LinkedHashMap<>();
 
     /**
      * 业务参数
      */
-    private Map<String, String> attr = new HashMap<String, String>();
+    private Map<String, String> attr = new HashMap<>();
     /**
      * 业务参数,支持object，为了解决在mybatis中使用in
      * 如果把in中条件用字符串传进去，mybatis会在参数中加\转义，导致查询不出来
      * 例子: iceRequest.addAttr("paramTypes", "'org_user_status','org_dept_status'");
      * where param_type in ('\'org_user_status\',\'org_dept_status\'')
      */
-    private Map<String, Object> attr2 = new HashMap<String, Object>();
+    private Map<String, Object> attr2 = new HashMap<>();
 
     public IceRequest() {
 

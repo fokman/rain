@@ -2,8 +2,10 @@ package com.rain.common.uitls;
 
 import com.rain.common.ice.v1.impl.IceMessageService;
 import com.rain.common.servcie.StartupUtils;
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 public class TestServerUtils {
 
     public static void statServer(String[] args) {

@@ -14,7 +14,7 @@ public class StartupUtils {
 
 
     public static void init() {
-        log.info("start-init-begin --------------------------");
+        log.info("start-init-begin -------------------------->");
         // 加载配置
         Properties context = getProperties();
         // 启动业务
@@ -47,8 +47,8 @@ public class StartupUtils {
             }
             Collections.sort(startups);
             // 加载启动
-            for (SetupClass class1 : startups) {
-                StartupService startupService = (StartupService) class1.getClas().newInstance();
+            for (SetupClass clazz : startups) {
+                StartupService startupService = (StartupService) clazz.getClas().newInstance();
                 startupService.startup(context);
             }
 

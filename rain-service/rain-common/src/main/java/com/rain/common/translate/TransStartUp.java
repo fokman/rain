@@ -22,7 +22,7 @@ public class TransStartUp implements StartupService {
 
     @Override
     public void startup(Properties properties) {
-        log.info("TransStartUp-service-start");
+//        log.info("TransStartUp-service-start");
         try {
 //            init();
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class TransStartUp implements StartupService {
     }
 
     private void init() throws Exception {
-        String eduHome = AppUtils.getEduHome();
+        String eduHome = AppUtils.getHome();
         String fileName = UrlUtils.joinUrl(eduHome, "config/idtoname.json");
         File file = new File(fileName);
         if (file.exists()) {
