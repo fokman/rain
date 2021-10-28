@@ -1,19 +1,18 @@
 package com.rain.common.ice.v1.impl;
 
-import Ice.Current;
 import com.rain.common.core.SoaManager;
+import com.rain.common.ice.v1.message.MessageService;
 import com.rain.common.ice.v1.message.MsgRequest;
-import com.rain.common.ice.v1.message._MessageServiceDisp;
+import com.rain.common.ice.v1.message._MessageServicePrxI;
+import com.zeroc.Ice.Current;
 
-public class IceMessageService extends _MessageServiceDisp {
-
-    private static final long serialVersionUID = 1L;
-    private static final IceServiceRegister register = IceServiceRegister.getInstance();
+/**
+ * @author kunliu
+ */
+public class IceMessageService implements MessageService {
 
     @Override
-    public String doInvoke(MsgRequest msgRequest, Current __current) {
-        return SoaManager.getInstance().Invoke(msgRequest);
+    public String doInvoke(MsgRequest context, Current current) {
+        return SoaManager.getInstance().Invoke(context);
     }
-
-
 }

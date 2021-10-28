@@ -1,18 +1,16 @@
 package com.rain.common.ice.v1.server;
 
-import Ice.DispatchInterceptor;
-import Ice.DispatchStatus;
-import Ice.Identity;
-import Ice.Request;
+import com.zeroc.Ice.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
+import java.util.concurrent.CompletionStage;
 
 @Slf4j
 public class PerfDispatchInterceptor extends DispatchInterceptor {
 
     private static final long serialVersionUID = 1L;
-    private static final Map<Identity, Ice.Object> id2ObjectMAP = new java.util.concurrent.ConcurrentHashMap<>();
+    private static final Map<Identity, com.zeroc.Ice.Object> id2ObjectMAP = new java.util.concurrent.ConcurrentHashMap<>();
     private static final PerfDispatchInterceptor self = new PerfDispatchInterceptor();
 
     public static PerfDispatchInterceptor getINSTANCE() {
@@ -20,7 +18,7 @@ public class PerfDispatchInterceptor extends DispatchInterceptor {
     }
 
     public static DispatchInterceptor addICEObject(Identity id,
-                                                   Ice.Object iceObj) {
+                                                   com.zeroc.Ice.Object iceObj) {
         id2ObjectMAP.put(id, iceObj);
         return self;
     }
@@ -29,7 +27,7 @@ public class PerfDispatchInterceptor extends DispatchInterceptor {
      * 此方法可以做任何拦截，类似AOP.
      */
     @Override
-    public DispatchStatus dispatch(Request request) {
+    public CompletionStage<OutputStream> dispatch(Request request) {
         Identity theId = request.getCurrent().id;
         // request.getCurrent().con会打印出 local address = 16.156.210.172:50907
         // remote address = 16.156.210.172:51147 这样的信
@@ -42,15 +40,13 @@ public class PerfDispatchInterceptor extends DispatchInterceptor {
 
         try {
 
-            DispatchStatus reslt = id2ObjectMAP.get(request.getCurrent().id)
-                    .ice_dispatch(request);
+            CompletionStage<OutputStream> reslt = id2ObjectMAP.get(request.getCurrent().id).ice_dispatch(request);
             log.info("{} success", inf);
             return reslt;
-        } catch (RuntimeException e) {
+        } catch (RuntimeException | UserException e) {
             log.info("{} error {}", inf, e);
-            throw e;
-
         }
+        return null;
     }
 
     public static void removeICEObject(Identity id) {

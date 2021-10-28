@@ -15,6 +15,9 @@
 
 package com.rain.common.ice.v1.message;
 
-interface _Marker
+/** @hidden */
+public class _MessageServicePrxI extends com.zeroc.Ice._ObjectPrxI implements MessageServicePrx
 {
+    /** @hidden */
+    public static final long serialVersionUID = 0L;
 }
