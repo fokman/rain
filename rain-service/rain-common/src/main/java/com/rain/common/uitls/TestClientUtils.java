@@ -30,7 +30,7 @@ public class TestClientUtils {
             // 调用服务方法
             long start = System.currentTimeMillis();
             int count = 100;
-            MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
+            MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtData(),
                     iceRequest.getAttr());
             String str = messageServicePrx.doInvoke(in);
             IceRespose rs = JsonUtils.toObject(str, IceRespose.class);

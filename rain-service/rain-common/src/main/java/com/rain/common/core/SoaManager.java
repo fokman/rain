@@ -74,7 +74,7 @@ public class SoaManager {
             iceRequest.setService(serviceId);
             iceRequest.setMethod(methodId);
             if (msgRequest.extData!= null) {
-                iceRequest.getExtraData().putAll(msgRequest.extData);
+                iceRequest.getExtData().putAll(msgRequest.extData);
             }
             if (msgRequest.attr != null) {
                 iceRequest.getAttr().putAll(msgRequest.attr);
@@ -127,7 +127,7 @@ public class SoaManager {
     }
 
     public IceRespose doInvoke(IceRequest iceRequest) {
-        return doInvoke(new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(),
+        return doInvoke(new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtData(),
                 iceRequest.getAttr()));
     }
 

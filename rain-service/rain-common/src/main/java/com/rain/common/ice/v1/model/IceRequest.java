@@ -1,27 +1,17 @@
 package com.rain.common.ice.v1.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.*;
 
 public class IceRequest {
-
-    /**
-     * 服务名称
-     */
+    //服务名称
     private String service;
-
-    /**
-     * 方法名称
-     */
+    //方法名称
     private String method;
-
-    /**
-     * 扩展参数. 例如：客户端IP. 客户端User-Agent
-     */
-    private Map<String, String> extraData = new LinkedHashMap<>();
-
-    /**
-     * 业务参数
-     */
+    //扩展参数. 例如：客户端IP. 客户端User-Agent
+    private final Map<String, String> extData = new LinkedHashMap<>();
+    //业务参数
     private Map<String, String> attr = new HashMap<>();
     /**
      * 业务参数,支持object，为了解决在mybatis中使用in
@@ -29,7 +19,7 @@ public class IceRequest {
      * 例子: iceRequest.addAttr("paramTypes", "'org_user_status','org_dept_status'");
      * where param_type in ('\'org_user_status\',\'org_dept_status\'')
      */
-    private Map<String, Object> attr2 = new HashMap<>();
+    private final Map<String, Object> attrBiz = new HashMap<>();
 
     public IceRequest() {
 
@@ -58,7 +48,7 @@ public class IceRequest {
     // 放入新的参数，需要把attr中的相同参数删除，否则查询数据库的时候会覆盖
     public void addAttr(String key, Object value) {
         this.attr.remove(key);
-        this.attr2.put(key, value);
+        this.attrBiz.put(key, value);
     }
 
     public void addAttr(Map<String, String> attr) {
@@ -76,45 +66,29 @@ public class IceRequest {
         this.attr.clear();
     }
 
-    /**
-     * 获取输入参数
-     * 
-     * @return
-     */
+    //获取输入参数
     public Map<String, String> getAttr() {
         return attr;
     }
 
-    /*
-     * public Map<String,Object> getAttrMap(){ Map<String,Object> map = new
-     * HashMap<String,Object>(); map.putAll(attr); return map; }
+    /**
+     * 转换参数，并去掉为空值的参数
      */
-    // 转换参数，并去掉为空值的参数 2016-06-25
     public Map<String, Object> getAttrMap() {
-        // Map<String, Object> params = new HashMap<String, Object>();
         if (attr != null && !attr.isEmpty()) {
-            Set set = attr.keySet();
-            for (Iterator iter = set.iterator(); iter.hasNext();) {
-                String key = (String) iter.next();
+            attr.forEach((key, value) -> {
                 String v = attr.get(key);
-                if (null != v && v != STRING_01) {
-                    String value = attr.get(key);
-                        if(STRING_02.equals(value)){
-                            value = STRING_01;
-                        }
-                        attr2.put(key, value);
+                if (StringUtils.isNotBlank(v)) {
+                    attrBiz.put(key, v);
                 }
-            }
+            });
         }
-        // params.putAll(paramData);
-        return attr2;
+        return attrBiz;
     }
 
     /**
      * 根据key获取输入参数
-     * 
-     * @param key
-     * @return
+     *
      */
     public String getAttr(String key) {
         return this.attr.get(key);
@@ -133,9 +107,7 @@ public class IceRequest {
 
     /**
      * 获取输入参数，并转化为整形。如果变量不存在，则返回-1
-     * 
-     * @param key
-     * @return
+     *
      */
     public Integer getAttrAsInt(String key) {
         return getAttrAsInt(key, -1);
@@ -152,9 +124,7 @@ public class IceRequest {
 
     /**
      * 获取输入参数，并转化为整形。如果变量不存在，则返回-1L
-     * 
-     * @param key
-     * @return
+     *
      */
     public Long getAttrAsLong(String key) {
         return getAttrAsLong(key, -1L);
@@ -167,9 +137,7 @@ public class IceRequest {
 
     /**
      * 获取业务参数 不存在到返回, 不存在返回0.0
-     * 
-     * @param key
-     * @return
+     *
      */
     public Double getAttrAsDouble(String key) {
         return getAttrAsDouble(key, 0.0);
@@ -182,9 +150,7 @@ public class IceRequest {
 
     /**
      * 获取业务参数，并转为字符串。如果不存在或为空，则返回""
-     * 
-     * @param key
-     * @return
+     *
      */
     public String getAttrAsStr(String key) {
         return getAttrAsStr(key, "");
@@ -197,32 +163,27 @@ public class IceRequest {
 
     /**
      * 扩展参数。 如ip,User-Agent
-     * 
-     * @return
+     *
      */
-    public Map<String, String> getExtraData() {
-        return extraData;
+    public Map<String, String> getExtData() {
+        return extData;
     }
 
     /**
      * 获取扩展参数.
-     * 
-     * @param key
-     * @return
+     *
      */
     public Object getExtra(String key) {
-        return extraData.get(key);
+        return extData.get(key);
     }
 
     public void setExtra(String key, String value) {
-        this.extraData.put(key, value);
+        this.extData.put(key, value);
     }
 
     /**
      * 获取扩展参数并且转化为Integer对象
-     * 
-     * @param key
-     * @return
+     *
      */
     public Integer getExtraAsInt(String key) {
         return toInt(getExtra(key));
@@ -235,9 +196,7 @@ public class IceRequest {
 
     /**
      * 获取扩展参数. 不存在返回null
-     * 
-     * @param key
-     * @return
+     *
      */
     public Double getExtraAsDouble(String key) {
         return toDouble(getExtra(key));
@@ -250,9 +209,7 @@ public class IceRequest {
 
     /**
      * 获取扩展参数，并且转为字符串. 参数不存在，返回 "";
-     * 
-     * @param key
-     * @return
+     *
      */
     public String getExtraAsStr(String key) {
         Object value = getExtra(key);
@@ -261,8 +218,7 @@ public class IceRequest {
 
     /**
      * 获取查询字符串
-     * 
-     * @return
+     *
      */
     public String getQueryString() {
         return getExtraAsStr("queryString");
@@ -270,12 +226,11 @@ public class IceRequest {
 
     /**
      * 设置查询字符串
-     * 
-     * @param queryString
+     *
      */
 
     public void setQueryString(String queryString) {
-        getExtraData().put("queryString", queryString);
+        getExtData().put("queryString", queryString);
     }
 
     private static Double toDouble(Object obj) {
@@ -319,7 +274,7 @@ public class IceRequest {
      */
     public void clearInputData() {
         this.clearAttr();
-        this.extraData.clear();
+        this.extData.clear();
     }
 
     public String getClientIp() {
@@ -330,12 +285,12 @@ public class IceRequest {
         return (String) getExtra("userAgent");
     }
 
-    public Map<String, Object> getAttr2() {
-        return attr2;
+    public Map<String, Object> getAttrBiz() {
+        return attrBiz;
     }
 
-    public final  static String STRING_01 = "";
+    public final static String STRING_01 = "";
 
-    public final  static String STRING_02 = " ";
+    public final static String STRING_02 = " ";
 
 }

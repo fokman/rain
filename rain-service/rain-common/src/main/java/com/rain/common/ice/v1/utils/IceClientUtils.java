@@ -1,14 +1,14 @@
 package com.rain.common.ice.v1.utils;
 
-import com.rain.common.ice.v1.message._MessageServicePrxI;
-import com.zeroc.Ice.ObjectPrx;
-import com.rain.common.ice.v1.message.MessageServicePrx;
 import com.rain.common.ice.v1.message.MessageServicePrx;
 import com.rain.common.ice.v1.message.MsgRequest;
+import com.rain.common.ice.v1.message._MessageServicePrxI;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.AppUtils;
-import lombok.extern.slf4j.Slf4j;
 import com.zeroc.Ice.Communicator;
+import com.zeroc.Ice.ObjectPrx;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -21,8 +21,7 @@ import java.util.Properties;
 @Slf4j
 public class IceClientUtils {
     private static volatile Communicator ic = null;
-    @SuppressWarnings("rawtypes")
-    private static Map<Class, ObjectPrx> cls2PrxMap = new HashMap<Class, ObjectPrx>();
+    private static Map<Class, ObjectPrx> cls2PrxMap = new HashMap<>();
     private static volatile long lastAccessTimestamp;
     private static volatile MonitorThread nonitorThread;
     private static long idleTimeOutSeconds = 60;//60 没执行成功，关闭ice
@@ -34,18 +33,6 @@ public class IceClientUtils {
         Properties prop = new Properties();
         InputStream in = null;
         try {
-			/*
-			in = IceClientUtils.class.getResourceAsStream(config);
-			if (in == null) {
-				in = IceClientUtils.class.getClassLoader().getResourceAsStream(config);
-			}
-			if (in == null) {
-				in = Thread.currentThread().getContextClassLoader().getResourceAsStream(config);
-			}
-			if (in == null) {
-				return null;
-			}
-			*/
             in = AppUtils.getEnvResource(config);
             prop.load(in);
         } catch (IOException e) {
@@ -55,7 +42,7 @@ public class IceClientUtils {
                 try {
                     in.close();
                 } catch (IOException e) {
-                    log.error("{}",e);
+                    log.error("{}", e);
                 }
             }
         }
@@ -118,7 +105,7 @@ public class IceClientUtils {
         try {
             ic.shutdown();
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             //e.printStackTrace();
         } finally {
             ic.destroy();
@@ -156,7 +143,7 @@ public class IceClientUtils {
             return proxy;
         } catch (Exception e) {
             //e.printStackTrace();
-            log.error("{}",e);
+            log.error("{}", e);
             throw new RuntimeException(e);
         }
     }
@@ -176,13 +163,11 @@ public class IceClientUtils {
         ObjectPrx proxy = cls2PrxMap.get(serviceCls);
         if (proxy != null) {
             lastAccessTimestamp = System.currentTimeMillis();
-            System.out.println("get old");
             return proxy;
         }
         proxy = createIceProxy(getICECommunictor(), serviceCls, Version);
         cls2PrxMap.put(serviceCls, proxy);
         lastAccessTimestamp = System.currentTimeMillis();
-        System.out.println("create new");
         return proxy;
     }
 
@@ -195,13 +180,14 @@ public class IceClientUtils {
             Communicator ic = getICECommunictor();
             ObjectPrx base = ic.stringToProxy(servcieName);
             _MessageServicePrxI proxy = new _MessageServicePrxI();
-            Method m1 = proxy.getClass().getDeclaredMethod("checkedCast", ObjectPrx.class, String.class);
-            MessageServicePrx messagePre = (MessageServicePrx) m1.invoke(proxy, base, null);
-            MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtraData(), iceRequest.getAttr());
+            Method method = proxy.getClass().getDeclaredMethod("checkedCast", ObjectPrx.class, String.class);
+            MessageServicePrx messagePre = (MessageServicePrx) method.invoke(proxy, base, null);
+            MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(),
+                    iceRequest.getExtData(), iceRequest.getAttr());
             String out = messagePre.doInvoke(in);
             return out;
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             throw new RuntimeException(e);
         }
 
@@ -217,7 +203,7 @@ public class IceClientUtils {
                         closeCommunicator(true);
                     }
                 } catch (Exception e) {
-                    log.error("{}",e);
+                    log.error("{}", e);
                     //e.printStackTrace();
                 }
 

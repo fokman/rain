@@ -1,5 +1,6 @@
 package com.rain.role.service;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.uitls.IdWorker;
@@ -33,7 +34,7 @@ public class RoleServiceTest {
         iceRequest.setAttr("name", "管理员");
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
-        log.info("request params:{}", JsonUtils.toJson(iceRequest));
+        log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JsonUtils.toJson(iceResponse));
     }
@@ -50,7 +51,7 @@ public class RoleServiceTest {
     }
 
     @Test
-    public void update(){
+    public void update() {
         IceRequest iceRequest = new IceRequest();
         iceRequest.setMethod("update");
         iceRequest.setService("RoleService");
