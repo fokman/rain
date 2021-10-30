@@ -1,21 +1,17 @@
 package com.rain.common.uitls;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/**
+ * @author kunliu
+ */
+@Slf4j
 public class AppUtils {
-
-/*	private static SqlSessionFactory sqlSession = null;
-
-	public static void setSqlSession(SqlSessionFactory sqlSession) {
-		AppUtils.sqlSession = sqlSession;
-	}
-
-	public static SqlSessionFactory getSqlSession() {
-		return sqlSession;
-	}*/
 
 	public static String getHome() {
 		String home = System.getenv("RAIN_HOME");
