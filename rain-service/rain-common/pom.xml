@@ -12,88 +12,96 @@
   <artifactId>rain-common</artifactId>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <poi.version>3.17</poi.version>
+    <lombok.version>1.18.20</lombok.version>
+    <hutool.version>5.6.6</hutool.version>
+    <logback.version>1.2.3</logback.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <commons-lang3.version>3.8.1</commons-lang3.version>
+    <jedis.version>2.9.0</jedis.version>
+    <mybatis.version>3.5.6</mybatis.version>
+    <commons-io.version>2.7</commons-io.version>
+    <durid.version>1.1.10</durid.version>
+    <ehcache.version>2.6.11</ehcache.version>
+    <mysql.version>8.0.16</mysql.version>
+    <icebox.version>3.7.4</icebox.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
-      <version>3.17</version>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.20</version>
+      <version>${lombok.version}</version>
     </dependency>
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
-      <version>5.6.6</version>
+      <version>${hutool.version}</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.2.3</version>
+      <version>${logback.version}</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
+      <version>${logback.version}</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.8.1</version>
+      <version>${commons-lang3.version}</version>
     </dependency>
     <dependency>
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
-      <version>2.9.0</version>
+      <version>${jedis.version}</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.6</version>
+      <version>${mybatis.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.7</version>
+      <version>${commons-io.version}</version>
     </dependency>
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
-      <version>1.1.10</version>
+      <version>${durid.version}</version>
     </dependency>
     <dependency>
       <groupId>net.sf.ehcache</groupId>
       <artifactId>ehcache-core</artifactId>
-      <version>2.6.11</version>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>1.2.58</version>
+      <version>${ehcache.version}</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.16</version>
+      <version>${mysql.version}</version>
     </dependency>
     <dependency>
       <groupId>com.zeroc</groupId>
       <artifactId>icebox</artifactId>
-      <version>3.7.4</version>
+      <version>${icebox.version}</version>
     </dependency>
     <dependency>
       <groupId>com.zeroc</groupId>
       <artifactId>ice</artifactId>
-      <version>3.7.4</version>
+      <version>${icebox.version}</version>
     </dependency>
 
   </dependencies>

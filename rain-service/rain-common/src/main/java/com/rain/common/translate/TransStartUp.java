@@ -1,5 +1,6 @@
 package com.rain.common.translate;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.core.SoaManager;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRespose;
@@ -36,7 +37,7 @@ public class TransStartUp implements StartupService {
         File file = new File(fileName);
         if (file.exists()) {
             String json = FileUtils.readFileToString(file, "UTF-8");
-            Map<String, Object> map = (Map<String, Object>) JsonUtils.toMap(json);
+            Map<String, Object> map = (Map<String, Object>) JSONUtil.toBean(json, Map.class);
             List<?> list = (List<?>) map.get("data");
             for (Object object : list) {
                 Map<String, Object> rsMap = (Map<String, Object>) object;
@@ -49,11 +50,11 @@ public class TransStartUp implements StartupService {
                 if (StringUtils.isEmptyOrNull(load)) {
                     putRedis(service, method, table, id, name);
                 }
-                TableMap.put(table,service+ "," +method+ "," +id+ "," +name);
+                TableMap.put(table, service + "," + method + "," + id + "," + name);
                 log.info("TransStartUp load data: {} {} {}", table, id, name);
             }
             List<Map<String, Object>> statusList = (List<Map<String, Object>>) map.get("status");
-            if (statusList==null) return;
+            if (statusList == null) return;
             for (Map<String, Object> status : statusList) {
                 String service = (String) status.get("service");
                 List<Map<String, Object>> innerList = (List<Map<String, Object>>) status.get("status");
@@ -66,7 +67,7 @@ public class TransStartUp implements StartupService {
 
     public static void putRedis(String service, String method, String table, String id, String name) {
         MsgRequest msgRequest = new MsgRequest(service, method, null, null);
-        try{
+        try {
             IceRespose iceRespose = SoaManager.getInstance().doInvoke(msgRequest);
             if (iceRespose.getCode() == 0) {
                 Object data = iceRespose.getData();
@@ -84,11 +85,11 @@ public class TransStartUp implements StartupService {
                         putMapRedis(table, id, name, (Map) data);
                     }
                 }
-            }else {
+            } else {
                 //如果出异常,清除redis里面的table对于的key,这样,页面加载数据的时候,判断某个table没有被缓存进来,就会重新加载
                 RedisUtils.remove(table);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             RedisUtils.remove(table);
         }
 
@@ -99,7 +100,7 @@ public class TransStartUp implements StartupService {
             Set set = data.keySet();
             String keyId = "";
             String keyName = "";
-            for (Iterator iter = set.iterator(); iter.hasNext();) {
+            for (Iterator iter = set.iterator(); iter.hasNext(); ) {
                 String key = (String) iter.next();
                 if (key.equals(id)) {
                     keyId = String.valueOf(data.get(key));
@@ -115,20 +116,20 @@ public class TransStartUp implements StartupService {
     public static ConcurrentHashMap<String, String> getStatusmap() {
         return statusMap;
     }
-    
+
     public static boolean putTableRedis(String table) {
         String load = RedisUtils.get(table);
-        boolean isExist=true;
+        boolean isExist = true;
         if (load == null) {
-          isExist=false;	
-    	  String pattern=TableMap.get(table);
-    	  if (pattern==null) return isExist;
-          String[] pKeys = pattern.split("\\,");   	
-          if (pKeys != null && pKeys.length == 4) {
-        	putRedis(pKeys[0],pKeys[1],table,pKeys[2],pKeys[3]);
-        	isExist=true;
-          }
-        } 
-       return isExist;
+            isExist = false;
+            String pattern = TableMap.get(table);
+            if (pattern == null) return isExist;
+            String[] pKeys = pattern.split("\\,");
+            if (pKeys != null && pKeys.length == 4) {
+                putRedis(pKeys[0], pKeys[1], table, pKeys[2], pKeys[3]);
+                isExist = true;
+            }
+        }
+        return isExist;
     }
 }

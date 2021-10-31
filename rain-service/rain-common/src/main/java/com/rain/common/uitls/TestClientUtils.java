@@ -1,5 +1,6 @@
 package com.rain.common.uitls;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.ice.v1.message.MessageServicePrx;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
@@ -33,7 +34,7 @@ public class TestClientUtils {
             MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtData(),
                     iceRequest.getAttr());
             String str = messageServicePrx.doInvoke(in);
-            IceRespose rs = JsonUtils.toObject(str, IceRespose.class);
+            IceRespose rs = JSONUtil.toBean(str, IceRespose.class);
 
             long used = System.currentTimeMillis() - start;
             System.out.println("tps " + count * 1000.0 / used);

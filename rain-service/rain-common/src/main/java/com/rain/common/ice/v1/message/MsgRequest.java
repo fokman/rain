@@ -52,11 +52,12 @@ public class MsgRequest implements java.lang.Cloneable,
         this.attr = attr;
     }
 
-    public MsgRequest(String service, String method, Map<String, String> extraData, Map<String, String> attr) {
+    public MsgRequest(String service, String method, Map<String, String> extData, Map<String, String> attr) {
         this.service = service;
         this.method = method;
-        this.data = extraData;
+        this.extData = extData;
         this.attr = attr;
+
     }
 
     public boolean equals(java.lang.Object rhs) {

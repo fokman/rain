@@ -1,5 +1,6 @@
 package com.rain.common.validation.support;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.exception.ValidationException;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.uitls.*;
@@ -41,7 +42,7 @@ public class ValidationSupport {
 			} else {
 				String json = FileUtils.readFileToString(file,"UTF-8");
 				log.info("ValidationSupport load file: {}",file.getName());
-				Map<String, Object> map = (Map<String, Object>) JsonUtils.toMap(json);
+				Map<String, Object> map = (Map<String, Object>) JSONUtil.toBean(json,Map.class);
 				String service = (String) map.get("service");
 				List<?> list = (List<?>) map.get("validation");
 				for (Object object : list) {

@@ -1,5 +1,6 @@
 package com.rain.common.core;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.cache.CacheInterceptor;
 import com.rain.common.dao.TxUtils;
 import com.rain.common.ice.v1.impl.IceServiceRegister;
@@ -9,7 +10,6 @@ import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.servcie.config.Transactional;
 import com.rain.common.stat.StatAnalyzer;
 import com.rain.common.translate.TransInterceptor;
-import com.rain.common.uitls.JsonUtils;
 import com.rain.common.validation.ValidInterceptor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,10 +46,10 @@ public class SoaManager {
     }
 
     public IceRespose doInvoke(MsgRequest msgRequest) {
-    	long begin = System.currentTimeMillis();
+        long begin = System.currentTimeMillis();
         String serviceId = msgRequest.service;
         String methodId = msgRequest.method;
-        try {           
+        try {
             log.info("service {} {} begin", serviceId, methodId);
             String key = serviceId;
             Object iceCls = null;
@@ -73,7 +73,7 @@ public class SoaManager {
             IceRequest iceRequest = new IceRequest();
             iceRequest.setService(serviceId);
             iceRequest.setMethod(methodId);
-            if (msgRequest.extData!= null) {
+            if (msgRequest.extData != null) {
                 iceRequest.getExtData().putAll(msgRequest.extData);
             }
             if (msgRequest.attr != null) {
@@ -109,21 +109,21 @@ public class SoaManager {
             }
 
             long spend = (System.currentTimeMillis() - begin);
-            StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(),false);
+            StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(), false);
             log.info("time:[{}.{}] to spend:{}ms", msgRequest.service, msgRequest.method, spend);
-            log.info("josn: {}", JsonUtils.toJson(iceRespose));
+            log.info("josn: {}", JSONUtil.toJsonStr(iceRespose));
             return iceRespose;//json;
         } catch (Throwable e) {
             e.printStackTrace();
             String msg = e.getCause() != null ? e.getCause().getMessage() : e.getMessage();
             //return JsonUtils.toJson(iceRespose);
-            StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(),true);
+            StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(), true);
             return returnRespose(303, msg);
         }
     }
 
     public String Invoke(MsgRequest msgRequest) {
-        return JsonUtils.toJson(doInvoke(msgRequest));
+        return JSONUtil.toJsonStr(doInvoke(msgRequest));
     }
 
     public IceRespose doInvoke(IceRequest iceRequest) {
@@ -132,6 +132,6 @@ public class SoaManager {
     }
 
     public String Invoke(IceRequest iceRequest) {
-        return JsonUtils.toJson(doInvoke(iceRequest));
+        return JSONUtil.toJsonStr(doInvoke(iceRequest));
     }
 }

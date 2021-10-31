@@ -26,7 +26,7 @@ public class RoleService extends BaseService {
     @Transactional
     public IceRespose add(IceRequest iceRequest) {
         log.info("start role service add method.");
-        iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
+        iceRequest.setAttr("id", IdWorker.getIdStr());
         iceRequest.setAttr("code", iceRequest.getAttr("code"));
         iceRequest.setAttr("name", iceRequest.getAttr("name"));
         iceRequest.addAttr("createTime", new Date());

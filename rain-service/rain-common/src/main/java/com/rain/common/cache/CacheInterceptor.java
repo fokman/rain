@@ -1,11 +1,11 @@
 package com.rain.common.cache;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.cache.annotation.Cache;
 import com.rain.common.cache.annotation.CacheTypeEnum;
 import com.rain.common.core.Interceptor;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
-import com.rain.common.uitls.JsonUtils;
 import com.rain.common.uitls.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ public class CacheInterceptor implements Interceptor {
                 cacheKey = CacheUtils.getKey(cache, iceRequest);
                 String value = RedisUtils.get(cacheKey);
                 if (StringUtils.isNotEmpty(value)) {
-                    copyIceRespose(iceRespose, JsonUtils.toObject(value, IceRespose.class));
+                    copyIceRespose(iceRespose, JSONUtil.toBean(value, IceRespose.class));
                     log.info("hit cache key:[{}] call:[{}.{}] to spend:{}ms", cacheKey, iceRequest.getService(),
                             iceRequest.getMethod(), System.currentTimeMillis() - begin);
                     return false;
@@ -59,7 +59,7 @@ public class CacheInterceptor implements Interceptor {
             }
             //写缓存
             if (cache.type() == CacheTypeEnum.ADD) {
-                String json = JsonUtils.toJson(iceRespose);
+                String json = JSONUtil.toJsonStr(iceRespose);
                 if (cache.seconds() == -1) {
                     RedisUtils.set(cacheKey, json);
                 } else {

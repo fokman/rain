@@ -4,7 +4,6 @@ import cn.hutool.json.JSONUtil;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.uitls.IdWorker;
-import com.rain.common.uitls.JsonUtils;
 import com.rain.common.uitls.TestClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -29,14 +28,14 @@ public class RoleServiceTest {
         IceRequest iceRequest = new IceRequest();
         iceRequest.setMethod("add");
         iceRequest.setService("RoleService");
-        iceRequest.setAttr("id", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
+        iceRequest.setAttr("id", IdWorker.getIdStr());
         iceRequest.setAttr("code", "User");
         iceRequest.setAttr("name", "管理员");
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1101");
         log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
-        log.info("message {}", JsonUtils.toJson(iceResponse));
+        log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
     @Test
@@ -45,9 +44,9 @@ public class RoleServiceTest {
         iceRequest.setMethod("delete");
         iceRequest.setService("RoleService");
         iceRequest.setAttr("id", "699795998179856384");
-        log.info("request params:{}", JsonUtils.toJson(iceRequest));
+        log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
-        log.info("message {}", JsonUtils.toJson(iceResponse));
+        log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
     @Test
@@ -60,9 +59,9 @@ public class RoleServiceTest {
         iceRequest.setAttr("name", "系统管理员");
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1102");
-        log.info("request params:{}", JsonUtils.toJson(iceRequest));
+        log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
-        log.info("message {}", JsonUtils.toJson(iceResponse));
+        log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
 }
