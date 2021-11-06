@@ -6,12 +6,17 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 
+/**
+ * @author kunliu
+ */
 @Slf4j
 public class EnchachePool implements CachePool {
+
     private final Cache enCache;
     private final CacheStatic cacheStatic = new CacheStatic();
     private final String name;
     private final long maxSize;
+
 
     public EnchachePool(String name, Cache enCache, long maxSize) {
         this.enCache = enCache;
@@ -23,11 +28,11 @@ public class EnchachePool implements CachePool {
 
     @Override
     public void putIfAbsent(Object key, Object value) {
-        Element el = new Element(key, value);
-        if (enCache.putIfAbsent(el) == null) {
+        Element element = new Element(key, value);
+        if (null == enCache.putIfAbsent(element)) {
             cacheStatic.incPutTimes();
             if (log.isDebugEnabled()) {
-                log.debug(name + " add cache ,key:" + key + " value:" + value);
+                log.debug(name + " add cache ,key: {} value:{}", key, value);
             }
         }
 
@@ -38,13 +43,13 @@ public class EnchachePool implements CachePool {
         Element cacheEl = enCache.get(key);
         if (cacheEl != null) {
             if (log.isDebugEnabled()) {
-                log.debug(name + " hit cache ,key:" + key);
+                log.debug("{} hit cache ,key:{} ", name, key);
             }
             cacheStatic.incHitTimes();
             return cacheEl.getObjectValue();
         } else {
             if (log.isDebugEnabled()) {
-                log.debug(name + "  miss cache ,key:" + key);
+                log.debug("{} miss cache ,key:{}", name, key);
             }
             cacheStatic.incAccessTimes();
             return null;
@@ -53,7 +58,7 @@ public class EnchachePool implements CachePool {
 
     @Override
     public void clearCache() {
-        log.info("clear cache " + name);
+        log.info("clear cache:{} ", name);
         enCache.removeAll();
         enCache.clearStatistics();
         cacheStatic.reset();

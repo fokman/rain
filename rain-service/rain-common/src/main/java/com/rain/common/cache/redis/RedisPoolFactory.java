@@ -2,6 +2,7 @@ package com.rain.common.cache.redis;
 
 import com.rain.common.cache.CachePool;
 import com.rain.common.cache.CachePoolFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -9,6 +10,10 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Properties;
 
+/**
+ * @author kunliu
+ */
+@Slf4j
 public class RedisPoolFactory extends CachePoolFactory {
     private static JedisPool pool = null;
 
@@ -40,7 +45,7 @@ public class RedisPoolFactory extends CachePoolFactory {
                     pool = new JedisPool(config, address, port, timeout, auth);
                 }
             } catch (Exception e) {
-                //log.error("Error thrown while initializing jedis pool", e);
+                log.error("Error Error thrown while initializing jedis pool", e);
             }
         }
         return new RedisPool(poolName, cacheSize);

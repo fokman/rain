@@ -4,6 +4,10 @@ import com.rain.common.cache.annotation.Cache;
 import com.rain.common.ice.v1.model.IceRequest;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * @author kunliu
+ */
+
 public class CacheUtils {
     private static final String PREFIX_LINKER = "$";
     private static final String NAME_LINKER = ".";

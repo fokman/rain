@@ -5,6 +5,9 @@ import cn.hutool.core.util.IdUtil;
 import com.rain.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author kunliu
+ */
 @Slf4j
 public class IdWorker {
     private static Long workerId = 0L;

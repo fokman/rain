@@ -2,6 +2,9 @@ package com.rain.common.stat;
 
 import java.io.Serializable;
 
+/**
+ * @author kunliu
+ */
 public class ServiceFrequency implements Serializable {
 	private String name;
 	private int count = 0;

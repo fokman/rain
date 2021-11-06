@@ -1,13 +1,9 @@
 package com.rain.common.uitls;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.UUID;
-
 /**
  * Lang工具类
  *
+ * @author kunliu
  */
 public class LangUtils {
 
