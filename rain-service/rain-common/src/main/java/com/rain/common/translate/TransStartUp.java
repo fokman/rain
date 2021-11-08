@@ -32,7 +32,7 @@ public class TransStartUp implements StartupService {
     }
 
     private void init() throws Exception {
-        String eduHome = AppUtils.getHome();
+        String eduHome = AppUtils.getInstance().getEnvHome();
         String fileName = UrlUtils.joinUrl(eduHome, "config/idtoname.json");
         File file = new File(fileName);
         if (file.exists()) {

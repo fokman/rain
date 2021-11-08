@@ -20,7 +20,7 @@ public class ValidationSupport {
 	public static final void init() throws Exception {
 		log.info("ValidationSupport ini time: {}", DateUtils.getStrCurrtTime());
 		if (!b) {
-			String eduHome = AppUtils.getHome();
+			String eduHome = AppUtils.getInstance().getEnvHome();
 			String fileDir = UrlUtils.joinUrl(eduHome, "config/validation");
 			File file = new File(fileDir);
 			if(file.exists()){

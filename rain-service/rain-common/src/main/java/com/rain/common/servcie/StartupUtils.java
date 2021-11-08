@@ -3,6 +3,7 @@ package com.rain.common.servcie;
 import com.rain.common.servcie.config.Startup;
 import com.rain.common.uitls.AppUtils;
 import com.rain.common.uitls.ClassUtils;
+import com.rain.common.uitls.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -12,7 +13,9 @@ import java.util.*;
 @Slf4j
 public class StartupUtils {
 
-
+    /**
+     * 初始化
+     */
     public static void init() {
         log.info("start-init-begin -------------------------->");
         // 加载配置
@@ -21,7 +24,7 @@ public class StartupUtils {
         try {
             List<String> pkgList = new ArrayList<>();
             String pkgs = (String) context.get("scan");
-            if (pkgs != null) {
+            if (StringUtils.isNotEmptyOrNull(pkgs)) {
                 pkgs = pkgs.trim();
                 String[] strs = pkgs.split(";");
                 for (String pkg : strs) {
@@ -64,7 +67,7 @@ public class StartupUtils {
         InputStream in = null;
         String config = "/app.properties";
         try {
-            in = AppUtils.getEnvResource(config);
+            in = AppUtils.getInstance().getEnvResource(config);
             prop.load(in);
 
             log.info("start-init-load-config-end");
