@@ -60,7 +60,6 @@ public class MsgRequest implements java.lang.Cloneable,
         this.method = method;
         this.extData = extData;
         this.attr = attr;
-
     }
 
     public boolean equals(java.lang.Object rhs)
