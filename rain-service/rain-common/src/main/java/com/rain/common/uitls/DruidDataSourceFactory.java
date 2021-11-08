@@ -29,7 +29,7 @@ public class DruidDataSourceFactory extends UnpooledDataSourceFactory {
 
 	static {
 		try {
-			reader = new InputStreamReader(AppUtils.getEnvResource("mybatis-config.xml"));
+			reader = new InputStreamReader(AppUtils.getInstance().getEnvResource("mybatis-config.xml"));
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			Configuration configuration = sqlSessionFactory.getConfiguration();
 			Set<String> files = ClassUtils.getFiles("com.rain", ".xml");

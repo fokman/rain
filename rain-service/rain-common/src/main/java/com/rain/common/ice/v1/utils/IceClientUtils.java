@@ -33,7 +33,7 @@ public class IceClientUtils {
         Properties prop = new Properties();
         InputStream in = null;
         try {
-            in = AppUtils.getEnvResource(config);
+            in = AppUtils.getInstance().getEnvResource(config);
             prop.load(in);
         } catch (IOException e) {
             throw new RuntimeException(e);

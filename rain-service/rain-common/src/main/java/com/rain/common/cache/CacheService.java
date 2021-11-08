@@ -37,11 +37,10 @@ public class CacheService {
 
     private void init() throws Exception {
         Properties props = new Properties();
-        InputStream in = AppUtils.getEnvResource("redis.properties");
+        InputStream in = AppUtils.getInstance().getEnvResource("redis.properties");
         props.load(in);
         final String poolFactoryPref = "factory.";
         final String poolKeyPref = "pool.";
-        //final String layedPoolKeyPref = "layedpool.";
         String[] keys = props.keySet().toArray(new String[0]);
         Arrays.sort(keys);
         for (String key : keys) {
