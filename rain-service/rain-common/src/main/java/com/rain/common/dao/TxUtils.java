@@ -3,7 +3,7 @@ package com.rain.common.dao;
 import com.rain.common.uitls.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
-import com.rain.common.uitls.DruidDataSourceFactory;
+import com.rain.common.uitls.DataSourceFactory;
 
 @Slf4j
 public class TxUtils {
@@ -13,7 +13,7 @@ public class TxUtils {
     public static SqlSession getSqlSession() {
         SqlSession sqlSession = THREAD_LOCAL.get();
         if (sqlSession == null) {
-            sqlSession = DruidDataSourceFactory.sqlSessionFactory.openSession(true);
+            sqlSession = DataSourceFactory.sqlSessionFactory.openSession(true);
         }
         return sqlSession;
     }
@@ -43,7 +43,7 @@ public class TxUtils {
     }
 
     public static void beginTransaction() {
-        SqlSession conn = DruidDataSourceFactory.sqlSessionFactory.openSession(false);
+        SqlSession conn = DataSourceFactory.sqlSessionFactory.openSession(false);
         THREAD_LOCAL.set(conn);
     }
 

@@ -1,5 +1,6 @@
 package com.rain.common.cache;
 
+import cn.hutool.json.JSONUtil;
 import com.rain.common.cache.annotation.Cache;
 import com.rain.common.cache.annotation.CacheTypeEnum;
 import com.rain.common.core.Interceptor;
@@ -20,11 +21,10 @@ public class CacheInterceptor implements Interceptor {
                              IceRequest iceRequest, IceRespose iceRespose) {
         long begin = System.currentTimeMillis();
         Cache cache = method.getAnnotation(Cache.class);
-        String cacheKey = "";
         if (cache != null) {
             if (cache.type() == CacheTypeEnum.ADD) {
                 //读缓存
-                cacheKey = CacheUtils.getKey(cache, iceRequest);
+                String cacheKey = CacheUtils.getKey(cache, iceRequest);
                 String value = RedisUtils.get(cacheKey);
                 if (StringUtils.isNotEmpty(value)) {
                     copyIceRespose(iceRespose, JsonUtils.toObject(value, IceRespose.class));

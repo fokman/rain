@@ -267,10 +267,10 @@ public class StringUtils {
 	 */
 	public static boolean isEmptyOrNull(Object object) {
 
+
 		if (StringUtils.valueOf(object).equals("")) {
 			return true;
 		}
-
 		return false;
 	}
 	/**
