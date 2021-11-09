@@ -68,7 +68,7 @@ public class SysCodeUtils {
         props = loadPropertiesFile(file);
     }
 
-    protected Properties loadPropertiesFile(String file){
+    protected Properties loadPropertiesFile(String file) {
         Properties retVal = null;
         InputStream in = null;
         try {

@@ -8,7 +8,9 @@ import com.rain.common.ice.v1.model.IceRespose;
 import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.ObjectPrx;
 import com.zeroc.Ice.Util;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class TestClientUtils {
 
     public static IceRespose doService(IceRequest iceRequest) {
@@ -40,7 +42,7 @@ public class TestClientUtils {
             System.out.println("tps " + count * 1000.0 / used);
             return rs;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("{}", e);
             status = 1;
             System.exit(status);
         } finally {

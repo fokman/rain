@@ -44,7 +44,7 @@ public class ApiGatewayTest {
             IceRequest iceRequest = new IceRequest();
             iceRequest.setMethod("add");
             iceRequest.setService("RoleService");
-            iceRequest.setAttr("roleId", String.valueOf(IdWorker.getFlowIdWorkerInstance().nextId()));
+            iceRequest.setAttr("roleId", IdWorker.getIdStr());
             iceRequest.setAttr("roleName", "系统管理员");
             iceRequest.addAttr("createTime", new Date());
             iceRequest.addAttr("updateTime", new Date());

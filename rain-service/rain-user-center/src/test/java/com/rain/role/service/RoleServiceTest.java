@@ -32,7 +32,7 @@ public class RoleServiceTest {
         iceRequest.setAttr("code", "User");
         iceRequest.setAttr("name", "管理员");
         iceRequest.addAttr("updateTime", new Date());
-        iceRequest.setAttr("tenantId", "1101");
+        iceRequest.addAttr("tenantId", "1101");
         log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
         IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JSONUtil.toJsonStr(iceResponse));

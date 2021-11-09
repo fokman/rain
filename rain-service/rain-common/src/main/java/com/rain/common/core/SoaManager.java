@@ -111,12 +111,10 @@ public class SoaManager {
             long spend = (System.currentTimeMillis() - begin);
             StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(), false);
             log.info("time:[{}.{}] to spend:{}ms", msgRequest.service, msgRequest.method, spend);
-            log.info("josn: {}", JSONUtil.toJsonStr(iceRespose));
+            log.info("json: {}", JSONUtil.toJsonStr(iceRespose));
             return iceRespose;//json;
         } catch (Throwable e) {
-            e.printStackTrace();
             String msg = e.getCause() != null ? e.getCause().getMessage() : e.getMessage();
-            //return JsonUtils.toJson(iceRespose);
             StatAnalyzer.getInstance().onResult(serviceId, methodId, begin, System.currentTimeMillis(), true);
             return returnRespose(303, msg);
         }

@@ -3,7 +3,6 @@ package com.rain.common.ice.v1.impl;
 import com.rain.common.core.SoaManager;
 import com.rain.common.ice.v1.message.MessageService;
 import com.rain.common.ice.v1.message.MsgRequest;
-import com.rain.common.ice.v1.message._MessageServicePrxI;
 import com.zeroc.Ice.Current;
 
 /**

@@ -1,5 +1,6 @@
 package com.rain.web.com.rain.web.api;
 
+import cn.hutool.core.io.FileUtil;
 import com.github.tobato.fastdfs.FdfsClientConfig;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
@@ -60,7 +61,8 @@ public class ApiGateway {
                 for (MultipartFile multipartFile : multipartFiles) {
                     String originalFilename = multipartFile.getOriginalFilename();
                     InputStream inputStream = multipartFile.getInputStream();
-                    StorePath storePath = fastFileStorageClient.uploadFile(inputStream, multipartFile.getSize(), Files.getFileExtension(originalFilename), null);
+                    StorePath storePath = fastFileStorageClient.uploadFile(inputStream, multipartFile.getSize(),
+                            FileUtil.extName(originalFilename), null);
                     String finalPath = storePath.getFullPath() + "?attname=" + URLEncoder.encode(originalFilename, "UTF-8");
                     multis.put(originalFilename, finalPath);
                     iceRespose.setData(multis);

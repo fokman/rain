@@ -2,7 +2,6 @@ package com.rain.common.uitls;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
-import com.rain.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

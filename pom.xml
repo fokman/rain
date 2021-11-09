@@ -10,7 +10,7 @@
     <name>Rain</name>
 
     <modules>
-        <!--        <module>rain-web</module>-->
+        <module>rain-web</module>
         <module>rain-service</module>
     </modules>
 

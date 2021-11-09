@@ -26,12 +26,12 @@ public class RoleService extends BaseService {
     @Transactional
     public IceRespose add(IceRequest iceRequest) {
         log.info("start role service add method.");
-        iceRequest.setAttr("id", IdWorker.getIdStr());
+        iceRequest.addAttr("id", IdWorker.getIdStr());
         iceRequest.setAttr("code", iceRequest.getAttr("code"));
         iceRequest.setAttr("name", iceRequest.getAttr("name"));
         iceRequest.addAttr("createTime", new Date());
         iceRequest.addAttr("updateTime", new Date());
-        iceRequest.setAttr("tenantId", "1101");
+        iceRequest.addAttr("tenantId", "1101");
         getDao().insert(ROLE_MAPPER, INSERT, iceRequest.getAttrMap());
         IceRespose response = new IceRespose();
         response.setCode(200, "insert role success!");

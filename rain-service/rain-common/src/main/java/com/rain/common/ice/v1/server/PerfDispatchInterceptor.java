@@ -39,7 +39,6 @@ public class PerfDispatchInterceptor extends DispatchInterceptor {
         log.info("{} begin", inf);
 
         try {
-
             CompletionStage<OutputStream> reslt = id2ObjectMAP.get(request.getCurrent().id).ice_dispatch(request);
             log.info("{} success", inf);
             return reslt;
