@@ -24,7 +24,7 @@ public class UnknownTypeHandler extends BaseTypeHandler<Object> {
 
   private static final ObjectTypeHandler OBJECT_TYPE_HANDLER = new ObjectTypeHandler();
 
-  private TypeHandlerRegistry typeHandlerRegistry;
+  private final TypeHandlerRegistry typeHandlerRegistry;
 
   public UnknownTypeHandler(TypeHandlerRegistry typeHandlerRegistry) {
     this.typeHandlerRegistry = typeHandlerRegistry;

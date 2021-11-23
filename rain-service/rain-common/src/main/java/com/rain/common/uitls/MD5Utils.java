@@ -1,5 +1,6 @@
 package com.rain.common.uitls;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +19,7 @@ public class MD5Utils {
         if (StringUtils.isEmpty(inStr)) {
             return "";
         }
-        byte[] byteArray = inStr.getBytes("UTF-8");
+        byte[] byteArray = inStr.getBytes(StandardCharsets.UTF_8);
         byte[] md5Bytes = md5.digest(byteArray);
         StringBuffer hexValue = new StringBuffer();
         for (int i = 0; i < md5Bytes.length; i++) {

@@ -20,7 +20,7 @@ public interface MessageService extends com.zeroc.Ice.Object
     String doInvoke(MsgRequest context, com.zeroc.Ice.Current current);
 
     /** @hidden */
-    static final String[] _iceIds =
+    String[] _iceIds =
     {
         "::Ice::Object",
         "::message::MessageService"
@@ -65,7 +65,7 @@ public interface MessageService extends com.zeroc.Ice.Object
     }
 
     /** @hidden */
-    final static String[] _iceOps =
+    String[] _iceOps =
     {
         "doInvoke",
         "ice_id",

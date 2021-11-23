@@ -18,7 +18,7 @@ public class TestClientUtils {
     }
 
     public static IceRespose doService(IceRequest iceRequest, String[] args) {
-        int status = 0;
+        int status;
         Communicator ic = null;
         try {
             // 初始化通信器

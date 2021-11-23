@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class IdWorker {
-    private static Long workerId = 0L;
-    private static Long dataCenterId = 1L;
 
     private static Snowflake getInstance() {
+        Long dataCenterId = 1L;
+        Long workerId = 0L;
         return IdUtil.getSnowflake(workerId, dataCenterId);
     }
 

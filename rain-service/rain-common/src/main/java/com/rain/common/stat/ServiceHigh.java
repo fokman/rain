@@ -13,7 +13,7 @@ public class ServiceHigh {
 	private static final int CAPACITY_SIZE = 5000;
 	private static final int DELETE_SIZE = 10;
 	private long slowTime=3000;
-	private LinkedHashMap<String, ServiceFrequency> serFrequencyMap = new LinkedHashMap<String, ServiceFrequency>();	
+	private final LinkedHashMap<String, ServiceFrequency> serFrequencyMap = new LinkedHashMap<String, ServiceFrequency>();
 	
 
 	public void addMethod(String sname,long executeTime,long startTime, long endTime,boolean isError){
@@ -50,7 +50,7 @@ public class ServiceHigh {
 	 * 获取 SQL 访问频率
 	 */
 	public List<Map.Entry<String, ServiceFrequency>> getSerFrequency(boolean isCount,boolean isClear) {		
-		List<Map.Entry<String, ServiceFrequency>> list = null;		
+		List<Map.Entry<String, ServiceFrequency>> list;
   //      lock.readLock().lock();
   //      try {
 		  if (isCount){

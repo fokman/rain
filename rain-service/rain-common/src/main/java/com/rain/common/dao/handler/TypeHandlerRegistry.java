@@ -185,8 +185,7 @@ private <T> TypeHandler<T> getTypeHandler(Type type, JdbcType jdbcType) {
       handler = new EnumTypeHandler((Class<?>) type);
     }
     // type drives generics here
-    TypeHandler<T> returned = (TypeHandler<T>) handler;
-    return returned;
+      return (TypeHandler<T>) handler;
   }
 
   public TypeHandler<Object> getUnknownTypeHandler() {

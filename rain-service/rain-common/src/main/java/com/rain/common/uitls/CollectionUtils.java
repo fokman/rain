@@ -5,7 +5,6 @@ import com.rain.common.exception.ServiceException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("unchecked")
 public class CollectionUtils {
     public static List<String> valueOfList(String str) {
         return valueOfList(str, ",");
@@ -17,9 +16,8 @@ public class CollectionUtils {
             throw new ServiceException("str is null");
         }
         String[] strs = str.split(split);
-        List<String> result = Arrays.stream(strs).filter(string -> !StringUtils.isEmpty(string))
+        return Arrays.stream(strs).filter(string -> !StringUtils.isEmpty(string))
                 .collect(Collectors.toList());
-        return result;
     }
 
    /* @SuppressWarnings("rawtypes")

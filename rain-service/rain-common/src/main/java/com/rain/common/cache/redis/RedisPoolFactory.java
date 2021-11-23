@@ -18,14 +18,14 @@ public class RedisPoolFactory extends CachePoolFactory {
         if (pool == null) {
             try {
                 String address = props.getProperty("pool.address");
-                Integer port = Integer.valueOf(props.getProperty("pool.port"));
+                int port = Integer.parseInt(props.getProperty("pool.port"));
                 String auth = props.getProperty("pool.auth");
-                Integer maxActive = Integer.valueOf(props.getProperty("pool.maxActive"));
-                Integer maxIdle = Integer.valueOf(props.getProperty("pool.maxIdle"));
-                Integer maxWait = Integer.valueOf(props.getProperty("pool.maxWait"));
-                Integer timeout = Integer.valueOf(props.getProperty("pool.timeout"));
-                Boolean testOnBorrow = Boolean.valueOf(props.getProperty("pool.testOnBorrow"));
-                Boolean testOnReturn = Boolean.valueOf(props.getProperty("pool.testOnReturn"));
+                int maxActive = Integer.parseInt(props.getProperty("pool.maxActive"));
+                int maxIdle = Integer.parseInt(props.getProperty("pool.maxIdle"));
+                int maxWait = Integer.parseInt(props.getProperty("pool.maxWait"));
+                int timeout = Integer.parseInt(props.getProperty("pool.timeout"));
+                boolean testOnBorrow = Boolean.parseBoolean(props.getProperty("pool.testOnBorrow"));
+                boolean testOnReturn = Boolean.parseBoolean(props.getProperty("pool.testOnReturn"));
 
                 JedisPoolConfig config = new JedisPoolConfig();
                 config.setMaxTotal(maxActive);

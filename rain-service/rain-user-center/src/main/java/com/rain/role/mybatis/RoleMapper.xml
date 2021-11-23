@@ -4,19 +4,32 @@
 <mapper namespace="RoleMapper">
 
     <sql id="Base_Column_List">
-    role_id, role_name, create_time, update_time
-  </sql>
+        id
+        ,code,name, create_time, update_time,tenant_id
+    </sql>
 
+    <select id="query" parameterType="map" resultType="map">
+        select *
+        from sys_role
+    </select>
+
+    <select id="count" resultType="int" parameterType="map">
+        select count(*)
+        from base_student
+
+    </select>
 
     <insert id="insert" parameterType="java.util.Map">
-    insert into sys_role(id, code, name,create_time,
-      update_time,tenant_id)
-    values (#{id}, #{code},  #{name},#{createTime},
-      #{updateTime},#{tenantId})
-  </insert>
+        insert into sys_role(id, code, name, create_time,
+                             update_time, tenant_id)
+        values (#{id}, #{code}, #{name}, #{createTime},
+                #{updateTime}, #{tenantId})
+    </insert>
 
     <delete id="delete" parameterType="java.lang.String">
-        delete from sys_role where id= #{id}
+        delete
+        from sys_role
+        where id = #{id}
     </delete>
 
     <update id="update" parameterType="java.util.Map">

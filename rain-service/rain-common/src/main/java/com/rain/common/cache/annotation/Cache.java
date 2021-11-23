@@ -9,11 +9,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME) 
 public @interface Cache {
 	//过期时间
-    public int seconds() default -1;
+    int seconds() default -1;
     //前缀
-    public String prefix();
+    String prefix();
     //参数
-    public String[] params() default {};
+    String[] params() default {};
     //操作类型
-    public CacheTypeEnum type() default CacheTypeEnum.ADD;
+    CacheTypeEnum type() default CacheTypeEnum.ADD;
 }

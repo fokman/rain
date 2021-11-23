@@ -9,7 +9,7 @@ public class SerializeUtils {
 
     public static byte[] serialize(Object object) {
         ObjectOutputStream oos = null;
-        ByteArrayOutputStream baos = null;
+        ByteArrayOutputStream baos;
 
         try {
             baos = new ByteArrayOutputStream();

@@ -6,7 +6,7 @@ import java.util.Map;
 public class StatAnalyzer {
     //慢调用的时间阀值
 	private  long SLOW_TIME = 3000;
-	private ServiceHigh sHighStat = new ServiceHigh();//服务方法统计
+	private final ServiceHigh sHighStat = new ServiceHigh();//服务方法统计
 	//private ServiceHigh sysStat = new ServiceHigh();//系统统计
 	private final static StatAnalyzer instance  = new StatAnalyzer();
 	

@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 @Slf4j
+@Deprecated
 public class TransInterceptor implements Interceptor {
     private static final String PREFIX_LINKER = "$";
 
@@ -23,7 +24,7 @@ public class TransInterceptor implements Interceptor {
     @Override
     public void afterHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
         // @Trans(params = {"publish_user,org_user,nick_name", "replyUser,org_user,nick_name"})
-        try{
+        try {
             Trans trans = method.getAnnotation(Trans.class);
             if (trans != null) {
                 if (trans.type() == TransType.QUERY) {//id to name 翻译
@@ -61,8 +62,8 @@ public class TransInterceptor implements Interceptor {
                 }
 
             }
-        }catch (Exception e){
-            log.error(e.getClass()+"\t"+e.getMessage()+"\t"+e.getStackTrace());
+        } catch (Exception e) {
+            log.error(e.getClass() + "\t" + e.getMessage() + "\t" + e.getStackTrace());
         }
 
     }
@@ -90,20 +91,22 @@ public class TransInterceptor implements Interceptor {
 
         }
     }
-    private boolean getTableRedis(String table){
-    	return TransStartUp.putTableRedis(table);
+
+    private boolean getTableRedis(String table) {
+        return TransStartUp.putTableRedis(table);
     }
+
     private void getRedis(IceRespose iceRespose, String id, String table, String name) {
         if (iceRespose.getCode() == 0) {
             //如果缓存没数据，先加载
-            if (!getTableRedis(table)) return ;
+            if (!getTableRedis(table)) return;
             Object data = iceRespose.getData();
             List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
             if (data instanceof List) {
                 //RedisUtils.set(table, "1");
                 List<?> list = (List<?>) data;
                 int dlen = list.size();
-                if (dlen<=0) return ;
+                if (dlen <= 0) return;
                 //List<String> ids = new ArrayList<String>();
                 //                String ids = "";
                 StringBuffer ids = new StringBuffer();
@@ -115,13 +118,12 @@ public class TransInterceptor implements Interceptor {
                 }
                 List<String> idValues = RedisUtils.gets(ids.toString().split("\\,"));
                 int len = idValues.size();
-                if (len!=dlen){
-                	log.warn("table: {}  Db data szie {} sizes unequal, Redis data szie: {}", table,dlen, len);
-                	return ;
+                if (len != dlen) {
+                    log.warn("table: {}  Db data szie {} sizes unequal, Redis data szie: {}", table, dlen, len);
+                    return;
                 }
                 for (int i = 0; i < len; i++) {
-                    Map<String, Object> rowMap = new HashMap<String, Object>();
-                    rowMap.putAll((Map) list.get(i));
+                    Map<String, Object> rowMap = new HashMap<String, Object>((Map) list.get(i));
                     rowMap.put(name, idValues.get(i));
                     rows.add(rowMap);
                 }
@@ -164,7 +166,7 @@ public class TransInterceptor implements Interceptor {
         if (data != null && !data.isEmpty()) {
             Set set = data.keySet();
             String keyId = "";
-            for (Iterator iter = set.iterator(); iter.hasNext();) {
+            for (Iterator iter = set.iterator(); iter.hasNext(); ) {
                 String key = (String) iter.next();
                 if (key.equals(id)) {
                     keyId = String.valueOf(data.get(key));
@@ -174,9 +176,7 @@ public class TransInterceptor implements Interceptor {
                     rowMap.put(name, keyName);
                 }
             }
-            for (Entry<String, Object> entry : rowMap.entrySet()) {
-                data.put(entry.getKey(), entry.getValue());
-            }
+            data.putAll(rowMap);
             return data;
         } else {
             return null;

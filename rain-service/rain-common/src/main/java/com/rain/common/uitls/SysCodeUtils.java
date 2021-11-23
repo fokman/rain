@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class SysCodeUtils {
     private Properties props;
-    private String filePath;
+    private final String filePath;
     private static SysCodeUtils instance = null;
 
     private SysCodeUtils() {

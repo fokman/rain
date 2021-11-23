@@ -4,6 +4,6 @@ import com.rain.common.ice.v1.model.IceRequest;
 
 public interface ValidParamService {
 	
-	public void doValid(IceRequest request);
+	void doValid(IceRequest request);
 	
 }

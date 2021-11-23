@@ -14,7 +14,7 @@ public class CacheService {
 
     private final static CacheService instance = new CacheService();
 
-    public final static CacheService getInstance() {
+    public static CacheService getInstance() {
         return instance;
     }
 
@@ -159,7 +159,7 @@ public class CacheService {
     public void close() {
     }
 
-    private final static Properties getProviderProperties(Properties props, String cachename) {
+    private static Properties getProviderProperties(Properties props, String cachename) {
 
         Enumeration<Object> keys = props.keys();
         if (keys.hasMoreElements()) {

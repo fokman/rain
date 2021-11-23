@@ -19,11 +19,10 @@ import java.util.Properties;
 @Slf4j
 public class IceClientUtils {
     private static volatile Communicator ic = null;
-    private static Map<Class, ObjectPrx> cls2PrxMap = new HashMap<>();
+    private static final Map<Class, ObjectPrx> cls2PrxMap = new HashMap<>();
     private static volatile long lastAccessTimestamp;
     private static volatile MonitorThread nonitorThread;
     private static final long idleTimeOutSeconds = 60;//60 没执行成功，关闭ice
-    private static String iceLocator = "RainIceGrid/Locator:tcp -h 127.0.0.1 -p 12000";
     private static final String locatorKey = "--Ice.Default.Locator";
     private static final String ICE_GRID_PROPS = "icegrid.properties";
 
@@ -31,7 +30,7 @@ public class IceClientUtils {
         if (ic == null) {
             synchronized (IceClientUtils.class) {
                 Properties iceGrid = getProperties(ICE_GRID_PROPS);
-                iceLocator = iceGrid.getProperty("iceLocator");
+                String iceLocator = iceGrid.getProperty("iceLocator");
                 log.info("{} Ice client's locator is {} proxy cache time out seconds:{}", DateUtils.getStrCurrtTime()
                         , iceLocator, idleTimeOutSeconds);
                 String[] initParams = new String[]{locatorKey + "=" + iceLocator};
@@ -142,7 +141,6 @@ public class IceClientUtils {
      * @param
      * @return ObjectPrx
      */
-    @SuppressWarnings("rawtypes")
     /*public static ObjectPrx getSerivcePrx(Class serviceCls, String Version) {
         ObjectPrx proxy = cls2PrxMap.get(serviceCls);
         if (proxy != null) {
@@ -166,8 +164,7 @@ public class IceClientUtils {
             MessageServicePrx messageServicePrx = MessageServicePrx.checkedCast(base);
             MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(),
                     iceRequest.getExtData(), iceRequest.getAttr());
-            String out = messageServicePrx.doInvoke(in);
-            return out;
+            return messageServicePrx.doInvoke(in);
         } catch (Exception e) {
             log.error("{}", e);
             throw new RuntimeException(e);

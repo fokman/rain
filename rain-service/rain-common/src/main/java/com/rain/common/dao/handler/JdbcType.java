@@ -56,7 +56,7 @@ public enum JdbcType {
   STRUCT(Types.STRUCT);
 
   public final int TYPE_CODE;
-  private static Map<Integer,JdbcType> codeLookup = new HashMap<Integer,JdbcType>();
+  private static final Map<Integer,JdbcType> codeLookup = new HashMap<Integer,JdbcType>();
 
   static {
     for (JdbcType type : JdbcType.values()) {

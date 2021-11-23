@@ -1,6 +1,8 @@
 package com.rain.common.uitls;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -126,7 +128,7 @@ public class RedisUtils {
             jedis = getJedis();
             return jedis.mget(keys);
         } catch (Exception e) {
-            String msg = "Error thrown while getting keys :" + keys;
+            String msg = "Error thrown while getting keys :{}" + Arrays.toString(keys);
             log.error(msg, e);
             throw new RuntimeException(msg, e);
         } finally {
@@ -142,7 +144,7 @@ public class RedisUtils {
             if (e == null) {
                 return false;
             } else {
-                String result = jedis.set(key.getBytes("utf-8"), e);
+                String result = jedis.set(key.getBytes(StandardCharsets.UTF_8), e);
                 return "OK".equals(result);
             }
         } catch (Exception e) {
@@ -158,7 +160,7 @@ public class RedisUtils {
         Jedis jedis = null;
         try {
             jedis = getJedis();
-            byte[] e = jedis.get(key.getBytes("utf-8"));
+            byte[] e = jedis.get(key.getBytes(StandardCharsets.UTF_8));
             if (e == null) {
                 return null;
             } else {

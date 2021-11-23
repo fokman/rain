@@ -64,4 +64,16 @@ public class RoleServiceTest {
         log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
+    @Test
+    public void testList() {
+        IceRequest iceRequest = new IceRequest();
+        iceRequest.setService("RoleService");
+        iceRequest.setMethod("list");
+        iceRequest.addAttr("page", "1");
+        iceRequest.addAttr("pagesize", "2");
+        log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
+        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        log.info("message {}", iceResponse.getData());
+    }
+
 }

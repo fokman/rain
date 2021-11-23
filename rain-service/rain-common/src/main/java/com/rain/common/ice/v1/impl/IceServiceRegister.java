@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class IceServiceRegister {
 
     private static final ConcurrentHashMap<String, Object> registerMap = new ConcurrentHashMap<>();
-    private static IceServiceRegister register = new IceServiceRegister();
+    private static final IceServiceRegister register = new IceServiceRegister();
 
     public Object getService(String key) {
         return registerMap.get(key);

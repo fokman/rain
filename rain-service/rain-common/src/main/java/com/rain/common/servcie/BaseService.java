@@ -5,9 +5,14 @@ import com.rain.common.dao.impl.DaoMybatisImpl;
 import com.rain.common.ice.v1.exception.SysException;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.uitls.SysCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import com.rain.common.uitls.SysCodeUtils;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 @Slf4j
 public class BaseService {
@@ -16,7 +21,7 @@ public class BaseService {
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
     public static final String INSERT = "insert";
-//    public static final String IS_PAGE = "isPage";
+    //    public static final String IS_PAGE = "isPage";
     public static final String PAGE = "page";
     public static final String PAGE_SIZE = "pageSize";
 //    public static final String DTL = "dtl";
@@ -40,15 +45,22 @@ public class BaseService {
         return "";
     }
 
-    /*
-     * protected Map<String, Object> mapStrtoObj(Map<String, String> paramData)
-     * { Map<String, Object> params = new HashMap<String, Object>(); if
-     * (paramData != null && !paramData.isEmpty()){ Set set =
-     * paramData.keySet(); for(Iterator iter = set.iterator(); iter.hasNext();){
-     * String key = (String)iter.next(); String value=paramData.get(key).trim();
-     * if (!StringUtils.isBlank(value)){ params.put(key, value); } } }
-     * //params.putAll(paramData); return params; }
-     */
+    protected Map<String, Object> mapStrtoObj(Map<String, String> paramData) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        if (paramData != null && !paramData.isEmpty()) {
+            Set set = paramData.keySet();
+            for (Iterator iter = set.iterator(); iter.hasNext(); ) {
+                String key = (String) iter.next();
+                String value = paramData.get(key).trim();
+                if (!StringUtils.isBlank(value)) {
+                    params.put(key, value);
+                }
+            }
+        }
+        params.putAll(paramData);
+        return params;
+    }
+
     public IceRespose query(IceRequest context, String namespace) {
         IceRespose iceRespose = new IceRespose();
         try {
@@ -60,7 +72,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -84,7 +96,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(1);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -101,7 +113,7 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -118,14 +130,15 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
         return iceRespose;
     }
 
-    public IceRespose queryByPage(IceRequest context, String namespace, String queryStatement, String countStatement) {
+    public IceRespose queryByPage(IceRequest context, String namespace, String queryStatement, String
+            countStatement) {
         IceRespose iceRespose = new IceRespose();
         try {
             if (queryStatement == null || queryStatement.length() == 0) {
@@ -144,14 +157,15 @@ public class BaseService {
             iceRespose.setMsg("查询到" + iceRespose.getTotal() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
         return iceRespose;
     }
 
-    public IceRespose queryCombox(IceRequest context, String namespace, String queryStatement, String countStatement) {
+    public IceRespose queryCombox(IceRequest context, String namespace, String queryStatement, String
+            countStatement) {
         IceRespose iceRespose = new IceRespose();
         try {
             if (queryStatement == null || queryStatement.length() == 0) {
@@ -170,7 +184,7 @@ public class BaseService {
             }
             iceRespose = queryByPage(context, namespace, queryStatement, countStatement);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(1);
             throw new SysException("查询失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -184,7 +198,7 @@ public class BaseService {
             iceRespose.setMsg("新增成功!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("新增失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -198,7 +212,7 @@ public class BaseService {
             iceRespose.setMsg("成功修改" + count + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("修改失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -214,7 +228,7 @@ public class BaseService {
             iceRespose.setMsg("成功删除");// + context.getRows().size() + "条记录!");
             iceRespose.setCode(0);
         } catch (Exception e) {
-            log.error("{}",e);
+            log.error("{}", e);
             iceRespose.setCode(9);
             throw new SysException("删除失败,系统异常!case:" + e.getMessage(), e.getCause());
         }
@@ -229,11 +243,12 @@ public class BaseService {
     }
 
     /**
-    * 方法描述:设置错误代码及方法
-    * @param code
-    * @param msg
-    * @return
-    * @创建日期 2016年7月7日
+     * 方法描述:设置错误代码及方法
+     *
+     * @param code
+     * @param msg
+     * @return
+     * @创建日期 2016年7月7日
      */
     public IceRespose setErrInfo(int code, String msg) {
         IceRespose respose = new IceRespose();
@@ -244,11 +259,11 @@ public class BaseService {
     }
 
     /**
-     * 
-    * 方法描述直接设置错误码
-    * @param errCode
-    * @return
-    * @创建日期 2016年7月7日
+     * 方法描述直接设置错误码
+     *
+     * @param errCode
+     * @return
+     * @创建日期 2016年7月7日
      */
     public IceRespose setErr(int errCode) {
         return setErrInfo(errCode, "");
@@ -256,11 +271,12 @@ public class BaseService {
 
     /**
      * 设置错误码,并返回对应的业务数据
-    * 方法描述
-    * @param errCode
-    * @param data
-    * @return
-    * @创建日期 2016年7月7日
+     * 方法描述
+     *
+     * @param errCode
+     * @param data
+     * @return
+     * @创建日期 2016年7月7日
      */
     public IceRespose setErr(int errCode, Object data) {
         IceRespose respose = new IceRespose();

@@ -13,7 +13,7 @@ public @interface Trans {
 	//获取其他服务的初始化数据
     //public String[] SrvMethod() default {};
     //参数，每个参数包括三部分 srcId(需要翻译ID),desId(目的表的对应ID),desName(目的表的翻译结果字段)
-    public String[] params() default {};  
+    String[] params() default {};
     //操作类型
-    public TransType type() default TransType.QUERY;
+    TransType type() default TransType.QUERY;
 }

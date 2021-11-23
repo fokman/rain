@@ -17,7 +17,7 @@ public class ValidationSupport {
 	private static boolean b = false;
 	private static final Map<String, List<Map<String, String>>> validataionMap = new HashMap<>();
 
-	public static final void init() throws Exception {
+	public static void init() throws Exception {
 		log.info("ValidationSupport ini time: {}", DateUtils.getStrCurrtTime());
 		if (!b) {
 			String eduHome = AppUtils.getInstance().getEnvHome();
@@ -34,7 +34,7 @@ public class ValidationSupport {
 	}
 
 	@SuppressWarnings({ "unchecked" })
-	private static final void initFile(File fileDir) throws Exception {
+	private static void initFile(File fileDir) throws Exception {
 		File[] files = fileDir.listFiles();
 		for (File file : files) {
 			if (file.isDirectory()) {

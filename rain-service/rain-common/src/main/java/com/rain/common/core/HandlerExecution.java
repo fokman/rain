@@ -8,8 +8,7 @@ import com.rain.common.ice.v1.model.IceRespose;
 
 public class HandlerExecution {
 
-    private Interceptor[] interceptors;
-    private int interceptorIndex = -1;
+    private final Interceptor[] interceptors;
 
     public HandlerExecution(Interceptor... interceptors) {
         this.interceptors = interceptors;
@@ -20,26 +19,25 @@ public class HandlerExecution {
     }
 
     private boolean isEmpty(Object[] array) {
-        return (array == null || array.length == 0);
+        return (array != null && array.length != 0);
     }
 
     boolean applyPreHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) throws Exception {
         Interceptor[] interceptors = getInterceptors();
-        if (!isEmpty(interceptors)) {
+        if (isEmpty(interceptors)) {
             for (int i = 0; i < interceptors.length; i++) {
                 Interceptor interceptor = interceptors[i];
                 if (!interceptor.preHandle(iceCls, method, iceRequest, iceRespose)) {
                     return false;
                 }
-                this.interceptorIndex = i;
             }
         }
         return true;
     }
 
-    void applyAfterHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) throws Exception {
+    void applyAfterHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
         Interceptor[] interceptors = getInterceptors();
-        if (!isEmpty(interceptors)) {
+        if (isEmpty(interceptors)) {
             for (int i = interceptors.length - 1; i >= 0; i--) {
                 Interceptor interceptor = interceptors[i];
                 interceptor.afterHandle(iceCls, method, iceRequest, iceRespose);
@@ -47,5 +45,5 @@ public class HandlerExecution {
         }
     }
 
-    
+
 }

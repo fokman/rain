@@ -9,6 +9,8 @@ import com.rain.common.uitls.IdWorker;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Project Name: Rain
@@ -58,6 +60,10 @@ public class RoleService extends BaseService {
         IceRespose response = new IceRespose();
         response.setCode(200, "insert role success!");
         return response;
+    }
+
+    public IceRespose list(IceRequest iceRequest) {
+        return super.query(iceRequest, ROLE_MAPPER);
     }
 
 

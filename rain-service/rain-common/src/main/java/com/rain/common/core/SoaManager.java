@@ -20,7 +20,7 @@ public class SoaManager {
     private volatile static SoaManager soaManager;
 
     private static final IceServiceRegister register = IceServiceRegister.getInstance();
-    private HandlerExecution handlerExecution;
+    private final HandlerExecution handlerExecution;
 
     private SoaManager() {
         handlerExecution = new HandlerExecution(new ValidInterceptor(), new CacheInterceptor(), new TransInterceptor());
@@ -51,10 +51,9 @@ public class SoaManager {
         String methodId = msgRequest.method;
         try {
             log.info("service {} {} begin", serviceId, methodId);
-            String key = serviceId;
             Object iceCls = null;
             if (serviceId != null && serviceId.length() != 0) {
-                iceCls = register.getService(key);
+                iceCls = register.getService(serviceId);
             }
             if (iceCls == null) {
                 return returnRespose(300, "无效的服务名  serverId:" + serviceId);//JsonUtils.toJson(iceRespose);
