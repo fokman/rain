@@ -4,14 +4,15 @@ import cn.hutool.core.io.FileUtil;
 import com.github.tobato.fastdfs.FdfsClientConfig;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import com.google.common.io.Files;
 import com.rain.common.ice.v1.model.IceRequest;
 import com.rain.common.ice.v1.model.IceRespose;
 import com.rain.common.ice.v1.utils.IceClientUtils;
 import com.rain.common.uitls.JsonUtils;
+import com.rain.web.config.MessageUtils;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.annotation.Import;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -35,10 +35,12 @@ import java.util.Set;
 @Import({FdfsClientConfig.class})
 //用来处理jmx重复处理bean的问题
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
+@AllArgsConstructor
 public class ApiGateway {
+    protected final FastFileStorageClient fastFileStorageClient;
 
     @RequestMapping("/api")
-    public IceRespose apiExecute(@RequestBody IceRequest iceRequest) throws IOException {
+    public IceRespose apiExecute(@RequestBody IceRequest iceRequest) {
         long begin = System.currentTimeMillis();
         // 请求服务：RPC请求或者http请求。
         IceRespose iceRespose = invoke(iceRequest);
@@ -48,9 +50,6 @@ public class ApiGateway {
         return iceRespose;
     }
 
-
-    @Autowired
-    protected FastFileStorageClient fastFileStorageClient;
 
     @PostMapping(value = "/upload")
     public IceRespose upload(@RequestParam(name = "files") MultipartFile[] multipartFiles, IceRequest iceRequest) {
@@ -152,11 +151,11 @@ public class ApiGateway {
         String method = iceRequest.getMethod();
 
         IceRespose iceRespose = new IceRespose();
-        if (service == null || service.length() == 0) {
-            iceRespose.setCode(2, "服务名为空,请求失败!");
+        if (StringUtils.isEmpty(service)) {
+            iceRespose.setCode(2, MessageUtils.get("apigateway.invoke.service_not_null"));
             return iceRespose;
         }
-        if (method == null || method.length() == 0) {
+        if (StringUtils.isEmpty(method)) {
             iceRespose.setCode(2, "方法名为空,请求失败!");
             return iceRespose;
         }
@@ -165,9 +164,10 @@ public class ApiGateway {
             iceRespose = JsonUtils.toObject(json, IceRespose.class);
             return iceRespose;
         } catch (Exception e) {
-            log.error("API调用:[{}.{}]RPC服务时异常：{}", e.toString(), service, method);
+            log.error("API调用:[{}.{}]RPC服务时异常：{}", e, service, method);
         }
         return iceRespose;
     }
+
 
 }

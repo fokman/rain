@@ -12,4 +12,5 @@ public class RainWebApplication {
         log.info("start Rain web application.");
         SpringApplication.run(RainWebApplication.class, args);
     }
+
 }

@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: prod
+  messages:
+    basename: static/i18n/messages
 server:
   port: 8087
   servlet:
