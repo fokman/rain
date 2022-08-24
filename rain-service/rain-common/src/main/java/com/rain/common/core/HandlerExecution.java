@@ -3,7 +3,7 @@ package com.rain.common.core;
 import java.lang.reflect.Method;
 
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 
 
 public class HandlerExecution {
@@ -22,7 +22,7 @@ public class HandlerExecution {
         return (array != null && array.length != 0);
     }
 
-    boolean applyPreHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) throws Exception {
+    boolean applyPreHandle(Object iceCls, Method method, IceRequest iceRequest, IceResponse iceRespose) throws Exception {
         Interceptor[] interceptors = getInterceptors();
         if (isEmpty(interceptors)) {
             for (int i = 0; i < interceptors.length; i++) {
@@ -35,7 +35,7 @@ public class HandlerExecution {
         return true;
     }
 
-    void applyAfterHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
+    void applyAfterHandle(Object iceCls, Method method, IceRequest iceRequest, IceResponse iceRespose) {
         Interceptor[] interceptors = getInterceptors();
         if (isEmpty(interceptors)) {
             for (int i = interceptors.length - 1; i >= 0; i--) {

@@ -2,7 +2,7 @@ package com.rain.role.service;
 
 import cn.hutool.json.JSONUtil;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.rain.common.uitls.IdWorker;
 import com.rain.common.uitls.TestClientUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class RoleServiceTest {
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.addAttr("tenantId", "1101");
         log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
-        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
@@ -45,7 +45,7 @@ public class RoleServiceTest {
         iceRequest.setService("RoleService");
         iceRequest.setAttr("id", "699795998179856384");
         log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
-        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
@@ -60,7 +60,7 @@ public class RoleServiceTest {
         iceRequest.addAttr("updateTime", new Date());
         iceRequest.setAttr("tenantId", "1102");
         log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
-        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", JSONUtil.toJsonStr(iceResponse));
     }
 
@@ -72,7 +72,7 @@ public class RoleServiceTest {
         iceRequest.addAttr("page", "1");
         iceRequest.addAttr("pagesize", "2");
         log.info("request params:{}", JSONUtil.toJsonStr(iceRequest));
-        IceRespose iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
+        IceResponse iceResponse = TestClientUtils.doService(iceRequest, new String[]{});
         log.info("message {}", iceResponse.getData());
     }
 

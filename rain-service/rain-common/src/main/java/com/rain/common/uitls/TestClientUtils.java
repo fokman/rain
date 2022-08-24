@@ -4,7 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.rain.common.ice.v1.message.MessageServicePrx;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.ObjectPrx;
 import com.zeroc.Ice.Util;
@@ -13,11 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestClientUtils {
 
-    public static IceRespose doService(IceRequest iceRequest) {
+    public static IceResponse doService(IceRequest iceRequest) {
         return doService(iceRequest, null);
     }
 
-    public static IceRespose doService(IceRequest iceRequest, String[] args) {
+    public static IceResponse doService(IceRequest iceRequest, String[] args) {
         int status;
         Communicator ic = null;
         try {
@@ -36,7 +36,7 @@ public class TestClientUtils {
             MsgRequest in = new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtData(),
                     iceRequest.getAttr());
             String str = messageServicePrx.doInvoke(in);
-            IceRespose rs = JSONUtil.toBean(str, IceRespose.class);
+            IceResponse rs = JSONUtil.toBean(str, IceResponse.class);
 
             long used = System.currentTimeMillis() - start;
             System.out.println("tps " + count * 1000.0 / used);

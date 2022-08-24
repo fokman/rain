@@ -6,7 +6,7 @@ import com.rain.common.dao.TxUtils;
 import com.rain.common.ice.v1.impl.IceServiceRegister;
 import com.rain.common.ice.v1.message.MsgRequest;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.rain.common.servcie.config.Transactional;
 import com.rain.common.stat.StatAnalyzer;
 import com.rain.common.translate.TransInterceptor;
@@ -37,15 +37,15 @@ public class SoaManager {
         return soaManager;
     }
 
-    private IceRespose returnRespose(Integer code, String msg) {
-        IceRespose iceRespose = new IceRespose();
+    private IceResponse returnRespose(Integer code, String msg) {
+        IceResponse iceRespose = new IceResponse();
         iceRespose.setCode(code);
         iceRespose.setMsg(msg);
         log.error(iceRespose.getMsg());
         return iceRespose;
     }
 
-    public IceRespose doInvoke(MsgRequest msgRequest) {
+    public IceResponse doInvoke(MsgRequest msgRequest) {
         long begin = System.currentTimeMillis();
         String serviceId = msgRequest.service;
         String methodId = msgRequest.method;
@@ -79,7 +79,7 @@ public class SoaManager {
                 iceRequest.getAttr().putAll(msgRequest.attr);
             }
             log.debug("doInvoke -->iceRequest = {}", iceRequest.getAttrMap().toString());
-            IceRespose iceRespose = new IceRespose();
+            IceResponse iceRespose = new IceResponse();
             //启用拦截器
             if (!handlerExecution.applyPreHandle(iceCls, method, iceRequest, iceRespose)) {
                 return iceRespose;
@@ -90,7 +90,7 @@ public class SoaManager {
             if (ts != null && ts.length > 0) {
                 try {
                     TxUtils.beginTransaction();
-                    iceRespose = (IceRespose) method.invoke(iceCls, iceRequest);
+                    iceRespose = (IceResponse) method.invoke(iceCls, iceRequest);
                     TxUtils.commit();
                 } catch (Throwable t) {
                     TxUtils.rollback();
@@ -99,7 +99,7 @@ public class SoaManager {
                     TxUtils.endTransaction();
                 }
             } else {
-                iceRespose = (IceRespose) method.invoke(iceCls, iceRequest);
+                iceRespose = (IceResponse) method.invoke(iceCls, iceRequest);
             }
             log.info("invoke end {} {} ", serviceId, methodId);
             if (iceRespose.getCode() == 0) {
@@ -123,7 +123,7 @@ public class SoaManager {
         return JSONUtil.toJsonStr(doInvoke(msgRequest));
     }
 
-    public IceRespose doInvoke(IceRequest iceRequest) {
+    public IceResponse doInvoke(IceRequest iceRequest) {
         return doInvoke(new MsgRequest(iceRequest.getService(), iceRequest.getMethod(), iceRequest.getExtData(),
                 iceRequest.getAttr()));
     }

@@ -3,7 +3,7 @@ package com.rain.common.validation;
 import com.rain.common.core.Interceptor;
 import com.rain.common.exception.ValidationException;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.rain.common.validation.support.ValidationSupport;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 public class ValidInterceptor implements Interceptor {
 
     @Override
-    public boolean preHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
+    public boolean preHandle(Object iceCls, Method method, IceRequest iceRequest, IceResponse iceRespose) {
         String serviceId = iceRequest.getService();
         String methodId = iceRequest.getMethod();
         log.info("validate start {} {} ", serviceId, methodId);
@@ -31,7 +31,7 @@ public class ValidInterceptor implements Interceptor {
 
     @Override
     public void afterHandle(Object iceCls, Method method,
-                            IceRequest iceRequest, IceRespose iceRespose) {
+                            IceRequest iceRequest, IceResponse iceRespose) {
         // TODO Auto-generated method stub
 
     }

@@ -15,11 +15,11 @@ public class AppUtils {
     }
 
     public static AppUtils getInstance() {
-        return AppUtilsHolder.sington;
+        return AppUtilsHolder.singleton;
     }
 
     private static class AppUtilsHolder {
-        private static final AppUtils sington = new AppUtils();
+        private static final AppUtils singleton = new AppUtils();
     }
 
     /**

@@ -5,14 +5,13 @@ import com.github.tobato.fastdfs.FdfsClientConfig;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.rain.common.ice.v1.utils.IceClientUtils;
 import com.rain.common.uitls.JsonUtils;
 import com.rain.web.config.MessageUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.annotation.Import;
@@ -40,10 +39,10 @@ public class ApiGateway {
     protected final FastFileStorageClient fastFileStorageClient;
 
     @RequestMapping("/api")
-    public IceRespose apiExecute(@RequestBody IceRequest iceRequest) {
+    public IceResponse apiExecute(@RequestBody IceRequest iceRequest) {
         long begin = System.currentTimeMillis();
         // 请求服务：RPC请求或者http请求。
-        IceRespose iceRespose = invoke(iceRequest);
+        IceResponse iceRespose = invoke(iceRequest);
         log.info("Api Server - App call:[{}.{}] to spend:{}ms", iceRequest.getService(), iceRequest.getMethod(),
                 (System.currentTimeMillis() - begin));
 
@@ -52,8 +51,8 @@ public class ApiGateway {
 
 
     @PostMapping(value = "/upload")
-    public IceRespose upload(@RequestParam(name = "files") MultipartFile[] multipartFiles, IceRequest iceRequest) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse upload(@RequestParam(name = "files") MultipartFile[] multipartFiles, IceRequest iceRequest) {
+        IceResponse iceRespose = new IceResponse();
         try {
             if (multipartFiles.length > 0) {
                 Map multis = new HashMap();
@@ -146,11 +145,11 @@ public class ApiGateway {
      * @param iceRequest
      * @return
      */
-    private IceRespose invoke(IceRequest iceRequest) {
+    private IceResponse invoke(IceRequest iceRequest) {
         String service = iceRequest.getService();
         String method = iceRequest.getMethod();
 
-        IceRespose iceRespose = new IceRespose();
+        IceResponse iceRespose = new IceResponse();
         if (StringUtils.isEmpty(service)) {
             iceRespose.setCode(2, MessageUtils.get("apigateway.invoke.service_not_null"));
             return iceRespose;
@@ -161,7 +160,7 @@ public class ApiGateway {
         }
         try {
             String json = IceClientUtils.doService(iceRequest);
-            iceRespose = JsonUtils.toObject(json, IceRespose.class);
+            iceRespose = JsonUtils.toObject(json, IceResponse.class);
             return iceRespose;
         } catch (Exception e) {
             log.error("API调用:[{}.{}]RPC服务时异常：{}", e, service, method);

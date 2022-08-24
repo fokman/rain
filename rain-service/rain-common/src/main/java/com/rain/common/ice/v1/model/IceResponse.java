@@ -3,7 +3,7 @@ package com.rain.common.ice.v1.model;
 import java.util.List;
 import java.util.Map;
 
-public class IceRespose {
+public class IceResponse {
 
     /**
      * 服务返回消息

@@ -2,7 +2,7 @@ package com.rain.common.translate;
 
 import com.rain.common.core.Interceptor;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.rain.common.uitls.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,12 +17,12 @@ public class TransInterceptor implements Interceptor {
     private static final String PREFIX_LINKER = "$";
 
     @Override
-    public boolean preHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
+    public boolean preHandle(Object iceCls, Method method, IceRequest iceRequest, IceResponse iceRespose) {
         return true;
     }
 
     @Override
-    public void afterHandle(Object iceCls, Method method, IceRequest iceRequest, IceRespose iceRespose) {
+    public void afterHandle(Object iceCls, Method method, IceRequest iceRequest, IceResponse iceRespose) {
         // @Trans(params = {"publish_user,org_user,nick_name", "replyUser,org_user,nick_name"})
         try {
             Trans trans = method.getAnnotation(Trans.class);
@@ -68,7 +68,7 @@ public class TransInterceptor implements Interceptor {
 
     }
 
-    private void getStatus(IceRespose iceRespose, String key, String service, String name) {
+    private void getStatus(IceResponse iceRespose, String key, String service, String name) {
         if (iceRespose.getCode() == 0) {
             Object data = iceRespose.getData();
             if (data instanceof Map) {
@@ -96,7 +96,7 @@ public class TransInterceptor implements Interceptor {
         return TransStartUp.putTableRedis(table);
     }
 
-    private void getRedis(IceRespose iceRespose, String id, String table, String name) {
+    private void getRedis(IceResponse iceRespose, String id, String table, String name) {
         if (iceRespose.getCode() == 0) {
             //如果缓存没数据，先加载
             if (!getTableRedis(table)) return;

@@ -47,7 +47,7 @@ public class DaoMybatisImpl implements Dao {
         	sqlSession = getDao(ds);
 	        RowBounds rowBounds = new RowBounds((offset - 1) * limit, limit);
 	        List<Map<String, Object>> dataList =sqlSession
-	                .<Map<String, Object>> selectList(changeStatement(namespace, statement), null, rowBounds);
+	                .selectList(changeStatement(namespace, statement), null, rowBounds);
 	        return CamelNameUtils.listToCamel(dataList);
 	    }finally{
 	    	TxUtils.close(sqlSession);

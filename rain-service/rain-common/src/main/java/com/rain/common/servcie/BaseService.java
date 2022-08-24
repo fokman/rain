@@ -4,7 +4,7 @@ import com.rain.common.dao.Dao;
 import com.rain.common.dao.impl.DaoMybatisImpl;
 import com.rain.common.ice.v1.exception.SysException;
 import com.rain.common.ice.v1.model.IceRequest;
-import com.rain.common.ice.v1.model.IceRespose;
+import com.rain.common.ice.v1.model.IceResponse;
 import com.rain.common.uitls.SysCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +45,7 @@ public class BaseService {
         return "";
     }
 
-    protected Map<String, Object> mapStrtoObj(Map<String, String> paramData) {
+    protected Map<String, Object> mapStrToObj(Map<String, String> paramData) {
         Map<String, Object> params = new HashMap<String, Object>();
         if (paramData != null && !paramData.isEmpty()) {
             Set set = paramData.keySet();
@@ -61,8 +61,8 @@ public class BaseService {
         return params;
     }
 
-    public IceRespose query(IceRequest context, String namespace) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse query(IceRequest context, String namespace) {
+        IceResponse iceRespose = new IceResponse();
         try {
             if (context.getAttr().size() == 0) {
                 iceRespose.setData(getDao().query(getDs(), namespace, QUERY));
@@ -79,8 +79,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose queryByPage(IceRequest context, String namespace) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse queryByPage(IceRequest context, String namespace) {
+        IceResponse iceRespose = new IceResponse();
         try {
             // 每页显示记录条数
             int limit = context.getAttrAsInt(PAGE_SIZE, 10);
@@ -103,8 +103,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose get(IceRequest context, String namespace, String statement) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse get(IceRequest context, String namespace, String statement) {
+        IceResponse iceRespose = new IceResponse();
         try {
             if (statement == null || statement.length() == 0) {
                 statement = QUERY;
@@ -120,8 +120,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose query(IceRequest context, String namespace, String statement) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse query(IceRequest context, String namespace, String statement) {
+        IceResponse iceRespose = new IceResponse();
         try {
             if (statement == null || statement.length() == 0) {
                 statement = QUERY;
@@ -137,9 +137,9 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose queryByPage(IceRequest context, String namespace, String queryStatement, String
+    public IceResponse queryByPage(IceRequest context, String namespace, String queryStatement, String
             countStatement) {
-        IceRespose iceRespose = new IceRespose();
+        IceResponse iceRespose = new IceResponse();
         try {
             if (queryStatement == null || queryStatement.length() == 0) {
                 queryStatement = QUERY;
@@ -164,9 +164,9 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose queryCombox(IceRequest context, String namespace, String queryStatement, String
+    public IceResponse queryCombox(IceRequest context, String namespace, String queryStatement, String
             countStatement) {
-        IceRespose iceRespose = new IceRespose();
+        IceResponse iceRespose = new IceResponse();
         try {
             if (queryStatement == null || queryStatement.length() == 0) {
                 queryStatement = QUERY;
@@ -191,8 +191,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose insert(IceRequest context, String namespace) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse insert(IceRequest context, String namespace) {
+        IceResponse iceRespose = new IceResponse();
         try {
             getDao().insert(getDs(), namespace, INSERT, context.getAttrMap());
             iceRespose.setMsg("新增成功!");
@@ -205,8 +205,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose update(IceRequest context, String namespace) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse update(IceRequest context, String namespace) {
+        IceResponse iceRespose = new IceResponse();
         try {
             int count = getDao().update(getDs(), namespace, UPDATE, context.getAttrMap());
             iceRespose.setMsg("成功修改" + count + "条记录!");
@@ -219,8 +219,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose delete(IceRequest context, String namespace) {
-        IceRespose iceRespose = new IceRespose();
+    public IceResponse delete(IceRequest context, String namespace) {
+        IceResponse iceRespose = new IceResponse();
         try {
             // for(Map<String,Object> map : context.getRows()){
             getDao().delete(getDs(), namespace, DELETE, context.getAttrMap());
@@ -235,8 +235,8 @@ public class BaseService {
         return iceRespose;
     }
 
-    public IceRespose setInfo(int code, String msg) {
-        IceRespose respose = new IceRespose();
+    public IceResponse setInfo(int code, String msg) {
+        IceResponse respose = new IceResponse();
         respose.setCode(code);
         respose.setMsg(msg);
         return respose;
@@ -250,8 +250,8 @@ public class BaseService {
      * @return
      * @创建日期 2016年7月7日
      */
-    public IceRespose setErrInfo(int code, String msg) {
-        IceRespose respose = new IceRespose();
+    public IceResponse setErrInfo(int code, String msg) {
+        IceResponse respose = new IceResponse();
         msg = SysCodeUtils.getInstance().getProperty(code, msg);
         respose.setCode(code);
         respose.setMsg(msg);
@@ -265,7 +265,7 @@ public class BaseService {
      * @return
      * @创建日期 2016年7月7日
      */
-    public IceRespose setErr(int errCode) {
+    public IceResponse setErr(int errCode) {
         return setErrInfo(errCode, "");
     }
 
@@ -278,8 +278,8 @@ public class BaseService {
      * @return
      * @创建日期 2016年7月7日
      */
-    public IceRespose setErr(int errCode, Object data) {
-        IceRespose respose = new IceRespose();
+    public IceResponse setErr(int errCode, Object data) {
+        IceResponse respose = new IceResponse();
         String msg = SysCodeUtils.getInstance().getProperty(errCode, "");
         respose.setCode(errCode);
         respose.setMsg(msg);

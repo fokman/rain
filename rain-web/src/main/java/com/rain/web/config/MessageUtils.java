@@ -1,7 +1,6 @@
 package com.rain.web.config;
 
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
